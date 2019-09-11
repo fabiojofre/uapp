@@ -1,28 +1,28 @@
 package com.jofre.uapp.resources;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jofre.uapp.domain.Area;
+import com.jofre.uapp.services.AreaService;
 
 @RestController
 @RequestMapping(value="/areas")
 public class AreaResource {
 	
-	@RequestMapping(method = RequestMethod.GET)
-	public List<Area> listar() {
-		Area area1 = new Area(1, "Area 1");
-		Area area2 = new Area(2, "Area 2");
+	@Autowired
+	private AreaService service; 
+	
+	@RequestMapping(value="/{id}", method = RequestMethod.GET)
+	public ResponseEntity<?> find(@PathVariable Integer id) {
 		
-		List<Area>lista = new ArrayList<>();
-		lista.add(area1);
-		lista.add(area2);
+		Area obj = service.find(id);
+		return ResponseEntity.ok().body(obj);
 		
-		return lista;
 	}
 
 }

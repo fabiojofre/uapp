@@ -1,37 +1,43 @@
 package com.jofre.uapp.domain;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
-public class Area implements Serializable{
+public class Area implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Integer area_id;
 	private String nome;
-	
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "area")
+	private List<Congregacao> congregacao;
+
 	public Area() {
-		
+
 	}
 
 	public Area(Integer id, String nome) {
 		super();
-		this.id = id;
+		this.area_id = id;
 		this.nome = nome;
 	}
 
 	public Integer getId() {
-		return id;
+		return area_id;
 	}
 
 	public void setId(Integer id) {
-		this.id = id;
+		this.area_id = id;
 	}
 
 	public String getNome() {
@@ -46,7 +52,7 @@ public class Area implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((area_id == null) ? 0 : area_id.hashCode());
 		return result;
 	}
 
@@ -59,16 +65,12 @@ public class Area implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Area other = (Area) obj;
-		if (id == null) {
-			if (other.id != null)
+		if (area_id == null) {
+			if (other.area_id != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!area_id.equals(other.area_id))
 			return false;
 		return true;
 	}
-	
-	
-	
-	
 
 }

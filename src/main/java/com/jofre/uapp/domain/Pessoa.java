@@ -17,7 +17,7 @@ public class Pessoa implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Integer pessoa_id;
 
 //	private Integer id_congregacao;
 	private String nome;
@@ -33,7 +33,7 @@ public class Pessoa implements Serializable{
 	private String endereco;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "congregacao.id")
+    @JoinColumn(name = "congregacao_id")
     private Congregacao congregacao;
 	
 	public Pessoa() {
@@ -42,14 +42,14 @@ public class Pessoa implements Serializable{
     
 		public Pessoa(Integer id) {
 		super();
-		this.id = id;
+		this.pessoa_id = id;
 	}
 
 	public Pessoa(Integer id, Congregacao congregacao, /*Integer id_congregacao,*/ String nome, Date nascimento,
 			boolean eMembro, String fone, String nomePai, String fonePai, String nomeMae, String foneMae,
 			boolean paiMembro, boolean maeMembro, String endereco) {
 		super();
-		this.id = id;
+		this.pessoa_id = id;
 		this.congregacao = congregacao;
 //		this.id_congregacao = id_congregacao;
 		this.nome = nome;
@@ -82,11 +82,11 @@ public class Pessoa implements Serializable{
 //	}
 
 	public Integer getId() {
-		return id;
+		return pessoa_id;
 	}
 
 	public void setId(Integer id) {
-		this.id = id;
+		this.pessoa_id = id;
 	}
 
 	public String getNome() {
@@ -181,7 +181,7 @@ public class Pessoa implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((pessoa_id == null) ? 0 : pessoa_id.hashCode());
 		return result;
 	}
 
@@ -194,10 +194,10 @@ public class Pessoa implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Pessoa other = (Pessoa) obj;
-		if (id == null) {
-			if (other.id != null)
+		if (pessoa_id == null) {
+			if (other.pessoa_id != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!pessoa_id.equals(other.pessoa_id))
 			return false;
 		return true;
 	}

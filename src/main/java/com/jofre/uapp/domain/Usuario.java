@@ -1,38 +1,39 @@
 package com.jofre.uapp.domain;
 
 import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-
-
 
 @Entity
-public class Congregacao implements Serializable {
+public class Usuario implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	//private long idArea;
 	private String nome;
-	private String responsavel;
+	private String email;
+	private String senha;
+	private String poder;
+	private Integer id_area;
+	private Integer id_congregacao;
 	
-	
-	@ManyToOne
-	private Area area;
-	
-	public Congregacao() {	
+	public Usuario() {
 	}
 
-	public Congregacao(Integer id,  String nome, String responsavel) {
+	public Usuario(Integer id, String nome, String email, String senha, String poder, Integer id_area,
+			Integer id_congregacao) {
 		super();
 		this.id = id;
-
 		this.nome = nome;
-		this.responsavel = responsavel;
+		this.email = email;
+		this.senha = senha;
+		this.poder = poder;
+		this.id_area = id_area;
+		this.id_congregacao = id_congregacao;
 	}
 
 	public Integer getId() {
@@ -43,7 +44,6 @@ public class Congregacao implements Serializable {
 		this.id = id;
 	}
 
-
 	public String getNome() {
 		return nome;
 	}
@@ -52,21 +52,44 @@ public class Congregacao implements Serializable {
 		this.nome = nome;
 	}
 
-	public String getResponsavel() {
-		return responsavel;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setResponsavel(String responsavel) {
-		this.responsavel = responsavel;
-	}
-	
-	
-	public Area getArea() {
-		return area;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public void setArea(Area area) {
-		this.area = area;
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public String getPoder() {
+		return poder;
+	}
+
+	public void setPoder(String poder) {
+		this.poder = poder;
+	}
+
+	public Integer getId_area() {
+		return id_area;
+	}
+
+	public void setId_area(Integer id_area) {
+		this.id_area = id_area;
+	}
+
+	public Integer getId_congregacao() {
+		return id_congregacao;
+	}
+
+	public void setId_congregacao(Integer id_congregacao) {
+		this.id_congregacao = id_congregacao;
 	}
 
 	@Override
@@ -85,7 +108,7 @@ public class Congregacao implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Congregacao other = (Congregacao) obj;
+		Usuario other = (Usuario) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -93,6 +116,5 @@ public class Congregacao implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
+			
 }

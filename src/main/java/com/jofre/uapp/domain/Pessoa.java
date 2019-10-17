@@ -4,9 +4,12 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Pessoa implements Serializable{
@@ -15,6 +18,8 @@ public class Pessoa implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+
+//	private Integer id_congregacao;
 	private String nome;
 	private Date nascimento;
 	private boolean eMembro;
@@ -26,15 +31,27 @@ public class Pessoa implements Serializable{
 	private boolean paiMembro;
 	private boolean maeMembro;
 	private String endereco;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "congregacao.id")
+    private Congregacao congregacao;
 	
 	public Pessoa() {
 		
 	}
-
-	public Pessoa(Integer id, String nome, Date nascimento, boolean eMembro, String fone, String nomePai,
-			String fonePai, String nomeMae, String foneMae, boolean paiMembro, boolean maeMembro, String endereco) {
+    
+		public Pessoa(Integer id) {
 		super();
 		this.id = id;
+	}
+
+	public Pessoa(Integer id, Congregacao congregacao, /*Integer id_congregacao,*/ String nome, Date nascimento,
+			boolean eMembro, String fone, String nomePai, String fonePai, String nomeMae, String foneMae,
+			boolean paiMembro, boolean maeMembro, String endereco) {
+		super();
+		this.id = id;
+		this.congregacao = congregacao;
+//		this.id_congregacao = id_congregacao;
 		this.nome = nome;
 		this.nascimento = nascimento;
 		this.eMembro = eMembro;
@@ -47,6 +64,22 @@ public class Pessoa implements Serializable{
 		this.maeMembro = maeMembro;
 		this.endereco = endereco;
 	}
+
+	public Congregacao getCongregacao() {
+		return congregacao;
+	}
+
+	public void setCongregacao(Congregacao congregacao) {
+		this.congregacao = congregacao;
+	}
+
+//	public Integer getId_congregacao() {
+//		return id_congregacao;
+//	}
+//
+//	public void setId_congregacao(Integer id_congregacao) {
+//		this.id_congregacao = id_congregacao;
+//	}
 
 	public Integer getId() {
 		return id;

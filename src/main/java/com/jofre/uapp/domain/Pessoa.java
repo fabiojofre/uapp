@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,17 +11,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Pessoa implements Serializable{
+public class Pessoa implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer pessoa_id;
-
-//	private Integer id_congregacao;
+	private Integer id;
+	private boolean ativo = false;
 	private String nome;
 	private Date nascimento;
-	private boolean eMembro;
+	private boolean eMembro = false ;
 	private String fone;
 	private String nomePai;
 	private String fonePai;
@@ -32,26 +30,31 @@ public class Pessoa implements Serializable{
 	private boolean maeMembro;
 	private String endereco;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "congregacao_id")
-    private Congregacao congregacao;
+	@ManyToOne
+	@JoinColumn(name = "congregacao_id")
+	private Congregacao congregacao;
+
+	@ManyToOne
+	@JoinColumn(name = "tipo_pessoa_id")
+	private TipoPessoa tipoPessoa;
 	
 	public Pessoa() {
-		
-	}
-    
-		public Pessoa(Integer id) {
-		super();
-		this.pessoa_id = id;
+
 	}
 
-	public Pessoa(Integer id, Congregacao congregacao, /*Integer id_congregacao,*/ String nome, Date nascimento,
-			boolean eMembro, String fone, String nomePai, String fonePai, String nomeMae, String foneMae,
-			boolean paiMembro, boolean maeMembro, String endereco) {
+	public Pessoa(Integer id) {
 		super();
-		this.pessoa_id = id;
+		this.id = id;
+	}
+
+	public Pessoa(Integer id, boolean ativo, Congregacao congregacao, TipoPessoa tipoPessoa, String nome, Date nascimento, boolean eMembro, String fone,
+			String nomePai, String fonePai, String nomeMae, String foneMae, boolean paiMembro, boolean maeMembro,
+			String endereco) {
+		super();
+		this.id = id;
+		this.ativo = ativo;
 		this.congregacao = congregacao;
-//		this.id_congregacao = id_congregacao;
+		this.tipoPessoa = tipoPessoa;
 		this.nome = nome;
 		this.nascimento = nascimento;
 		this.eMembro = eMembro;
@@ -64,7 +67,15 @@ public class Pessoa implements Serializable{
 		this.maeMembro = maeMembro;
 		this.endereco = endereco;
 	}
+	
+	public Integer getId() {
+		return id;
+	}
 
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
 	public Congregacao getCongregacao() {
 		return congregacao;
 	}
@@ -73,25 +84,26 @@ public class Pessoa implements Serializable{
 		this.congregacao = congregacao;
 	}
 
-//	public Integer getId_congregacao() {
-//		return id_congregacao;
-//	}
-//
-//	public void setId_congregacao(Integer id_congregacao) {
-//		this.id_congregacao = id_congregacao;
-//	}
-
-	public Integer getId() {
-		return pessoa_id;
+	public TipoPessoa getTipoPessoa() {
+		return tipoPessoa;
 	}
 
-	public void setId(Integer id) {
-		this.pessoa_id = id;
+	public void setTipoPessoa(TipoPessoa tipoPessoa) {
+		this.tipoPessoa = tipoPessoa;
 	}
 
 	public String getNome() {
 		return nome;
 	}
+	
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
+	}
+
 
 	public void setNome(String nome) {
 		this.nome = nome;
@@ -181,7 +193,7 @@ public class Pessoa implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((pessoa_id == null) ? 0 : pessoa_id.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 
@@ -194,13 +206,12 @@ public class Pessoa implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Pessoa other = (Pessoa) obj;
-		if (pessoa_id == null) {
-			if (other.pessoa_id != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!pessoa_id.equals(other.pessoa_id))
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
 	}
-	
-	
+
 }

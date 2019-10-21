@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,36 +17,38 @@ public class Congregacao implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer congregacao_id;
+	private Integer id;
 	private String nome;
 	private String responsavel;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "congregacao") // Define uma estrategia de um para muitos,em
-																	// mapeamento preguiçosa na tabela definida
-	private List<Pessoa> pessoa; // traz uma lista de desse mapeamento
+	@OneToMany(mappedBy = "congregacao")
+	private List<Pessoa> pessoa;
 
-	@ManyToOne(fetch = FetchType.LAZY) // Define uma estrategia de muitos para um,em mapeamento preguiçosa em uma
-										// tabela secundário usando o id
+	@ManyToOne
 	@JoinColumn(name = "area_id")
 	private Area area;
 
 	public Congregacao() {
 	}
 
-	public Congregacao(Integer id, String nome, String responsavel) {
-		super();
-		this.congregacao_id = id;
+	
 
+	public Congregacao(Integer id, String nome, String responsavel, Area area) {
+		super();
+		this.id = id;
 		this.nome = nome;
 		this.responsavel = responsavel;
+		this.area = area;
 	}
 
-	public Integer getCongregacaoId() {
-		return congregacao_id;
+
+
+	public Integer getId() {
+		return id;
 	}
 
-	public void setCongregacaoId(Integer id) {
-		this.congregacao_id = id;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getNome() {
@@ -82,12 +83,11 @@ public class Congregacao implements Serializable {
 		this.pessoa = pessoa;
 	}
 
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((congregacao_id == null) ? 0 : congregacao_id.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 
@@ -100,10 +100,10 @@ public class Congregacao implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Congregacao other = (Congregacao) obj;
-		if (congregacao_id == null) {
-			if (other.congregacao_id != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!congregacao_id.equals(other.congregacao_id))
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
 	}

@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,10 +15,10 @@ public class Area implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer area_id;
+	private Integer id;
 	private String nome;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "area")
+	@OneToMany(mappedBy = "area")
 	private List<Congregacao> congregacao;
 
 	public Area() {
@@ -28,16 +27,16 @@ public class Area implements Serializable {
 
 	public Area(Integer id, String nome) {
 		super();
-		this.area_id = id;
+		this.id = id;
 		this.nome = nome;
 	}
 
 	public Integer getId() {
-		return area_id;
+		return id;
 	}
 
 	public void setId(Integer id) {
-		this.area_id = id;
+		this.id = id;
 	}
 
 	public String getNome() {
@@ -47,12 +46,21 @@ public class Area implements Serializable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
+
+	public List<Congregacao> getCongregacao() {
+		return congregacao;
+	}
+
+	public void setCongregacao(List<Congregacao> congregacao) {
+		this.congregacao = congregacao;
+	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((area_id == null) ? 0 : area_id.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 
@@ -65,10 +73,10 @@ public class Area implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Area other = (Area) obj;
-		if (area_id == null) {
-			if (other.area_id != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!area_id.equals(other.area_id))
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
 	}

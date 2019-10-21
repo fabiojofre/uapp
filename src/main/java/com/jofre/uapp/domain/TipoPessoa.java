@@ -1,11 +1,13 @@
 package com.jofre.uapp.domain;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class TipoPessoa implements Serializable{
@@ -15,6 +17,9 @@ public class TipoPessoa implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nomeTipo;
+	
+	@OneToMany(mappedBy = "tipoPessoa")
+	private List<Pessoa> pessoa;
 	
 	public TipoPessoa() {	
 	}
@@ -39,6 +44,14 @@ public class TipoPessoa implements Serializable{
 
 	public void setNomeTipo(String nomeTipo) {
 		this.nomeTipo = nomeTipo;
+	}
+	
+	public List<Pessoa> getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(List<Pessoa> pessoa) {
+		this.pessoa = pessoa;
 	}
 
 	@Override

@@ -16,7 +16,7 @@ public class AreaService {
 	public Area find(Integer id) {
 		Optional<Area> obj = ar.findById(id);
 		return obj.orElse(null);
-		
+			
 	}
 
 }

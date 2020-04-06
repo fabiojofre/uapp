@@ -11,7 +11,7 @@ import com.jofre.uapp.domain.Congregacao;
 import com.jofre.uapp.services.CongregacaoService;
 
 @RestController
-@RequestMapping(value="/congrecacoes")
+@RequestMapping(value="/congregacoes")
 public class CongregacaoResource {
 	
 	@Autowired

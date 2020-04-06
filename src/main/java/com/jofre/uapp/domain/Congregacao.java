@@ -11,6 +11,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Congregacao implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -22,16 +25,16 @@ public class Congregacao implements Serializable {
 	private String responsavel;
 
 	@OneToMany(mappedBy = "congregacao")
+	@JsonManagedReference //evita loop de json
 	private List<Pessoa> pessoa;
 
 	@ManyToOne
+	@JsonBackReference //evita loop de json
 	@JoinColumn(name = "area_id")
 	private Area area;
 
 	public Congregacao() {
 	}
-
-	
 
 	public Congregacao(Integer id, String nome, String responsavel, Area area) {
 		super();

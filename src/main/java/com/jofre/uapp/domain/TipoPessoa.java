@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class TipoPessoa implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -19,6 +21,7 @@ public class TipoPessoa implements Serializable{
 	private String nomeTipo;
 	
 	@OneToMany(mappedBy = "tipoPessoa")
+	@JsonManagedReference
 	private List<Pessoa> pessoa;
 	
 	public TipoPessoa() {	

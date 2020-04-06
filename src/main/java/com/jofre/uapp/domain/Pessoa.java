@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Pessoa implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -31,10 +33,12 @@ public class Pessoa implements Serializable {
 	private String endereco;
 
 	@ManyToOne
+	@JsonBackReference
 	@JoinColumn(name = "congregacao_id")
 	private Congregacao congregacao;
 
 	@ManyToOne
+	@JsonBackReference
 	@JoinColumn(name = "tipo_pessoa_id")
 	private TipoPessoa tipoPessoa;
 	
@@ -46,28 +50,17 @@ public class Pessoa implements Serializable {
 		super();
 		this.id = id;
 	}
-
-	public Pessoa(Integer id, boolean ativo, Congregacao congregacao, TipoPessoa tipoPessoa, String nome, Date nascimento, boolean eMembro, String fone,
-			String nomePai, String fonePai, String nomeMae, String foneMae, boolean paiMembro, boolean maeMembro,
-			String endereco) {
+	public Pessoa(Integer id, boolean ativo, String nome, boolean eMembro, Congregacao congregacao,
+			TipoPessoa tipoPessoa) {
 		super();
 		this.id = id;
 		this.ativo = ativo;
+		this.nome = nome;
+		this.eMembro = eMembro;
 		this.congregacao = congregacao;
 		this.tipoPessoa = tipoPessoa;
-		this.nome = nome;
-		this.nascimento = nascimento;
-		this.eMembro = eMembro;
-		this.fone = fone;
-		this.nomePai = nomePai;
-		this.fonePai = fonePai;
-		this.nomeMae = nomeMae;
-		this.foneMae = foneMae;
-		this.paiMembro = paiMembro;
-		this.maeMembro = maeMembro;
-		this.endereco = endereco;
 	}
-	
+
 	public Integer getId() {
 		return id;
 	}

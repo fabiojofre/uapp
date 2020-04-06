@@ -8,8 +8,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.CommandLineRunner;
 import com.jofre.uapp.domain.Area;
 import com.jofre.uapp.domain.Congregacao;
+import com.jofre.uapp.domain.Pessoa;
+import com.jofre.uapp.domain.TipoPessoa;
 import com.jofre.uapp.repositories.AreaRepository;
 import com.jofre.uapp.repositories.CongregacaoRepository;
+import com.jofre.uapp.repositories.PessoaRepository;
+import com.jofre.uapp.repositories.TipoPessoaRepository;
 
 
 @SpringBootApplication
@@ -20,6 +24,12 @@ public class UappApplication implements CommandLineRunner{
 	
 	@Autowired
 	private CongregacaoRepository congregacaoRepository;
+	
+	@Autowired
+	private TipoPessoaRepository tipoPessoaRepository;
+	
+	@Autowired
+	private PessoaRepository pessoaRepository;
 	
 	
 	public static void main(String[] args) {
@@ -45,14 +55,33 @@ public class UappApplication implements CommandLineRunner{
 		Congregacao c9 = new Congregacao(null, "Viaduto", "Dario", area3);
 		Congregacao c10 = new Congregacao(null, "Paulo Afonso", "Elias", area7);
 		
-		area1.getCongregacao().addAll(Arrays.asList(c7,c8));
-		area3.getCongregacao().addAll(Arrays.asList(c9));
-		area5.getCongregacao().addAll(Arrays.asList(c2,c5,c6));
-		area7.getCongregacao().addAll(Arrays.asList(c1,c3,c4,c10));
+//		area1.getCongregacao().addAll(Arrays.asList(c7,c8));
+//		area3.getCongregacao().addAll(Arrays.asList(c9));
+//		area5.getCongregacao().addAll(Arrays.asList(c2,c5,c6));
+//		area7.getCongregacao().addAll(Arrays.asList(c1,c3,c4,c10));
 		
 		areaRepository.saveAll(Arrays.asList(area1,area3,area5,area7));
 		congregacaoRepository.saveAll(Arrays.asList(c1,c2,c3,c4,c5,c6,c7,c8,c9,c10));
 		
+		TipoPessoa tp1 = new TipoPessoa(null, "Pessoa");
+		TipoPessoa tp2 = new TipoPessoa(null, "Dirigente");
+		TipoPessoa tp3 = new TipoPessoa(null, "Pesp Congreg");
+		TipoPessoa tp4 = new TipoPessoa(null, "Jovem");
+		
+		//Integer id, boolean ativo, String nome, boolean eMembro, Congregacao congregacao,TipoPessoa tipoPessoa
+		Pessoa p1 = new Pessoa(null,true,"Letícia Dias",true,c2,tp1);
+		Pessoa p2 = new Pessoa(null,true,"Letícia Adelino",false,c2,tp2);
+		Pessoa p3 = new Pessoa(null,true,"Letícia Vitória",false,c2,tp3);
+		Pessoa p4 = new Pessoa(null,true,"Eldio Lima",false,c2,tp2);
+		Pessoa p5 = new Pessoa(null,true,"Alex Souza",false,c2,tp3);
+		Pessoa p6 = new Pessoa(null,true,"Márcio Almeida",false,c2,tp1);
+		Pessoa p7 = new Pessoa(null,true,"Angela Maria",false,c2,tp2);
+		Pessoa p8 = new Pessoa(null,true,"Fábio Jorge",false,c2,tp2);
+		Pessoa p9 = new Pessoa(null,true,"Eliaquim Lima",false,c2,tp1);
+		Pessoa p10 = new Pessoa(null,true,"Leonardo Júnior",false,c2,tp4);
+		
+		tipoPessoaRepository.saveAll(Arrays.asList(tp1,tp2,tp3,tp4));
+		pessoaRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5,p6,p7,p8,p9,p10));
 		
 		
   }

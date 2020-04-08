@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jofre.uapp.domain.StatusPessoa;
+import com.jofre.uapp.domain.Spessoa;
 import com.jofre.uapp.services.StatusPessoaService;
+
+import javassist.tools.rmi.ObjectNotFoundException;
 
 @RestController
 @RequestMapping(value="/statuspessoa")
@@ -17,9 +19,9 @@ public class StatusPessoaResources {
 	private StatusPessoaService service; 
 	
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id) {
+	public ResponseEntity<?> find(@PathVariable Integer id) throws ObjectNotFoundException {
 		
-		StatusPessoa obj = service.find(id);
+		Spessoa obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 		
 	}

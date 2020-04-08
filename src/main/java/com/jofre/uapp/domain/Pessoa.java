@@ -39,8 +39,13 @@ public class Pessoa implements Serializable {
 
 	@ManyToOne
 	@JsonBackReference
-	@JoinColumn(name = "tipo_pessoa_id")
+	@JoinColumn(name = "tipopessoa_id")
 	private TipoPessoa tipoPessoa;
+	
+	@ManyToOne
+	@JsonBackReference
+	@JoinColumn(name = "statuspessoa_id")
+	private Spessoa spessoa;
 	
 	public Pessoa() {
 
@@ -51,7 +56,7 @@ public class Pessoa implements Serializable {
 		this.id = id;
 	}
 	public Pessoa(Integer id, boolean ativo, String nome, boolean eMembro, Congregacao congregacao,
-			TipoPessoa tipoPessoa) {
+			TipoPessoa tipoPessoa, Spessoa spessoa) {
 		super();
 		this.id = id;
 		this.ativo = ativo;
@@ -59,6 +64,7 @@ public class Pessoa implements Serializable {
 		this.eMembro = eMembro;
 		this.congregacao = congregacao;
 		this.tipoPessoa = tipoPessoa;
+		this.spessoa = spessoa;
 	}
 
 	public Integer getId() {
@@ -85,6 +91,14 @@ public class Pessoa implements Serializable {
 		this.tipoPessoa = tipoPessoa;
 	}
 
+	public Spessoa getStatusPessoa() {
+		return spessoa;
+	}
+
+	public void setStatusPessoa(Spessoa spessoa) {
+		this.spessoa = spessoa;
+	}
+	
 	public String getNome() {
 		return nome;
 	}

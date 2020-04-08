@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.jofre.uapp.domain.Profissao;
 import com.jofre.uapp.services.ProfissaoService;
 
+import javassist.tools.rmi.ObjectNotFoundException;
+
 @RestController
 @RequestMapping(value="/proficoes")
 public class ProfissaoResource {
@@ -18,7 +20,7 @@ public class ProfissaoResource {
 	private ProfissaoService service; 
 	
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id) {
+	public ResponseEntity<?> find(@PathVariable Integer id) throws ObjectNotFoundException {
 		
 		Profissao obj = service.find(id);
 		return ResponseEntity.ok().body(obj);

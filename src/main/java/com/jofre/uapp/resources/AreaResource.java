@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.jofre.uapp.domain.Area;
 import com.jofre.uapp.services.AreaService;
 
+import javassist.tools.rmi.ObjectNotFoundException;
+
 @RestController
 @RequestMapping(value="/areas")
 public class AreaResource {
@@ -18,7 +20,7 @@ public class AreaResource {
 	private AreaService service; 
 	
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id) {
+	public ResponseEntity<?> find(@PathVariable Integer id) throws ObjectNotFoundException {
 		Area obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 		

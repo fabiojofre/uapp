@@ -6,6 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Usuario implements Serializable{
@@ -21,11 +25,16 @@ public class Usuario implements Serializable{
 	private Integer id_area;
 	private Integer id_congregacao;
 	
+	@ManyToOne
+	@JsonBackReference //evita loop de json
+	@JoinColumn(name = "ugrupo_id")
+	private Ugrupo ugrupo;
+	
 	public Usuario() {
 	}
 
 	public Usuario(Integer id, String nome, String email, String senha, String poder, Integer id_area,
-			Integer id_congregacao) {
+			Integer id_congregacao, Ugrupo ugrupo) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -34,7 +43,10 @@ public class Usuario implements Serializable{
 		this.poder = poder;
 		this.id_area = id_area;
 		this.id_congregacao = id_congregacao;
+		this.ugrupo = ugrupo;
 	}
+
+
 
 	public Integer getId() {
 		return id;
@@ -90,6 +102,14 @@ public class Usuario implements Serializable{
 
 	public void setId_congregacao(Integer id_congregacao) {
 		this.id_congregacao = id_congregacao;
+	}
+
+	public Ugrupo getUgrupo() {
+		return ugrupo;
+	}
+
+	public void setUgrupo(Ugrupo ugrupo) {
+		this.ugrupo = ugrupo;
 	}
 
 	@Override

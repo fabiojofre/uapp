@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.jofre.uapp.domain.Congregacao;
 import com.jofre.uapp.services.CongregacaoService;
 
+import javassist.tools.rmi.ObjectNotFoundException;
+
 @RestController
 @RequestMapping(value="/congregacoes")
 public class CongregacaoResource {
@@ -17,7 +19,7 @@ public class CongregacaoResource {
 	@Autowired
 	private CongregacaoService service;
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id){
+	public ResponseEntity<?> find(@PathVariable Integer id) throws ObjectNotFoundException{
 		Congregacao obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 	}

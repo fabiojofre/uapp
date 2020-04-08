@@ -1,4 +1,4 @@
-package com.jofre.uapp.domain;
+package com.jofre.uapp.domain.mov;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -17,20 +17,21 @@ public class Evento implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String evento;
-	private boolean repetitivo;
-	private Date inicio, fim;
+	
+	private boolean ativo;
+	private Date data;
 	
 	public Evento(){
 		
 	}
 
-	public Evento(Integer id, String evento, boolean repetitivo, Date inicio, Date fim) {
+	public Evento(Integer id, String evento, boolean ativo, Date data) {
 		super();
 		this.id = id;
 		this.evento = evento;
-		this.repetitivo = repetitivo;
-		this.inicio = inicio;
-		this.fim = fim;
+		this.ativo = ativo;
+		this.data = data;
+	
 	}
 
 	public Integer getId() {
@@ -50,27 +51,19 @@ public class Evento implements Serializable{
 	}
 
 	public boolean isRepetitivo() {
-		return repetitivo;
+		return ativo;
 	}
 
-	public void setRepetitivo(boolean repetitivo) {
-		this.repetitivo = repetitivo;
+	public void setRepetitivo(boolean ativo) {
+		this.ativo = ativo;
 	}
 
 	public Date getInicio() {
-		return inicio;
+		return data;
 	}
 
 	public void setInicio(Date inicio) {
-		this.inicio = inicio;
-	}
-
-	public Date getFim() {
-		return fim;
-	}
-
-	public void setFim(Date fim) {
-		this.fim = fim;
+		this.data = inicio;
 	}
 
 	@Override

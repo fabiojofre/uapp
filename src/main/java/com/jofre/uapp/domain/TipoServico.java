@@ -11,60 +11,64 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-@Entity
-public class Ugrupo implements Serializable {
+@Entity 
+public class TipoServico implements Serializable{
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private String grupo;
-	private char ativo;
-
-	@OneToMany(mappedBy = "ugrupo")
-	@JsonManagedReference
-	private List<Usuario> usuario;
+	private String desc1;
+	private String desc2;
 	
-	public Ugrupo() {
-		
+	@OneToMany(mappedBy = "tipoServico")
+	@JsonManagedReference
+	private List<Servico>servico;
+	
+	public TipoServico() {
 	}
 	
-		
-	public Ugrupo(Integer id, String grupo, char ativo) {
+
+	public TipoServico(Integer id, String desc1, String desc2) {
 		super();
 		this.id = id;
-		this.grupo = grupo;
-		this.ativo = ativo;
+		this.desc1 = desc1;
+		this.desc2 = desc2;
 	}
 
 
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getGrupo() {
-		return grupo;
-	}
-	public void setGrupo(String grupo) {
-		this.grupo = grupo;
-	}
-	public char getAtivo() {
-		return ativo;
-	}
-	public void setAtivo(char ativo) {
-		this.ativo = ativo;
-	}
-	
-	
-	public List<Usuario> getUsuario() {
-		return usuario;
+
+	public String getDesc1() {
+		return desc1;
 	}
 
-	public void setUsuario(List<Usuario> usuario) {
-		this.usuario = usuario;
+	public void setDesc1(String desc1) {
+		this.desc1 = desc1;
 	}
+
+	public String getDesc2() {
+		return desc2;
+	}
+
+	public void setDesc2(String desc2) {
+		this.desc2 = desc2;
+	}
+
+	public List<Servico> getServico() {
+		return servico;
+	}
+
+	public void setServico(List<Servico> servico) {
+		this.servico = servico;
+	}
+
 
 	@Override
 	public int hashCode() {
@@ -73,6 +77,8 @@ public class Ugrupo implements Serializable {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
+
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -81,7 +87,7 @@ public class Ugrupo implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Ugrupo other = (Ugrupo) obj;
+		TipoServico other = (TipoServico) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -89,7 +95,6 @@ public class Ugrupo implements Serializable {
 			return false;
 		return true;
 	}
-
 	
 	
 }

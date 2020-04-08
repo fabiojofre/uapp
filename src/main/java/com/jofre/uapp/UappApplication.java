@@ -9,11 +9,13 @@ import org.springframework.boot.CommandLineRunner;
 import com.jofre.uapp.domain.Area;
 import com.jofre.uapp.domain.Congregacao;
 import com.jofre.uapp.domain.Pessoa;
-import com.jofre.uapp.domain.Spessoa;
+import com.jofre.uapp.domain.Profissao;
+import com.jofre.uapp.domain.StatusPessoa;
 import com.jofre.uapp.domain.TipoPessoa;
 import com.jofre.uapp.repositories.AreaRepository;
 import com.jofre.uapp.repositories.CongregacaoRepository;
 import com.jofre.uapp.repositories.PessoaRepository;
+import com.jofre.uapp.repositories.ProfissaoRepository;
 import com.jofre.uapp.repositories.StatusPessoaRepository;
 import com.jofre.uapp.repositories.TipoPessoaRepository;
 
@@ -35,6 +37,9 @@ public class UappApplication implements CommandLineRunner{
 	
 	@Autowired
 	private StatusPessoaRepository statusPessoaRepository;
+	
+	@Autowired
+	private ProfissaoRepository profissaoRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(UappApplication.class, args);
@@ -72,24 +77,29 @@ public class UappApplication implements CommandLineRunner{
 		TipoPessoa tp3 = new TipoPessoa(null, "Pesp Congreg");
 		TipoPessoa tp4 = new TipoPessoa(null, "Jovem");
 		
-		Spessoa sp1 = new Spessoa(null, "Comunihão");
-		Spessoa sp2 = new Spessoa(null, "Afastado");
-		Spessoa sp3 = new Spessoa(null, "Falecido");
+		StatusPessoa sp1 = new StatusPessoa(null, "Comunihão");
+		StatusPessoa sp2 = new StatusPessoa(null, "Afastado");
+		StatusPessoa sp3 = new StatusPessoa(null, "Falecido");
+		
+		Profissao pf1 = new Profissao(null, "Maestro");
+		Profissao pf2 = new Profissao(null,"Pregador");
+		Profissao pf3 = new Profissao(null, "Componente");
 		
 		//Integer id, boolean ativo, String nome, boolean eMembro, Congregacao congregacao,TipoPessoa tipoPessoa
-		Pessoa p1 = new Pessoa(null,true,"Letícia Dias",true,c2,tp1,sp1);
-		Pessoa p2 = new Pessoa(null,true,"Letícia Adelino",false,c2,tp2,sp1);
-		Pessoa p3 = new Pessoa(null,true,"Letícia Vitória",false,c2,tp3,sp2);
-		Pessoa p4 = new Pessoa(null,true,"Eldio Lima",false,c2,tp2,sp1);
-		Pessoa p5 = new Pessoa(null,true,"Alex Souza",false,c2,tp3,sp1);
-		Pessoa p6 = new Pessoa(null,true,"Márcio Almeida",false,c2,tp1,sp3);
-		Pessoa p7 = new Pessoa(null,true,"Angela Maria",false,c2,tp2,sp1);
-		Pessoa p8 = new Pessoa(null,true,"Fábio Jorge",false,c2,tp2,sp1);
-		Pessoa p9 = new Pessoa(null,true,"Eliaquim Lima",false,c2,tp1,sp1);
-		Pessoa p10 = new Pessoa(null,true,"Leonardo Júnior",false,c2,tp4,sp1);
+		Pessoa p1 = new Pessoa(null,true,"Letícia Dias",true,c2,tp1,sp1,pf1);
+		Pessoa p2 = new Pessoa(null,true,"Letícia Adelino",false,c2,tp2,sp1,pf2);
+		Pessoa p3 = new Pessoa(null,true,"Letícia Vitória",false,c2,tp3,sp2,pf3);
+		Pessoa p4 = new Pessoa(null,true,"Eldio Lima",false,c2,tp2,sp1,pf3);
+		Pessoa p5 = new Pessoa(null,true,"Alex Souza",false,c2,tp3,sp1,pf3);
+		Pessoa p6 = new Pessoa(null,true,"Márcio Almeida",false,c2,tp1,sp3,pf3);
+		Pessoa p7 = new Pessoa(null,true,"Angela Maria",false,c2,tp2,sp1,pf3);
+		Pessoa p8 = new Pessoa(null,true,"Fábio Jorge",false,c2,tp2,sp1,pf3);
+		Pessoa p9 = new Pessoa(null,true,"Eliaquim Lima",false,c2,tp1,sp1,pf3);
+		Pessoa p10 = new Pessoa(null,true,"Leonardo Júnior",false,c2,tp4,sp1,pf3);
 		
 		tipoPessoaRepository.saveAll(Arrays.asList(tp1,tp2,tp3,tp4));
 		statusPessoaRepository.saveAll(Arrays.asList(sp1,sp2,sp3));
+		profissaoRepository.saveAll(Arrays.asList(pf1,pf2,pf3));
 		pessoaRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5,p6,p7,p8,p9,p10));
 		
 		

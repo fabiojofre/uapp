@@ -12,25 +12,25 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-public class Profissao implements Serializable{
+public class StatusPessoa implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private String profissao;
+	private String status;
 	
-	@OneToMany(mappedBy = "profissao")
+	@OneToMany(mappedBy = "statusPessoa")
 	@JsonManagedReference
-	private List<Pessoa> pessoa;
+	private List<Pessoa>pessoa;
 	
-	public Profissao() {
+	public StatusPessoa() {
 	}
 
-	public Profissao(Integer id, String profissao) {
+	public StatusPessoa(Integer id, String status) {
 		super();
 		this.id = id;
-		this.profissao = profissao;
+		this.status = status;
 	}
 
 	public Integer getId() {
@@ -41,12 +41,21 @@ public class Profissao implements Serializable{
 		this.id = id;
 	}
 
-	public String getProfissao() {
-		return profissao;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setProfissao(String profissao) {
-		this.profissao = profissao;
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	
+	public List<Pessoa> getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(List<Pessoa> pessoa) {
+		this.pessoa = pessoa;
 	}
 
 	@Override
@@ -65,7 +74,7 @@ public class Profissao implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Profissao other = (Profissao) obj;
+		StatusPessoa other = (StatusPessoa) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -75,5 +84,4 @@ public class Profissao implements Serializable{
 	}
 	
 	
-
 }

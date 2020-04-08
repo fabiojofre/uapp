@@ -45,7 +45,12 @@ public class Pessoa implements Serializable {
 	@ManyToOne
 	@JsonBackReference
 	@JoinColumn(name = "statuspessoa_id")
-	private Spessoa spessoa;
+	private StatusPessoa statusPessoa;
+	
+	@ManyToOne
+	@JsonBackReference
+	@JoinColumn(name = "profissao_id")
+	private Profissao profissao;
 	
 	public Pessoa() {
 
@@ -56,7 +61,7 @@ public class Pessoa implements Serializable {
 		this.id = id;
 	}
 	public Pessoa(Integer id, boolean ativo, String nome, boolean eMembro, Congregacao congregacao,
-			TipoPessoa tipoPessoa, Spessoa spessoa) {
+			TipoPessoa tipoPessoa, StatusPessoa statusPessoa, Profissao profissao) {
 		super();
 		this.id = id;
 		this.ativo = ativo;
@@ -64,7 +69,8 @@ public class Pessoa implements Serializable {
 		this.eMembro = eMembro;
 		this.congregacao = congregacao;
 		this.tipoPessoa = tipoPessoa;
-		this.spessoa = spessoa;
+		this.statusPessoa = statusPessoa;
+		this.profissao = profissao;
 	}
 
 	public Integer getId() {
@@ -91,14 +97,22 @@ public class Pessoa implements Serializable {
 		this.tipoPessoa = tipoPessoa;
 	}
 
-	public Spessoa getStatusPessoa() {
-		return spessoa;
+	public StatusPessoa getStatusPessoa() {
+		return statusPessoa;
 	}
 
-	public void setStatusPessoa(Spessoa spessoa) {
-		this.spessoa = spessoa;
+	public void setSpessoa(StatusPessoa statusPessoa) {
+		this.statusPessoa = statusPessoa;
 	}
-	
+
+	public Profissao getProfissao() {
+		return profissao;
+	}
+
+	public void setProfissao(Profissao profissao) {
+		this.profissao = profissao;
+	}
+
 	public String getNome() {
 		return nome;
 	}

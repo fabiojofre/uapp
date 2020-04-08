@@ -10,27 +10,28 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 @Entity
-public class Spessoa implements Serializable{
+public class TipoEvento implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private String status;
+	private String desc1;
+	private String desc2;
 	
-	@OneToMany(mappedBy = "spessoa")
+	@OneToMany(mappedBy = "tipoEvento")
 	@JsonManagedReference
-	private List<Pessoa>pessoa;
+	private List<Evento> evento;
 	
-	public Spessoa() {
+	public TipoEvento() {	
 	}
-
-	public Spessoa(Integer id, String status) {
+	
+	public TipoEvento(Integer id, String desc1, String desc2) {
 		super();
 		this.id = id;
-		this.status = status;
+		this.desc1 = desc1;
+		this.desc2 = desc2;
 	}
 
 	public Integer getId() {
@@ -41,21 +42,28 @@ public class Spessoa implements Serializable{
 		this.id = id;
 	}
 
-	public String getStatus() {
-		return status;
+	public String getDesc1() {
+		return desc1;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setDesc1(String desc1) {
+		this.desc1 = desc1;
 	}
 
-	
-	public List<Pessoa> getPessoa() {
-		return pessoa;
+	public String getDesc2() {
+		return desc2;
 	}
 
-	public void setPessoa(List<Pessoa> pessoa) {
-		this.pessoa = pessoa;
+	public void setDesc2(String desc2) {
+		this.desc2 = desc2;
+	}
+
+	public List<Evento> getEvento() {
+		return evento;
+	}
+
+	public void setEvento(List<Evento> evento) {
+		this.evento = evento;
 	}
 
 	@Override
@@ -74,7 +82,7 @@ public class Spessoa implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Spessoa other = (Spessoa) obj;
+		TipoEvento other = (TipoEvento) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -82,6 +90,7 @@ public class Spessoa implements Serializable{
 			return false;
 		return true;
 	}
+	
 	
 	
 }

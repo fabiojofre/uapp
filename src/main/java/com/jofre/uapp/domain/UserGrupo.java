@@ -12,41 +12,58 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-public class Profissao implements Serializable{
+public class UserGrupo implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private String profissao;
-	
-	@OneToMany(mappedBy = "profissao")
-	@JsonManagedReference
-	private List<Pessoa> pessoa;
-	
-	public Profissao() {
-	}
+	private String grupo;
+	private char ativo;
 
-	public Profissao(Integer id, String profissao) {
+	@OneToMany(mappedBy = "userGrupo")
+	@JsonManagedReference
+	private List<Usuario> usuario;
+	
+	public UserGrupo() {
+		
+	}
+	
+		
+	public UserGrupo(Integer id, String grupo, char ativo) {
 		super();
 		this.id = id;
-		this.profissao = profissao;
+		this.grupo = grupo;
+		this.ativo = ativo;
 	}
+
 
 	public Integer getId() {
 		return id;
 	}
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-	public String getProfissao() {
-		return profissao;
+	public String getGrupo() {
+		return grupo;
+	}
+	public void setGrupo(String grupo) {
+		this.grupo = grupo;
+	}
+	public char getAtivo() {
+		return ativo;
+	}
+	public void setAtivo(char ativo) {
+		this.ativo = ativo;
+	}
+	
+	
+	public List<Usuario> getUsuario() {
+		return usuario;
 	}
 
-	public void setProfissao(String profissao) {
-		this.profissao = profissao;
+	public void setUsuario(List<Usuario> usuario) {
+		this.usuario = usuario;
 	}
 
 	@Override
@@ -56,7 +73,6 @@ public class Profissao implements Serializable{
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -65,7 +81,7 @@ public class Profissao implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Profissao other = (Profissao) obj;
+		UserGrupo other = (UserGrupo) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -73,7 +89,7 @@ public class Profissao implements Serializable{
 			return false;
 		return true;
 	}
-	
-	
 
+	
+	
 }

@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.jofre.uapp.domain.Spessoa;
+import com.jofre.uapp.domain.StatusPessoa;
 import com.jofre.uapp.repositories.StatusPessoaRepository;
 
 import javassist.tools.rmi.ObjectNotFoundException;
@@ -15,10 +15,10 @@ public class StatusPessoaService {
 	@Autowired
 	private StatusPessoaRepository spr;
 
-	public Spessoa find(Integer id) throws ObjectNotFoundException{
-		Optional<Spessoa>obj = spr.findById(id);
+	public StatusPessoa find(Integer id) throws ObjectNotFoundException{
+		Optional<StatusPessoa>obj = spr.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
-				"Objeto não encontrado! Id: "+ id +", tipo: " + Spessoa.class.getName()));
+				"Objeto não encontrado! Id: "+ id +", tipo: " + StatusPessoa.class.getName()));
 
 	}
 

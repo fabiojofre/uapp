@@ -28,13 +28,13 @@ public class Usuario implements Serializable{
 	@ManyToOne
 	@JsonBackReference //evita loop de json
 	@JoinColumn(name = "ugrupo_id")
-	private Ugrupo ugrupo;
+	private UserGrupo userGrupo;
 	
 	public Usuario() {
 	}
 
 	public Usuario(Integer id, String nome, String email, String senha, String poder, Integer id_area,
-			Integer id_congregacao, Ugrupo ugrupo) {
+			Integer id_congregacao, UserGrupo userGrupo) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -43,7 +43,7 @@ public class Usuario implements Serializable{
 		this.poder = poder;
 		this.id_area = id_area;
 		this.id_congregacao = id_congregacao;
-		this.ugrupo = ugrupo;
+		this.userGrupo = userGrupo;
 	}
 
 
@@ -104,12 +104,12 @@ public class Usuario implements Serializable{
 		this.id_congregacao = id_congregacao;
 	}
 
-	public Ugrupo getUgrupo() {
-		return ugrupo;
+	public UserGrupo getUserGrupo() {
+		return userGrupo;
 	}
 
-	public void setUgrupo(Ugrupo ugrupo) {
-		this.ugrupo = ugrupo;
+	public void setUgrupo(UserGrupo userGrupo) {
+		this.userGrupo = userGrupo;
 	}
 
 	@Override

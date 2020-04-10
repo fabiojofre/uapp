@@ -5,20 +5,20 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.jofre.uapp.domain.TipoPessoa;
-import com.jofre.uapp.repositories.TipoPessoaRepository;
+import com.jofre.uapp.domain.TipoServico;
+import com.jofre.uapp.repositories.TipoServicoRepository;
 
 import javassist.tools.rmi.ObjectNotFoundException;
 
 @Service
 public class TipoServicoService {
 	@Autowired
-	private TipoPessoaRepository tpr;
+	private TipoServicoRepository tsr;
 	
-	public TipoPessoa find(Integer id) throws ObjectNotFoundException {
-		Optional<TipoPessoa>obj = tpr.findById(id);
+	public TipoServico find(Integer id) throws ObjectNotFoundException {
+		Optional<TipoServico>obj = tsr.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
-				"Objeto não encontrado! Id: "+ id +", tipo: " + TipoPessoa.class.getName()));
+				"Objeto não encontrado! Id: "+ id +", tipo: " + TipoServico.class.getName()));
 
 		
 	}

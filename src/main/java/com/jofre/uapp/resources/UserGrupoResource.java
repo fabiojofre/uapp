@@ -7,22 +7,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jofre.uapp.domain.TipoPessoa;
-import com.jofre.uapp.services.TipoPessoaService;
+import com.jofre.uapp.domain.UserGrupo;
+import com.jofre.uapp.services.UserGrupoService;
 
 import javassist.tools.rmi.ObjectNotFoundException;
 
 @RestController
-@RequestMapping(value = "/tipopessoas")
-public class TipoPessoaResource {
+@RequestMapping(value = "/userGrupos")
+public class UserGrupoResource {
 
 	@Autowired
-	private TipoPessoaService service;
+	private UserGrupoService service;
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> find(@PathVariable Integer id) throws ObjectNotFoundException {
 		
-		TipoPessoa obj = service.find(id);
+		UserGrupo obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 	}
 

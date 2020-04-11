@@ -2,6 +2,8 @@ package com.jofre.uapp.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,8 +11,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.jofre.uapp.enums.EnumStatusMovimento;
 
 @Entity
 public class Servico implements Serializable{
@@ -20,7 +24,7 @@ public class Servico implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String observacao;
-	private boolean ativo;
+	private Integer status;
 	private Date data;
 	
 	@ManyToOne
@@ -28,14 +32,22 @@ public class Servico implements Serializable{
 	@JoinColumn(name = "tipoServico_id")
 	private TipoServico tipoServico;
 	
+	@ManyToOne
+	@JsonBackReference //evita loop de json
+	@JoinColumn(name = "congregacao_id")
+	private Congregacao congregacao;
+	
+	@OneToMany(mappedBy = "id.servico")
+	private Set<FrequenciaServico> frequencia = new HashSet<>();
+	
 	public Servico() {
 	}
 
-	public Servico(Integer id, String observacao, boolean ativo, Date data, TipoServico tipoServico) {
+	public Servico(Integer id, String observacao, EnumStatusMovimento status, Date data, TipoServico tipoServico) {
 		super();
 		this.id = id;
 		this.observacao = observacao;
-		this.ativo = ativo;
+		this.status = status.getCod();
 		this.data = data;
 		this.tipoServico = tipoServico;
 	}
@@ -56,12 +68,12 @@ public class Servico implements Serializable{
 		this.observacao = observacao;
 	}
 
-	public boolean isAtivo() {
-		return ativo;
+	public EnumStatusMovimento getStatus() {
+		return EnumStatusMovimento.toEnum(status);
 	}
 
-	public void setAtivo(boolean ativo) {
-		this.ativo = ativo;
+	public void setStatus(EnumStatusMovimento status) {
+		this.status = status.getCod();
 	}
 
 	public Date getData() {
@@ -79,7 +91,15 @@ public class Servico implements Serializable{
 	public void setTipoServico(TipoServico tipoServico) {
 		this.tipoServico = tipoServico;
 	}
+	
+	public Set<FrequenciaServico> getFrequencia() {
+		return frequencia;
+	}
 
+	public void setFrequencia(Set<FrequenciaServico> frequencia) {
+		this.frequencia = frequencia;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -104,6 +124,6 @@ public class Servico implements Serializable{
 			return false;
 		return true;
 	}
-	
+
 	
 }

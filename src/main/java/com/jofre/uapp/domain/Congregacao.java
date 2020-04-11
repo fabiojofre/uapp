@@ -1,6 +1,7 @@
 package com.jofre.uapp.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -26,7 +27,11 @@ public class Congregacao implements Serializable {
 
 	@OneToMany(mappedBy = "congregacao")
 	@JsonManagedReference //evita loop de json
-	private List<Pessoa> pessoa;
+	private List<Pessoa> pessoa = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "congregacao")
+	@JsonManagedReference //evita loop de json
+	private List<Servico> servico = new ArrayList<>();
 
 	@ManyToOne
 	@JsonBackReference //evita loop de json
@@ -84,6 +89,14 @@ public class Congregacao implements Serializable {
 
 	public void setPessoa(List<Pessoa> pessoa) {
 		this.pessoa = pessoa;
+	}
+
+	public List<Servico> getServico() {
+		return servico;
+	}
+
+	public void setServico(List<Servico> servico) {
+		this.servico = servico;
 	}
 
 	@Override

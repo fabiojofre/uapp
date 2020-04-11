@@ -1,6 +1,7 @@
 package com.jofre.uapp.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -22,7 +23,7 @@ public class TipoEvento implements Serializable{
 	
 	@OneToMany(mappedBy = "tipoEvento")
 	@JsonManagedReference
-	private List<Evento> evento;
+	private List<Evento> evento = new ArrayList<>();
 	
 	public TipoEvento() {	
 	}

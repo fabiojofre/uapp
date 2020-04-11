@@ -1,7 +1,11 @@
 package com.jofre.uapp.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,8 +13,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.jofre.uapp.enums.EnumStatusCadastro;
 
 @Entity
 public class Pessoa implements Serializable {
@@ -19,7 +25,7 @@ public class Pessoa implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private boolean ativo = false;
+	private Integer ativo;
 	private String nome;
 	private Date nascimento;
 	private boolean eMembro = false ;
@@ -52,6 +58,10 @@ public class Pessoa implements Serializable {
 	@JoinColumn(name = "profissao_id")
 	private Profissao profissao;
 	
+	@OneToMany(mappedBy = "id.pessoa")
+	private Set<FrequenciaServico> frequencia = new HashSet<>();
+	
+	
 	public Pessoa() {
 
 	}
@@ -60,11 +70,11 @@ public class Pessoa implements Serializable {
 		super();
 		this.id = id;
 	}
-	public Pessoa(Integer id, boolean ativo, String nome, boolean eMembro, Congregacao congregacao,
+	public Pessoa(Integer id, EnumStatusCadastro ativo, String nome, boolean eMembro, Congregacao congregacao,
 			TipoPessoa tipoPessoa, StatusPessoa statusPessoa, Profissao profissao) {
 		super();
 		this.id = id;
-		this.ativo = ativo;
+		this.ativo = ativo.getCod();
 		this.nome = nome;
 		this.eMembro = eMembro;
 		this.congregacao = congregacao;
@@ -73,6 +83,13 @@ public class Pessoa implements Serializable {
 		this.profissao = profissao;
 	}
 
+	public List<Servico>getServicos(){
+		List<Servico> lista = new ArrayList<>();
+		for(FrequenciaServico x: frequencia) {
+			lista.add(x.getServico());
+		}
+		return lista;
+	}
 	public Integer getId() {
 		return id;
 	}
@@ -117,12 +134,12 @@ public class Pessoa implements Serializable {
 		return nome;
 	}
 	
-	public boolean isAtivo() {
-		return ativo;
+	public EnumStatusCadastro getAtivo() {
+		return EnumStatusCadastro.toEnum(ativo);
 	}
 
-	public void setAtivo(boolean ativo) {
-		this.ativo = ativo;
+	public void setAtivo(EnumStatusCadastro ativo) {
+		this.ativo = ativo.getCod();
 	}
 
 
@@ -209,6 +226,14 @@ public class Pessoa implements Serializable {
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
+	public Set<FrequenciaServico> getFrequencia() {
+		return frequencia;
+	}
+
+	public void setFrequencia(Set<FrequenciaServico> frequencia) {
+		this.frequencia = frequencia;
+	}
+
 
 	@Override
 	public int hashCode() {
@@ -234,5 +259,6 @@ public class Pessoa implements Serializable {
 			return false;
 		return true;
 	}
+
 
 }

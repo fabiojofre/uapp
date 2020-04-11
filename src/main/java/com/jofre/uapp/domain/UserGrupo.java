@@ -1,6 +1,7 @@
 package com.jofre.uapp.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -23,7 +24,7 @@ public class UserGrupo implements Serializable {
 
 	@OneToMany(mappedBy = "userGrupo")
 	@JsonManagedReference
-	private List<Usuario> usuario;
+	private List<Usuario> usuario = new ArrayList<>();
 	
 	public UserGrupo() {
 		

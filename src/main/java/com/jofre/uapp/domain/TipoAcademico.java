@@ -1,6 +1,7 @@
 package com.jofre.uapp.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -23,7 +24,7 @@ public class TipoAcademico implements Serializable{
 	
 	@OneToMany(mappedBy = "tipoAcademico")
 	@JsonManagedReference
-	private List<Academico> academico;
+	private List<Academico> academico = new ArrayList<>();
 	
 	public TipoAcademico() {
 	}

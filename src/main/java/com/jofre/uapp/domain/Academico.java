@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.jofre.uapp.enums.EnumStatusMovimento;
 
 
 @Entity
@@ -21,7 +22,7 @@ public class Academico implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String observacao;
-	private boolean ativo;
+	private Integer status;
 	private Date data;
 	private String concluido;
 	
@@ -34,12 +35,12 @@ public class Academico implements Serializable {
 	public Academico() {
 	}
 
-	public Academico(Integer id, String observacao, boolean ativo, Date data, String concluido,
+	public Academico(Integer id, String observacao, EnumStatusMovimento status, Date data, String concluido,
 			Congregacao congergacao, TipoAcademico tipoAcademico) {
 		super();
 		this.id = id;
 		this.observacao = observacao;
-		this.ativo = ativo;
+		this.status = status.getCod();
 		this.data = data;
 		this.concluido = concluido;
 		this.tipoAcademico = tipoAcademico;
@@ -61,12 +62,12 @@ public class Academico implements Serializable {
 		this.observacao = observacao;
 	}
 
-	public boolean isAtivo() {
-		return ativo;
+	public EnumStatusMovimento getStatus() {
+		return EnumStatusMovimento.toEnum(status);
 	}
 
-	public void setAtivo(boolean ativo) {
-		this.ativo = ativo;
+	public void setStatus(EnumStatusMovimento status) {
+		this.status = status.getCod();
 	}
 
 	public Date getData() {

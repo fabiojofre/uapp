@@ -19,24 +19,25 @@ public class FrequenciaServicoPK implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name="pesoa_id")
-	private Pessoa pessoa;
+	private Pessoa pessoaS;
+	
 	public Servico getServico() {
 		return servico;
 	}
 	public void setServico(Servico servico) {
 		this.servico = servico;
 	}
-	public Pessoa getPessoa() {
-		return pessoa;
+	public Pessoa getPessoaS() {
+		return pessoaS;
 	}
-	public void setPessoa(Pessoa pessoa) {
-		this.pessoa = pessoa;
+	public void setPessoaS(Pessoa pessoaS) {
+		this.pessoaS = pessoaS;
 	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((pessoa == null) ? 0 : pessoa.hashCode());
+		result = prime * result + ((pessoaS == null) ? 0 : pessoaS.hashCode());
 		result = prime * result + ((servico == null) ? 0 : servico.hashCode());
 		return result;
 	}
@@ -49,10 +50,10 @@ public class FrequenciaServicoPK implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		FrequenciaServicoPK other = (FrequenciaServicoPK) obj;
-		if (pessoa == null) {
-			if (other.pessoa != null)
+		if (pessoaS == null) {
+			if (other.pessoaS != null)
 				return false;
-		} else if (!pessoa.equals(other.pessoa))
+		} else if (!pessoaS.equals(other.pessoaS))
 			return false;
 		if (servico == null) {
 			if (other.servico != null)

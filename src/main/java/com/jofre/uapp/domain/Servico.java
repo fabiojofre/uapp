@@ -38,18 +38,19 @@ public class Servico implements Serializable{
 	private Congregacao congregacao;
 	
 	@OneToMany(mappedBy = "id.servico")
-	private Set<FrequenciaServico> frequencia = new HashSet<>();
+	private Set<FrequenciaServico> frequenciaS = new HashSet<>();
 	
 	public Servico() {
 	}
 
-	public Servico(Integer id, String observacao, EnumStatusMovimento status, Date data, TipoServico tipoServico) {
+	public Servico(Integer id, String observacao, EnumStatusMovimento status, Date data, TipoServico tipoServico,Congregacao congregacao) {
 		super();
 		this.id = id;
 		this.observacao = observacao;
 		this.status = status.getCod();
 		this.data = data;
 		this.tipoServico = tipoServico;
+		this.congregacao = congregacao;
 	}
 
 	public Integer getId() {
@@ -92,12 +93,12 @@ public class Servico implements Serializable{
 		this.tipoServico = tipoServico;
 	}
 	
-	public Set<FrequenciaServico> getFrequencia() {
-		return frequencia;
+	public Set<FrequenciaServico> getFrequenciaS() {
+		return frequenciaS;
 	}
 
-	public void setFrequencia(Set<FrequenciaServico> frequencia) {
-		this.frequencia = frequencia;
+	public void setFrequenciaS(Set<FrequenciaServico> frequenciaS) {
+		this.frequenciaS = frequenciaS;
 	}
 	
 	@Override

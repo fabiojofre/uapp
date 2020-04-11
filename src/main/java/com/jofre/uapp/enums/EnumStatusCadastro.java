@@ -4,13 +4,13 @@ public enum EnumStatusCadastro {
 	ATIVO(1,"Ativo"),
 	INATIVO(2,"Inativo");
 	
-	private Integer cod;
+	private int cod;
 	private String descricao;
 	
 	private EnumStatusCadastro() {
 	}
 	
-	private EnumStatusCadastro(Integer cod,String descricao) {
+	private EnumStatusCadastro(int cod,String descricao) {
 		this.cod =cod;
 		this.descricao =descricao;
 	}
@@ -26,7 +26,7 @@ public enum EnumStatusCadastro {
 			return null;
 		}
 		for(EnumStatusCadastro x: EnumStatusCadastro.values()) {
-			if(cod.equals(x.getCod())) {
+			if(cod ==(x.getCod())) {
 				return x;
 			}
 		}

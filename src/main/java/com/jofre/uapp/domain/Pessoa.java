@@ -16,6 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jofre.uapp.enums.EnumStatusCadastro;
 
 @Entity
@@ -58,8 +59,15 @@ public class Pessoa implements Serializable {
 	@JoinColumn(name = "profissao_id")
 	private Profissao profissao;
 	
-	@OneToMany(mappedBy = "id.pessoa")
-	private Set<FrequenciaServico> frequencia = new HashSet<>();
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "id.pessoaS")
+	private Set<FrequenciaServico> frequenciaS = new HashSet<>();
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "id.pessoaE")
+	private Set<FrequenciaEvento> frequenciaE = new HashSet<>();
+	
 	
 	
 	public Pessoa() {
@@ -83,13 +91,24 @@ public class Pessoa implements Serializable {
 		this.profissao = profissao;
 	}
 
+	@JsonIgnore
 	public List<Servico>getServicos(){
 		List<Servico> lista = new ArrayList<>();
-		for(FrequenciaServico x: frequencia) {
+		for(FrequenciaServico x: frequenciaS) {
 			lista.add(x.getServico());
 		}
 		return lista;
 	}
+	
+	@JsonIgnore
+	public List<Evento>getEventos(){
+		List<Evento> lista = new ArrayList<>();
+		for(FrequenciaEvento x: frequenciaE) {
+			lista.add(x.getEvento());
+		}
+		return lista;
+	}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -226,12 +245,20 @@ public class Pessoa implements Serializable {
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
-	public Set<FrequenciaServico> getFrequencia() {
-		return frequencia;
+	public Set<FrequenciaServico> getFrequenciaS() {
+		return frequenciaS;
 	}
 
-	public void setFrequencia(Set<FrequenciaServico> frequencia) {
-		this.frequencia = frequencia;
+	public void setFrequenciaS(Set<FrequenciaServico> frequenciaS) {
+		this.frequenciaS = frequenciaS;
+	}
+	
+	public Set<FrequenciaEvento> getFrequenciaE() {
+		return frequenciaE;
+	}
+
+	public void setFrequenciaE(Set<FrequenciaEvento> frequenciaE) {
+		this.frequenciaE = frequenciaE;
 	}
 
 

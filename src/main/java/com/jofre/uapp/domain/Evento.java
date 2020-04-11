@@ -2,6 +2,8 @@ package com.jofre.uapp.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.jofre.uapp.enums.EnumStatusMovimento;
@@ -30,6 +33,18 @@ public class Evento implements Serializable{
 	@JoinColumn(name = "tipoEvento_id")
 	private TipoEvento tipoEvento;
 	
+	@OneToMany(mappedBy = "id.evento")
+	private Set<FrequenciaEvento> frequenciaE = new HashSet<>();
+	
+	public Set<FrequenciaEvento> getFrequenciaE() {
+		return frequenciaE;
+	}
+
+	public void setFrequenciaE(Set<FrequenciaEvento> frequenciaE) {
+		this.frequenciaE = frequenciaE;
+	}
+
+
 	public Evento(){	
 	}
 	

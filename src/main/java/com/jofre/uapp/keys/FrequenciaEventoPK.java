@@ -14,12 +14,12 @@ public class FrequenciaEventoPK implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@ManyToOne
-	@JoinColumn(name="servico_id")
+	@JoinColumn(name="evento_id")
 	private Evento evento;
 	
 	@ManyToOne
 	@JoinColumn(name="pesoa_id")
-	private Pessoa pessoa;
+	private Pessoa pessoaE;
 	
 	public Evento getEvento() {
 		return evento;
@@ -27,17 +27,17 @@ public class FrequenciaEventoPK implements Serializable {
 	public void setEvento(Evento evento) {
 		this.evento = evento;
 	}
-	public Pessoa getPessoa() {
-		return pessoa;
+	public Pessoa getPessoaE() {
+		return pessoaE;
 	}
-	public void setPessoa(Pessoa pessoa) {
-		this.pessoa = pessoa;
+	public void setPessoaE(Pessoa pessoaE) {
+		this.pessoaE = pessoaE;
 	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((pessoa == null) ? 0 : pessoa.hashCode());
+		result = prime * result + ((pessoaE == null) ? 0 : pessoaE.hashCode());
 		result = prime * result + ((evento == null) ? 0 : evento.hashCode());
 		return result;
 	}
@@ -50,10 +50,10 @@ public class FrequenciaEventoPK implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		FrequenciaEventoPK other = (FrequenciaEventoPK) obj;
-		if (pessoa == null) {
-			if (other.pessoa != null)
+		if (pessoaE == null) {
+			if (other.pessoaE != null)
 				return false;
-		} else if (!pessoa.equals(other.pessoa))
+		} else if (!pessoaE.equals(other.pessoaE))
 			return false;
 		if (evento == null) {
 			if (other.evento != null)

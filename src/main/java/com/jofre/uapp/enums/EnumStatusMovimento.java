@@ -2,8 +2,9 @@ package com.jofre.uapp.enums;
 
 public enum EnumStatusMovimento {
 	PENDENTE(1,"Pendente"),
-	CONCLUIDO(2,"Concluído"),
-	CANCELADO(3, "Cancelado");
+	LIBERADO(2,"Liberado"),
+	CONCLUIDO(3,"Concluído"),
+	CANCELADO(4, "Cancelado");
 	
 	private Integer cod;
 	private String descricao;
@@ -28,7 +29,7 @@ public enum EnumStatusMovimento {
 			return null;
 		}
 		for(EnumStatusMovimento x: EnumStatusMovimento.values()) {
-			if(cod.equals(x.getCod())) {
+			if(cod ==(x.getCod())) {
 				return x;
 			}
 		}

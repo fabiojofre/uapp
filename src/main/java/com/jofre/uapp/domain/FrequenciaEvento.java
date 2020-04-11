@@ -5,33 +5,38 @@ import java.io.Serializable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.jofre.uapp.enums.EnumFrequencia;
 import com.jofre.uapp.keys.FrequenciaEventoPK;
 
 @Entity
 public class FrequenciaEvento implements Serializable {
 	private static final long serialVersionUID = 1L;
+	
+	@JsonIgnore
 	@EmbeddedId //chave composta
 	private FrequenciaEventoPK id = new FrequenciaEventoPK();
 	
-	private Integer frequencia;
+	private int frequenciaE;
 
 	
 	public FrequenciaEvento() {
 	}
 
 
-	public FrequenciaEvento(Evento evento, Pessoa pessoa, Integer frequencia) {
+	public FrequenciaEvento(Evento evento, Pessoa pessoaE, EnumFrequencia frequenciaE) {
 		super();
 		id.setEvento(evento);
-		id.setPessoa(pessoa);
-		this.frequencia = frequencia;
+		id.setPessoaE(pessoaE);
+		this.frequenciaE = frequenciaE.getCod();
 	}
-	
+	@JsonIgnore
 	public Evento getEvento() {
 		return id.getEvento();
 	}
-	public Pessoa getPessoa() {
-		return id.getPessoa();
+	//@JsonIgnore
+	public Pessoa getPessoaE() {
+		return id.getPessoaE();
 	}
 
 	public FrequenciaEventoPK getId() {
@@ -44,13 +49,13 @@ public class FrequenciaEvento implements Serializable {
 	}
 
 
-	public Integer getFrequencia() {
-		return frequencia;
+	public EnumFrequencia getFrequenciaE() {
+		return EnumFrequencia.toEnum(frequenciaE);
 	}
 
 
-	public void setFrequencia(Integer frequencia) {
-		this.frequencia = frequencia;
+	public void setFrequencia(EnumFrequencia frequenciaE) {
+		this.frequenciaE = frequenciaE.getCod();
 	}
 
 

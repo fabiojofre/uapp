@@ -1,17 +1,18 @@
 package com.jofre.uapp.enums;
 
 public enum EnumFrequencia {
+	
 	PRESENTE(1,"Presente"),
 	AUSENTE(2,"Ausente"),
-	JUSTIFICADO(1,"Justificado");
+	JUSTIFICADO(3,"Justificado");
 	
-	private Integer cod;
+	private int cod;
 	private String descricao;
 	
 	private EnumFrequencia() {
 	}
 	
-	private EnumFrequencia(Integer cod,String descricao) {
+	private EnumFrequencia(int cod,String descricao) {
 		this.cod =cod;
 		this.descricao =descricao;
 	}
@@ -27,7 +28,7 @@ public enum EnumFrequencia {
 			return null;
 		}
 		for(EnumFrequencia x: EnumFrequencia.values()) {
-			if(cod.equals(x.getCod())) {
+			if(cod ==(x.getCod())) {
 				return x;
 			}
 		}

@@ -16,6 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jofre.uapp.enums.EnumStatusCadastro;
 
@@ -28,6 +29,7 @@ public class Pessoa implements Serializable {
 	private Integer id;
 	private Integer ativo;
 	private String nome;
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date nascimento;
 	private boolean eMembro = false ;
 	private String fone;

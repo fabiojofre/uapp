@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.jofre.uapp.enums.EnumStatusMovimento;
 
 @Entity
@@ -25,6 +26,7 @@ public class Servico implements Serializable{
 	private Integer id;
 	private String observacao;
 	private Integer status;
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date data;
 	
 	@ManyToOne

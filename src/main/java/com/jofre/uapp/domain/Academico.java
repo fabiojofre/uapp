@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.jofre.uapp.enums.EnumStatusMovimento;
 
 
@@ -23,6 +24,7 @@ public class Academico implements Serializable {
 	private Integer id;
 	private String observacao;
 	private Integer status;
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date data;
 	private String concluido;
 	

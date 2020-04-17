@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Usuario implements Serializable{
@@ -26,7 +26,7 @@ public class Usuario implements Serializable{
 	private Integer id_congregacao;
 	
 	@ManyToOne
-	@JsonBackReference //evita loop de json
+	@JsonIgnore //evita loop de json
 	@JoinColumn(name = "ugrupo_id")
 	private UserGrupo userGrupo;
 	

@@ -8,14 +8,14 @@ import org.springframework.stereotype.Service;
 import com.jofre.uapp.domain.TipoEvento;
 import com.jofre.uapp.repositories.TipoEventoRepository;
 
-import javassist.tools.rmi.ObjectNotFoundException;
+import com.jofre.uapp.services.exception.ObjectNotFoundException;
 
 @Service
 public class TipoEventoService {
 	@Autowired
 	private TipoEventoRepository ter;
 	
-	public TipoEvento find(Integer id) throws ObjectNotFoundException {
+	public TipoEvento find(Integer id){
 		Optional<TipoEvento>obj = ter.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: "+ id +", tipo: " + TipoEvento.class.getName()));

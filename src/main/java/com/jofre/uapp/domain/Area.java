@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Area implements Serializable {
@@ -19,9 +19,9 @@ public class Area implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
-
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "area")
-	@JsonManagedReference
 	private List<Congregacao> congregacao;
 
 	public Area() {

@@ -129,7 +129,7 @@ public class UappApplication implements CommandLineRunner{
 		Pessoa p4 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Eldio Lima",false,c2,tp2,sp1,pf3);
 		Pessoa p5 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Alex Souza",false,c2,tp3,sp1,pf3);
 		Pessoa p6 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Márcio Almeida",false,c2,tp1,sp3,pf3);
-		Pessoa p7 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Angela Maria",false,c2,tp2,sp1,pf3);
+		Pessoa p7 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Angela Maria",false,c1,tp2,sp1,pf3);
 		Pessoa p8 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Fábio Jorge",false,c2,tp2,sp1,pf3);
 		Pessoa p9 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Eliaquim Lima",false,c2,tp1,sp1,pf3);
 		Pessoa p10 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Leonardo Júnior",false,c2,tp4,sp1,pf3);

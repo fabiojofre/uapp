@@ -8,14 +8,14 @@ import org.springframework.stereotype.Service;
 import com.jofre.uapp.domain.StatusPessoa;
 import com.jofre.uapp.repositories.StatusPessoaRepository;
 
-import javassist.tools.rmi.ObjectNotFoundException;
+import com.jofre.uapp.services.exception.ObjectNotFoundException;
 
 @Service
 public class StatusPessoaService {
 	@Autowired
 	private StatusPessoaRepository spr;
 
-	public StatusPessoa find(Integer id) throws ObjectNotFoundException{
+	public StatusPessoa find(Integer id){
 		Optional<StatusPessoa>obj = spr.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: "+ id +", tipo: " + StatusPessoa.class.getName()));

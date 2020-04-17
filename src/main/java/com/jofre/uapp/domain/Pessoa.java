@@ -15,7 +15,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jofre.uapp.enums.EnumStatusCadastro;
@@ -42,22 +41,22 @@ public class Pessoa implements Serializable {
 	private String endereco;
 
 	@ManyToOne
-	@JsonBackReference
+	@JsonIgnore
 	@JoinColumn(name = "congregacao_id")
 	private Congregacao congregacao;
 
 	@ManyToOne
-	@JsonBackReference
+	@JsonIgnore
 	@JoinColumn(name = "tipopessoa_id")
 	private TipoPessoa tipoPessoa;
 	
 	@ManyToOne
-	@JsonBackReference
+	@JsonIgnore
 	@JoinColumn(name = "statuspessoa_id")
 	private StatusPessoa statusPessoa;
 	
 	@ManyToOne
-	@JsonBackReference
+	@JsonIgnore
 	@JoinColumn(name = "profissao_id")
 	private Profissao profissao;
 	

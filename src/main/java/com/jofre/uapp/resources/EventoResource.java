@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.jofre.uapp.domain.Evento;
 import com.jofre.uapp.services.EventoService;
 
-import javassist.tools.rmi.ObjectNotFoundException;
-
 @RestController
 @RequestMapping(value="/eventos")
 public class EventoResource {
@@ -20,7 +18,7 @@ public class EventoResource {
 	private EventoService service; 
 	
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id) throws ObjectNotFoundException {
+	public ResponseEntity<?> find(@PathVariable Integer id){
 		
 		Evento obj = service.find(id);
 		return ResponseEntity.ok().body(obj);

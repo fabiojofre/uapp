@@ -7,20 +7,22 @@ import org.springframework.stereotype.Service;
 
 import com.jofre.uapp.domain.Area;
 import com.jofre.uapp.repositories.AreaRepository;
-
-import javassist.tools.rmi.ObjectNotFoundException;
+import com.jofre.uapp.services.exception.ObjectNotFoundException;
 
 @Service
 public class AreaService {
 	@Autowired
-	private AreaRepository ar;
+	private AreaRepository repo;
 	
-	public Area find(Integer id) throws ObjectNotFoundException {
-		Optional<Area> obj = ar.findById(id);
+	public Area find(Integer id){
+		Optional<Area> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
-				"Objeto não encontrado! Id: "+ id +", tipo: " + Area.class.getName()));
-
-			
+				"Objeto não encontrado! Id: " + id + ", Tipo: " + Area.class.getName()));		
+	}
+	public Area insert(Area obj) {
+		obj.setId(null);
+		return repo.save(obj);
+		
 	}
 
 }

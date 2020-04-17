@@ -10,8 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 @Entity
 public class UserGrupo implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -23,7 +21,6 @@ public class UserGrupo implements Serializable {
 	private char ativo;
 
 	@OneToMany(mappedBy = "userGrupo")
-	@JsonManagedReference
 	private List<Usuario> usuario = new ArrayList<>();
 	
 	public UserGrupo() {

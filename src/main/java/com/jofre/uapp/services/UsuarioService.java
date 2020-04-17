@@ -8,14 +8,14 @@ import org.springframework.stereotype.Service;
 import com.jofre.uapp.domain.Usuario;
 import com.jofre.uapp.repositories.UsuarioRepository;
 
-import javassist.tools.rmi.ObjectNotFoundException;
+import com.jofre.uapp.services.exception.ObjectNotFoundException;
 
 @Service
 public class UsuarioService {
 	@Autowired
 	private UsuarioRepository ur;
 	
-	public Usuario find(Integer id) throws ObjectNotFoundException {
+	public Usuario find(Integer id){
 		Optional<Usuario>obj = ur.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: "+ id +", tipo: " + Usuario.class.getName()));

@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.jofre.uapp.domain.Usuario;
 import com.jofre.uapp.services.UsuarioService;
 
-import javassist.tools.rmi.ObjectNotFoundException;
-
 @RestController
 @RequestMapping(value = "/usuarios")
 public class UsuarioResource {
@@ -20,7 +18,7 @@ public class UsuarioResource {
 	private UsuarioService service;
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id) throws ObjectNotFoundException {
+	public ResponseEntity<?> find(@PathVariable Integer id){
 		
 		Usuario obj = service.find(id);
 		return ResponseEntity.ok().body(obj);

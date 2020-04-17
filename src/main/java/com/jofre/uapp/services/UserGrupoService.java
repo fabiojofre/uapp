@@ -8,14 +8,14 @@ import org.springframework.stereotype.Service;
 import com.jofre.uapp.domain.UserGrupo;
 import com.jofre.uapp.repositories.UserGrupoRepository;
 
-import javassist.tools.rmi.ObjectNotFoundException;
+import com.jofre.uapp.services.exception.ObjectNotFoundException;
 
 @Service
 public class UserGrupoService {
 	@Autowired
 	private UserGrupoRepository ugr;
 	
-	public UserGrupo find(Integer id) throws ObjectNotFoundException {
+	public UserGrupo find(Integer id){
 		Optional<UserGrupo>obj = ugr.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: "+ id +", tipo: " + UserGrupo.class.getName()));

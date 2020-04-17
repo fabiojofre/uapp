@@ -10,8 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jofre.uapp.enums.EnumStatusMovimento;
 
 
@@ -29,7 +29,7 @@ public class Academico implements Serializable {
 	private String concluido;
 	
 	@ManyToOne
-	@JsonBackReference //evita loop de json
+	@JsonIgnore
 	@JoinColumn(name = "tipoAcademico_id")
 	private TipoAcademico tipoAcademico;
 

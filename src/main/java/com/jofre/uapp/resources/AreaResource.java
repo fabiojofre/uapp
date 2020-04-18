@@ -24,7 +24,7 @@ public class AreaResource {
 	private AreaService service; 
 	
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id){
+	public ResponseEntity<Area> find(@PathVariable Integer id){
 		Area obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 		
@@ -43,6 +43,11 @@ public class AreaResource {
 	public ResponseEntity<Void> update(@RequestBody Area obj, @PathVariable Integer id){
 		obj.setId(id);
 		obj = service.update(obj);	
+		return ResponseEntity.noContent().build();
+	}
+	@RequestMapping(value="/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Area> delete(@PathVariable Integer id){
+		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
 }

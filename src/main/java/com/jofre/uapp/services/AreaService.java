@@ -22,7 +22,11 @@ public class AreaService {
 	public Area insert(Area obj) {
 		obj.setId(null);
 		return repo.save(obj);
-		
+	}
+	
+	public Area update(Area obj) {
+		find(obj.getId());
+		return repo.save(obj);
 	}
 
 }

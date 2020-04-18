@@ -39,4 +39,10 @@ public class AreaResource {
 		return ResponseEntity.created(uri).build();
 	}
 
+	@RequestMapping(value="/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Void> update(@RequestBody Area obj, @PathVariable Integer id){
+		obj.setId(id);
+		obj = service.update(obj);	
+		return ResponseEntity.noContent().build();
+	}
 }

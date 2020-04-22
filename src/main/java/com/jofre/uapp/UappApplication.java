@@ -123,16 +123,16 @@ public class UappApplication implements CommandLineRunner{
 		Profissao pf3 = new Profissao(null, "Componente");
 		
 		//Integer id, boolean ativo, String nome, boolean eMembro, Congregacao congregacao,TipoPessoa tipoPessoa
-		Pessoa p1 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Letícia Dias",true,c2,tp1,sp1,pf1);
-		Pessoa p2 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Letícia Adelino",false,c2,tp2,sp1,pf2);
-		Pessoa p3 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Letícia Vitória",false,c2,tp3,sp2,pf3);
-		Pessoa p4 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Eldio Lima",false,c2,tp2,sp1,pf3);
-		Pessoa p5 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Alex Souza",false,c2,tp3,sp1,pf3);
-		Pessoa p6 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Márcio Almeida",false,c2,tp1,sp3,pf3);
-		Pessoa p7 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Angela Maria",false,c1,tp2,sp1,pf3);
-		Pessoa p8 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Fábio Jorge",false,c2,tp2,sp1,pf3);
-		Pessoa p9 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Eliaquim Lima",false,c2,tp1,sp1,pf3);
-		Pessoa p10 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Leonardo Júnior",false,c2,tp4,sp1,pf3);
+		Pessoa p1 = new Pessoa(null,EnumStatusCadastro.SIM,"Letícia Dias",true,c2,tp1,sp1,pf1);
+		Pessoa p2 = new Pessoa(null,EnumStatusCadastro.SIM,"Letícia Adelino",false,c2,tp2,sp1,pf2);
+		Pessoa p3 = new Pessoa(null,EnumStatusCadastro.SIM,"Letícia Vitória",false,c2,tp3,sp2,pf3);
+		Pessoa p4 = new Pessoa(null,EnumStatusCadastro.SIM,"Eldio Lima",false,c2,tp2,sp1,pf3);
+		Pessoa p5 = new Pessoa(null,EnumStatusCadastro.SIM,"Alex Souza",false,c2,tp3,sp1,pf3);
+		Pessoa p6 = new Pessoa(null,EnumStatusCadastro.SIM,"Márcio Almeida",false,c2,tp1,sp3,pf3);
+		Pessoa p7 = new Pessoa(null,EnumStatusCadastro.SIM,"Angela Maria",false,c1,tp2,sp1,pf3);
+		Pessoa p8 = new Pessoa(null,EnumStatusCadastro.SIM,"Fábio Jorge",false,c2,tp2,sp1,pf3);
+		Pessoa p9 = new Pessoa(null,EnumStatusCadastro.SIM,"Eliaquim Lima",false,c2,tp1,sp1,pf3);
+		Pessoa p10 = new Pessoa(null,EnumStatusCadastro.SIM,"Leonardo Júnior",false,c2,tp4,sp1,pf3);
 		
 		tipoPessoaRepository.saveAll(Arrays.asList(tp1,tp2,tp3,tp4));
 		statusPessoaRepository.saveAll(Arrays.asList(sp1,sp2,sp3));

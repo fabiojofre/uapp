@@ -30,4 +30,5 @@ public class AcademicoService {
 		return repo.save(obj);
 	}
 
+
 }

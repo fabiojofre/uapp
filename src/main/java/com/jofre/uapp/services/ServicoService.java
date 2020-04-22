@@ -1,12 +1,15 @@
 package com.jofre.uapp.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.jofre.uapp.domain.Servico;
 import com.jofre.uapp.repositories.ServicoRepository;
+import com.jofre.uapp.services.exception.DataIntegrityException;
 import com.jofre.uapp.services.exception.ObjectNotFoundException;
 
 @Service
@@ -27,6 +30,17 @@ public class ServicoService {
 	public Servico update(Servico obj) {
 		find(obj.getId());
 		return repo.save(obj);
+	}
+	public void delete(Integer id) {
+		find(id);
+		try {	
+		repo.deleteById(id);
+		}catch (DataIntegrityViolationException e) {
+			throw new DataIntegrityException("Não é possível excluir um Servico que tenha registros atrelados");
+		}
+	}
+	public List<Servico>findAll(){
+		return repo.findAll();
 	}
 
 }

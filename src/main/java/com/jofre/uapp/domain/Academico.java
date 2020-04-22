@@ -25,7 +25,8 @@ public class Academico implements Serializable {
 	private String observacao;
 	private Integer status;
 	@JsonFormat(pattern = "dd/MM/yyyy")
-	private Date data;
+	private Date dataInicio;
+	private Date dataFim;
 	private String concluido;
 	
 	@ManyToOne
@@ -37,15 +38,16 @@ public class Academico implements Serializable {
 	public Academico() {
 	}
 
-	public Academico(Integer id, String observacao, EnumStatusMovimento status, Date data, String concluido,
-			Congregacao congergacao, TipoAcademico tipoAcademico) {
+	public Academico(Integer id, String observacao, EnumStatusMovimento status, Date dataInicio, String concluido,
+			Congregacao congergacao, TipoAcademico tipoAcademico, Date dataFim) {
 		super();
 		this.id = id;
 		this.observacao = observacao;
 		this.status = status.getCod();
-		this.data = data;
+		this.dataInicio = dataInicio;
 		this.concluido = concluido;
 		this.tipoAcademico = tipoAcademico;
+		this.dataFim = dataFim;
 	}
 
 	public Integer getId() {
@@ -72,12 +74,12 @@ public class Academico implements Serializable {
 		this.status = status.getCod();
 	}
 
-	public Date getData() {
-		return data;
+	public Date getDataInicio() {
+		return dataInicio;
 	}
 
-	public void setData(Date data) {
-		this.data = data;
+	public void setDataInicio(Date dataInicio) {
+		this.dataInicio = dataInicio;
 	}
 
 	public String getConcluido() {
@@ -96,6 +98,18 @@ public class Academico implements Serializable {
 		this.tipoAcademico = tipoAcademico;
 	}
 
+
+	public Date getDataFim() {
+		return dataFim;
+	}
+
+	public void setDataFim(Date dataFim) {
+		this.dataFim = dataFim;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
 
 	@Override
 	public int hashCode() {

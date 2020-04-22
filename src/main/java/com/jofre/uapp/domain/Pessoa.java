@@ -30,7 +30,7 @@ public class Pessoa implements Serializable {
 	private String nome;
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date nascimento;
-	private boolean eMembro = false ;
+	private boolean eMembro;
 	private String fone;
 	private String nomePai;
 	private String fonePai;

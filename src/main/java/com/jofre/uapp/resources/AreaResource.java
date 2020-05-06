@@ -48,6 +48,7 @@ public class AreaResource {
 		obj = service.update(obj);	
 		return ResponseEntity.noContent().build();
 	}
+	
 	@RequestMapping(value="/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Area> delete(@PathVariable Integer id){
 		service.delete(id);

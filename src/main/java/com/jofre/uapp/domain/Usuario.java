@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.jofre.uapp.enums.EnumStatusCadastro;
+import com.jofre.uapp.enums.EnumUserGrupo;
 
 @Entity
 public class Usuario implements Serializable{
@@ -22,31 +24,40 @@ public class Usuario implements Serializable{
 	private String email;
 	private String senha;
 	private String poder;
-	private Integer id_area;
-	private Integer id_congregacao;
+	private Integer ativo;
+	
 	
 	@ManyToOne
 	@JsonIgnore //evita loop de json
-	@JoinColumn(name = "ugrupo_id")
-	private UserGrupo userGrupo;
+	@JoinColumn(name = "area_id")
+	private Area area;
+	
+	@ManyToOne
+	@JsonIgnore //evita loop de json
+	@JoinColumn(name = "congregacao_id")
+	private Congregacao congregacao;
+	
+	
+	private Integer userGrupo;
 	
 	public Usuario() {
 	}
 
-	public Usuario(Integer id, String nome, String email, String senha, String poder, Integer id_area,
-			Integer id_congregacao, UserGrupo userGrupo) {
+	public Usuario(Integer id, String nome, String email, String senha, String poder, EnumStatusCadastro ativo, Area area,
+			Congregacao congregacao, EnumUserGrupo userGrupo) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
 		this.senha = senha;
 		this.poder = poder;
-		this.id_area = id_area;
-		this.id_congregacao = id_congregacao;
-		this.userGrupo = userGrupo;
+		this.ativo = ativo.getCod();
+		this.area = area;
+		this.congregacao = congregacao;
+		this.userGrupo = userGrupo.getCod();
 	}
 
-
+	
 
 	public Integer getId() {
 		return id;
@@ -87,29 +98,36 @@ public class Usuario implements Serializable{
 	public void setPoder(String poder) {
 		this.poder = poder;
 	}
-
-	public Integer getId_area() {
-		return id_area;
+	public EnumStatusCadastro getAtivo() {
+		return EnumStatusCadastro.toEnum(ativo);
 	}
 
-	public void setId_area(Integer id_area) {
-		this.id_area = id_area;
+	public void setAtivo(EnumStatusCadastro ativo) {
+		this.ativo = ativo.getCod();
 	}
 
-	public Integer getId_congregacao() {
-		return id_congregacao;
+	public Area getArea() {
+		return area;
 	}
 
-	public void setId_congregacao(Integer id_congregacao) {
-		this.id_congregacao = id_congregacao;
+	public void setId_area(Area area) {
+		this.area = area;
 	}
 
-	public UserGrupo getUserGrupo() {
-		return userGrupo;
+	public Congregacao getCongregacao() {
+		return congregacao;
 	}
 
-	public void setUgrupo(UserGrupo userGrupo) {
-		this.userGrupo = userGrupo;
+	public void setId_congregacao(Congregacao congregacao) {
+		this.congregacao = congregacao;
+	}
+
+	public EnumUserGrupo getUserGrupo() {
+		return EnumUserGrupo.toEnum(userGrupo);
+	}
+
+	public void setUgrupo(EnumUserGrupo userGrupo) {
+		this.userGrupo = userGrupo.getCod();
 	}
 
 	@Override

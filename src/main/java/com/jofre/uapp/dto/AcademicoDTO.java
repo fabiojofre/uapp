@@ -16,7 +16,7 @@ public class AcademicoDTO implements Serializable {
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date dataInicio;
 	private Date dataFim;
-	private String concluido;
+	
 	
 	public AcademicoDTO() {
 	}
@@ -26,7 +26,7 @@ public class AcademicoDTO implements Serializable {
 		status = obj.getStatus().getDescricao();
 		dataInicio = obj.getDataInicio();
 		dataFim = obj.getDataFim();
-		concluido = obj.getConcluido();
+		
 	}
 	public Integer getId() {
 		return id;
@@ -57,12 +57,6 @@ public class AcademicoDTO implements Serializable {
 	}
 	public void setDataFim(Date dataFim) {
 		this.dataFim = dataFim;
-	}
-	public String getConcluido() {
-		return concluido;
-	}
-	public void setConcluido(String concluido) {
-		this.concluido = concluido;
 	}
 	
 }

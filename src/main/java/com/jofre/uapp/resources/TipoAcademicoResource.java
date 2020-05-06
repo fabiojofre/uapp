@@ -1,6 +1,8 @@
 package com.jofre.uapp.resources;
 
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.jofre.uapp.domain.TipoAcademico;
+import com.jofre.uapp.dto.TipoAcademicoDTO;
 import com.jofre.uapp.services.TipoAcademicoService;
 
 @RestController
@@ -42,6 +45,20 @@ public class TipoAcademicoResource {
 		obj.setId(id);
 		obj = service.update(obj);	
 		return ResponseEntity.noContent().build();
+	}
+	
+	@RequestMapping(value="/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<TipoAcademico> delete(@PathVariable Integer id){
+		service.delete(id);
+		return ResponseEntity.noContent().build();
+	}
+	
+	@RequestMapping( method = RequestMethod.GET)
+	public ResponseEntity<List<TipoAcademicoDTO>> findAll(){
+		List<TipoAcademico> list = service.findAll();
+		List<TipoAcademicoDTO>listDTO = list.stream().map(obj ->new TipoAcademicoDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDTO);
+		
 	}
 
 }

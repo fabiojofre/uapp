@@ -12,6 +12,7 @@ import com.jofre.uapp.keys.FrequenciaServicoPK;
 @Entity
 public class FrequenciaServico implements Serializable {
 	private static final long serialVersionUID = 1L;
+	
 	@EmbeddedId //chave composta
 	private FrequenciaServicoPK id = new FrequenciaServicoPK();
 	

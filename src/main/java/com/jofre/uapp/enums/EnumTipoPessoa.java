@@ -1,20 +1,18 @@
 package com.jofre.uapp.enums;
 
-public enum EnumSituacaoPessoa {
+public enum EnumTipoPessoa {
+	ADULTO(1, "Adulto"),
+	JOVEM(2,"Jovem"),
+	ADOLESCENTE(3,"Adolescente");
 	
-	COMUNHAO(1,"Comunhão"),
-	AFASTADO(2,"Afastado"),
-	DISCIPLINADO(3,"Disciplinado"),
-	IMPOSSIBILITADO(4,"Impossibilitado"),
-	CONGREGANDO(5,"Congregando");
 	
 	private int cod;
 	private String descricao;
 	
-	private EnumSituacaoPessoa() {
+	private EnumTipoPessoa() {
 	}
 	
-	private EnumSituacaoPessoa(int cod,String descricao) {
+	private EnumTipoPessoa(int cod,String descricao) {
 		this.cod =cod;
 		this.descricao =descricao;
 	}
@@ -24,16 +22,17 @@ public enum EnumSituacaoPessoa {
 	public String getDescricao() {
 		return descricao;
 	}
-	public static EnumSituacaoPessoa toEnum(Integer cod) {
+	public static EnumTipoPessoa toEnum(Integer cod) {
 		
 		if(cod == null) {
 			return null;
 		}
-		for(EnumSituacaoPessoa x: EnumSituacaoPessoa.values()) {
+		for(EnumTipoPessoa x: EnumTipoPessoa.values()) {
 			if(cod ==(x.getCod())) {
 				return x;
 			}
 		}
 		throw new IllegalArgumentException("Id inválido: "+ cod);
 	}
+
 }

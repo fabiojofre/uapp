@@ -37,7 +37,7 @@ public class PessoaService {
 		try {	
 		repo.deleteById(id);
 		}catch (DataIntegrityViolationException e) {
-			throw new DataIntegrityException("Não é possível excluir uma Congregacao que tenha registros atrelados");
+			throw new DataIntegrityException("Não é possível excluir uma Pessoa que tenha registros atrelados");
 		}
 	}
 	public List<Pessoa>findAll(){

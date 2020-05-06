@@ -17,7 +17,9 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.jofre.uapp.enums.EnumSituacaoPessoa;
 import com.jofre.uapp.enums.EnumStatusCadastro;
+import com.jofre.uapp.enums.EnumTipoPessoa;
 
 @Entity
 public class Pessoa implements Serializable {
@@ -39,21 +41,14 @@ public class Pessoa implements Serializable {
 	private boolean paiMembro;
 	private boolean maeMembro;
 	private String endereco;
+	private Integer tipoPessoa;
+	private Integer situacaoPessoa;
 
 	@ManyToOne
 	@JsonIgnore
 	@JoinColumn(name = "congregacao_id")
 	private Congregacao congregacao;
 
-	@ManyToOne
-	@JsonIgnore
-	@JoinColumn(name = "tipopessoa_id")
-	private TipoPessoa tipoPessoa;
-	
-	@ManyToOne
-	@JsonIgnore
-	@JoinColumn(name = "statuspessoa_id")
-	private StatusPessoa statusPessoa;
 	
 	@ManyToOne
 	@JsonIgnore
@@ -80,15 +75,15 @@ public class Pessoa implements Serializable {
 		this.id = id;
 	}
 	public Pessoa(Integer id, EnumStatusCadastro ativo, String nome, boolean eMembro, Congregacao congregacao,
-			TipoPessoa tipoPessoa, StatusPessoa statusPessoa, Profissao profissao) {
+			EnumTipoPessoa tipoPessoa, EnumSituacaoPessoa situacaoPessoa, Profissao profissao) {
 		super();
 		this.id = id;
 		this.ativo = ativo.getCod();
 		this.nome = nome;
 		this.eMembro = eMembro;
 		this.congregacao = congregacao;
-		this.tipoPessoa = tipoPessoa;
-		this.statusPessoa = statusPessoa;
+		this.tipoPessoa = tipoPessoa.getCod();
+		this.situacaoPessoa = situacaoPessoa.getCod();
 		this.profissao = profissao;
 	}
 
@@ -126,20 +121,20 @@ public class Pessoa implements Serializable {
 		this.congregacao = congregacao;
 	}
 
-	public TipoPessoa getTipoPessoa() {
-		return tipoPessoa;
+	public EnumTipoPessoa getTipoPessoa() {
+		return EnumTipoPessoa.toEnum(tipoPessoa);
 	}
 
-	public void setTipoPessoa(TipoPessoa tipoPessoa) {
-		this.tipoPessoa = tipoPessoa;
+	public void setTipoPessoa(EnumTipoPessoa tipoPessoa) {
+		this.tipoPessoa = tipoPessoa.getCod();
 	}
 
-	public StatusPessoa getStatusPessoa() {
-		return statusPessoa;
+	public EnumSituacaoPessoa getSituacaoPessoa() {
+		return EnumSituacaoPessoa.toEnum(situacaoPessoa);
 	}
 
-	public void setSpessoa(StatusPessoa statusPessoa) {
-		this.statusPessoa = statusPessoa;
+	public void setSpessoa(EnumSituacaoPessoa situacaoPessoa) {
+		this.situacaoPessoa = situacaoPessoa.getCod();
 	}
 
 	public Profissao getProfissao() {

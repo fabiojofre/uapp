@@ -8,32 +8,36 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.jofre.uapp.domain.Academico;
 import com.jofre.uapp.domain.Area;
 import com.jofre.uapp.domain.Congregacao;
 import com.jofre.uapp.domain.Evento;
+import com.jofre.uapp.domain.FrequenciaAcademico;
 import com.jofre.uapp.domain.FrequenciaEvento;
 import com.jofre.uapp.domain.FrequenciaServico;
 import com.jofre.uapp.domain.Pessoa;
 import com.jofre.uapp.domain.Profissao;
 import com.jofre.uapp.domain.Servico;
-import com.jofre.uapp.domain.StatusPessoa;
+import com.jofre.uapp.domain.TipoAcademico;
 import com.jofre.uapp.domain.TipoEvento;
-import com.jofre.uapp.domain.TipoPessoa;
 import com.jofre.uapp.domain.TipoServico;
 import com.jofre.uapp.enums.EnumFrequencia;
+import com.jofre.uapp.enums.EnumSituacaoPessoa;
 import com.jofre.uapp.enums.EnumStatusCadastro;
 import com.jofre.uapp.enums.EnumStatusMovimento;
+import com.jofre.uapp.enums.EnumTipoPessoa;
+import com.jofre.uapp.repositories.AcademicoRepository;
 import com.jofre.uapp.repositories.AreaRepository;
 import com.jofre.uapp.repositories.CongregacaoRepository;
 import com.jofre.uapp.repositories.EventoRepository;
+import com.jofre.uapp.repositories.FrequenciaAcademicoRepository;
 import com.jofre.uapp.repositories.FrequenciaEventoRepository;
 import com.jofre.uapp.repositories.FrequenciaServicoRepository;
 import com.jofre.uapp.repositories.PessoaRepository;
 import com.jofre.uapp.repositories.ProfissaoRepository;
 import com.jofre.uapp.repositories.ServicoRepository;
-import com.jofre.uapp.repositories.StatusPessoaRepository;
+import com.jofre.uapp.repositories.TipoAcademicoRepository;
 import com.jofre.uapp.repositories.TipoEventoRepository;
-import com.jofre.uapp.repositories.TipoPessoaRepository;
 import com.jofre.uapp.repositories.TipoServicoRepository;
 
 
@@ -46,14 +50,9 @@ public class UappApplication implements CommandLineRunner{
 	@Autowired
 	private CongregacaoRepository congregacaoRepository;
 	
-	@Autowired
-	private TipoPessoaRepository tipoPessoaRepository;
 	
 	@Autowired
 	private PessoaRepository pessoaRepository;
-	
-	@Autowired
-	private StatusPessoaRepository statusPessoaRepository;
 	
 	@Autowired
 	private ProfissaoRepository profissaoRepository;
@@ -75,6 +74,16 @@ public class UappApplication implements CommandLineRunner{
 	
 	@Autowired
 	private TipoServicoRepository tipoServicoRepository;
+	
+	@Autowired
+	private FrequenciaAcademicoRepository frequenciaAcademicoRepository;
+	
+	@Autowired
+	private TipoAcademicoRepository tipoAcademicoRepository;
+	
+	@Autowired
+	private AcademicoRepository academicoRepository;
+
 	
 	
 	
@@ -109,33 +118,27 @@ public class UappApplication implements CommandLineRunner{
 		areaRepository.saveAll(Arrays.asList(area1,area3,area5,area7));
 		congregacaoRepository.saveAll(Arrays.asList(c1,c2,c3,c4,c5,c6,c7,c8,c9,c10));
 		
-		TipoPessoa tp1 = new TipoPessoa(null, "Pessoa");
-		TipoPessoa tp2 = new TipoPessoa(null, "Dirigente");
-		TipoPessoa tp3 = new TipoPessoa(null, "Pesp Congreg");
-		TipoPessoa tp4 = new TipoPessoa(null, "Jovem");
 		
-		StatusPessoa sp1 = new StatusPessoa(null, "Comunihão");
-		StatusPessoa sp2 = new StatusPessoa(null, "Afastado");
-		StatusPessoa sp3 = new StatusPessoa(null, "Falecido");
+		
 		
 		Profissao pf1 = new Profissao(null, "Maestro");
 		Profissao pf2 = new Profissao(null,"Pregador");
 		Profissao pf3 = new Profissao(null, "Componente");
 		
 		//Integer id, boolean ativo, String nome, boolean eMembro, Congregacao congregacao,TipoPessoa tipoPessoa
-		Pessoa p1 = new Pessoa(null,EnumStatusCadastro.SIM,"Letícia Dias",true,c2,tp1,sp1,pf1);
-		Pessoa p2 = new Pessoa(null,EnumStatusCadastro.SIM,"Letícia Adelino",false,c2,tp2,sp1,pf2);
-		Pessoa p3 = new Pessoa(null,EnumStatusCadastro.SIM,"Letícia Vitória",false,c2,tp3,sp2,pf3);
-		Pessoa p4 = new Pessoa(null,EnumStatusCadastro.SIM,"Eldio Lima",false,c2,tp2,sp1,pf3);
-		Pessoa p5 = new Pessoa(null,EnumStatusCadastro.SIM,"Alex Souza",false,c2,tp3,sp1,pf3);
-		Pessoa p6 = new Pessoa(null,EnumStatusCadastro.SIM,"Márcio Almeida",false,c2,tp1,sp3,pf3);
-		Pessoa p7 = new Pessoa(null,EnumStatusCadastro.SIM,"Angela Maria",false,c1,tp2,sp1,pf3);
-		Pessoa p8 = new Pessoa(null,EnumStatusCadastro.SIM,"Fábio Jorge",false,c2,tp2,sp1,pf3);
-		Pessoa p9 = new Pessoa(null,EnumStatusCadastro.SIM,"Eliaquim Lima",false,c2,tp1,sp1,pf3);
-		Pessoa p10 = new Pessoa(null,EnumStatusCadastro.SIM,"Leonardo Júnior",false,c2,tp4,sp1,pf3);
+		Pessoa p1 = new Pessoa(null,EnumStatusCadastro.SIM,"Letícia Dias",true,c2,EnumTipoPessoa.ADOLESCENTE,EnumSituacaoPessoa.COMUNHAO,pf1);
+		Pessoa p2 = new Pessoa(null,EnumStatusCadastro.SIM,"Letícia Adelino",false,c2,EnumTipoPessoa.ADOLESCENTE,EnumSituacaoPessoa.AFASTADO,pf2);
+		Pessoa p3 = new Pessoa(null,EnumStatusCadastro.SIM,"Letícia Vitória",false,c2,EnumTipoPessoa.ADOLESCENTE,EnumSituacaoPessoa.COMUNHAO,pf3);
+		Pessoa p4 = new Pessoa(null,EnumStatusCadastro.SIM,"Eldio Lima",false,c2,EnumTipoPessoa.ADOLESCENTE,EnumSituacaoPessoa.COMUNHAO,pf3);
+		Pessoa p5 = new Pessoa(null,EnumStatusCadastro.SIM,"Alex Souza",false,c2,EnumTipoPessoa.ADOLESCENTE,EnumSituacaoPessoa.COMUNHAO,pf3);
+		Pessoa p6 = new Pessoa(null,EnumStatusCadastro.SIM,"Márcio Almeida",false,c2,EnumTipoPessoa.ADOLESCENTE,EnumSituacaoPessoa.COMUNHAO,pf3);
+		Pessoa p7 = new Pessoa(null,EnumStatusCadastro.SIM,"Angela Maria",false,c1,EnumTipoPessoa.ADOLESCENTE,EnumSituacaoPessoa.CONGREGANDO,pf3);
+		Pessoa p8 = new Pessoa(null,EnumStatusCadastro.SIM,"Fábio Jorge",false,c2,EnumTipoPessoa.ADOLESCENTE,EnumSituacaoPessoa.CONGREGANDO,pf3);
+		Pessoa p9 = new Pessoa(null,EnumStatusCadastro.SIM,"Eliaquim Lima",false,c2,EnumTipoPessoa.ADOLESCENTE,EnumSituacaoPessoa.CONGREGANDO,pf3);
+		Pessoa p10 = new Pessoa(null,EnumStatusCadastro.SIM,"Leonardo Júnior",false,c2,EnumTipoPessoa.ADOLESCENTE,EnumSituacaoPessoa.COMUNHAO,pf3);
 		
-		tipoPessoaRepository.saveAll(Arrays.asList(tp1,tp2,tp3,tp4));
-		statusPessoaRepository.saveAll(Arrays.asList(sp1,sp2,sp3));
+		
+		
 		profissaoRepository.saveAll(Arrays.asList(pf1,pf2,pf3));
 		pessoaRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5,p6,p7,p8,p9,p10));
 		
@@ -176,6 +179,24 @@ public class UappApplication implements CommandLineRunner{
 		tipoServicoRepository.save(ts);
 		servicoRepository.save(s1);
 		frequenciaServicoRepository.save(fs);
+		
+		TipoAcademico ta1 = new TipoAcademico(null, "Estudo na Igreja","");
+		
+		Academico a1 = new Academico(null,"Estudo do São João",EnumStatusMovimento.LIBERADO, sdf.parse("01/05/2020"),sdf.parse("06/05/2020"),c1,ta1);
+		
+		FrequenciaAcademico fa1 = new FrequenciaAcademico(a1,c1,EnumFrequencia.PRESENTE);
+		FrequenciaAcademico fa2 = new FrequenciaAcademico(a1,c2,EnumFrequencia.PRESENTE);
+		FrequenciaAcademico fa3 = new FrequenciaAcademico(a1,c3,EnumFrequencia.JUSTIFICADO);
+		FrequenciaAcademico fa4 = new FrequenciaAcademico(a1,c4,EnumFrequencia.PRESENTE);
+		FrequenciaAcademico fa5 = new FrequenciaAcademico(a1,c5,EnumFrequencia.PRESENTE);
+		FrequenciaAcademico fa6 = new FrequenciaAcademico(a1,c6,EnumFrequencia.PRESENTE);
+		FrequenciaAcademico fa7 = new FrequenciaAcademico(a1,c7,EnumFrequencia.PRESENTE);
+		FrequenciaAcademico fa8 = new FrequenciaAcademico(a1,c8,EnumFrequencia.PRESENTE);
+		FrequenciaAcademico fa9 = new FrequenciaAcademico(a1,c9,EnumFrequencia.PRESENTE);
+		
+		tipoAcademicoRepository.saveAll(Arrays.asList(ta1));
+		academicoRepository.saveAll(Arrays.asList(a1));
+		frequenciaAcademicoRepository.saveAll(Arrays.asList(fa1,fa2,fa3,fa4,fa5,fa6,fa7,fa8,fa9));
 	}
 	
 

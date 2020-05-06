@@ -1,6 +1,8 @@
 package com.jofre.uapp.resources;
 
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.jofre.uapp.domain.Profissao;
+import com.jofre.uapp.dto.ProfissaoDTO;
 import com.jofre.uapp.services.ProfissaoService;
 
 @RestController
@@ -45,4 +48,17 @@ public class ProfissaoResource {
 		return ResponseEntity.noContent().build();
 	}
 
+	@RequestMapping(value="/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Profissao> delete(@PathVariable Integer id){
+		service.delete(id);	
+		return ResponseEntity.noContent().build();
+	}
+	
+	@RequestMapping( method = RequestMethod.GET)
+	public ResponseEntity<List<ProfissaoDTO>> findAll(){
+		List<Profissao> list = service.findAll();
+		List<ProfissaoDTO>listDTO = list.stream().map(obj ->new ProfissaoDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDTO);
+		
+	}
 }

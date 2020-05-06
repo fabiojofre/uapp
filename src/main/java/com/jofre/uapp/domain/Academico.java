@@ -26,8 +26,9 @@ public class Academico implements Serializable {
 	private Integer status;
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date dataInicio;
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date dataFim;
-	private String concluido;
+	
 	
 	@ManyToOne
 	@JsonIgnore
@@ -38,14 +39,13 @@ public class Academico implements Serializable {
 	public Academico() {
 	}
 
-	public Academico(Integer id, String observacao, EnumStatusMovimento status, Date dataInicio, String concluido,
-			Congregacao congergacao, TipoAcademico tipoAcademico, Date dataFim) {
+	public Academico(Integer id, String observacao, EnumStatusMovimento status, Date dataInicio,Date dataFim,
+			Congregacao congergacao, TipoAcademico tipoAcademico) {
 		super();
 		this.id = id;
 		this.observacao = observacao;
 		this.status = status.getCod();
 		this.dataInicio = dataInicio;
-		this.concluido = concluido;
 		this.tipoAcademico = tipoAcademico;
 		this.dataFim = dataFim;
 	}
@@ -80,14 +80,6 @@ public class Academico implements Serializable {
 
 	public void setDataInicio(Date dataInicio) {
 		this.dataInicio = dataInicio;
-	}
-
-	public String getConcluido() {
-		return concluido;
-	}
-
-	public void setConcluido(String concluido) {
-		this.concluido = concluido;
 	}
 
 	public TipoAcademico getTipoAcademico() {

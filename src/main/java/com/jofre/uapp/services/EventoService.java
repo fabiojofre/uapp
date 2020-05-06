@@ -37,7 +37,7 @@ public class EventoService {
 		try {	
 		repo.deleteById(id);
 		}catch (DataIntegrityViolationException e) {
-			throw new DataIntegrityException("Não é possível excluir uma Congregacao que tenha registros atrelados");
+			throw new DataIntegrityException("Não é possível excluir um Evento que tenha registros atrelados");
 		}
 	}
 	public List<Evento>findAll(){

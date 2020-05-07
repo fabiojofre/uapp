@@ -2,7 +2,9 @@ package com.jofre.uapp.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,8 +26,10 @@ public class Congregacao implements Serializable {
 	private String nome;
 	private String responsavel;
 
+	
 	@OneToMany(mappedBy = "congregacao")
 	private List<Pessoa> pessoa = new ArrayList<>();
+	
 	@JsonIgnore
 	@OneToMany(mappedBy = "congregacao")
 	private List<Servico> servico = new ArrayList<>();
@@ -34,6 +38,11 @@ public class Congregacao implements Serializable {
 	@JsonIgnore
 	@JoinColumn(name = "area_id")
 	private Area area;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "id.congregacao")
+	private Set<FrequenciaAcademico> frequenciaA = new HashSet<>();
+	
 
 	public Congregacao() {
 	}
@@ -46,7 +55,14 @@ public class Congregacao implements Serializable {
 		this.area = area;
 	}
 
-
+	@JsonIgnore
+	public List<Academico>getAcademico(){
+		List<Academico> lista = new ArrayList<>();
+		for(FrequenciaAcademico x: frequenciaA) {
+			lista.add(x.getAcademico());
+		}
+		return lista;
+	}
 
 	public Integer getId() {
 		return id;
@@ -94,6 +110,14 @@ public class Congregacao implements Serializable {
 
 	public void setServico(List<Servico> servico) {
 		this.servico = servico;
+	}
+	
+	public Set<FrequenciaAcademico> getFrequenciaA() {
+		return frequenciaA;
+	}
+
+	public void setFrequenciaA(Set<FrequenciaAcademico> frequenciaA) {
+		this.frequenciaA = frequenciaA;
 	}
 
 	@Override

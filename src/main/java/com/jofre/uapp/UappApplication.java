@@ -182,7 +182,7 @@ public class UappApplication implements CommandLineRunner{
 		
 		TipoAcademico ta1 = new TipoAcademico(null, "Estudo na Igreja","");
 		
-		Academico a1 = new Academico(null,"Estudo do São João",EnumStatusMovimento.LIBERADO, sdf.parse("01/05/2020"),sdf.parse("06/05/2020"),c1,ta1);
+		Academico a1 = new Academico(null,"Estudo do São João",EnumStatusMovimento.LIBERADO, sdf.parse("01/05/2020"),sdf.parse("06/05/2020"),ta1);
 		
 		FrequenciaAcademico fa1 = new FrequenciaAcademico(a1,c1,EnumFrequencia.PRESENTE);
 		FrequenciaAcademico fa2 = new FrequenciaAcademico(a1,c2,EnumFrequencia.PRESENTE);

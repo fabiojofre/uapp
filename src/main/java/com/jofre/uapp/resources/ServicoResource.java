@@ -19,7 +19,7 @@ import com.jofre.uapp.services.ServicoService;
 
 @RestController
 @RequestMapping(value="/servicos")
-public class ServiçoResource {
+public class ServicoResource {
 	
 	@Autowired
 	private ServicoService service; 

@@ -24,15 +24,19 @@ public class FrequenciaEventoPK implements Serializable {
 	public Evento getEvento() {
 		return evento;
 	}
+	
 	public void setEvento(Evento evento) {
 		this.evento = evento;
 	}
+	
 	public Pessoa getPessoaE() {
 		return pessoaE;
 	}
+	
 	public void setPessoaE(Pessoa pessoaE) {
 		this.pessoaE = pessoaE;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

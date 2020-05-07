@@ -39,8 +39,18 @@ public class Servico implements Serializable{
 	@JoinColumn(name = "congregacao_id")
 	private Congregacao congregacao;
 	
+	
 	@OneToMany(mappedBy = "id.servico")
 	private Set<FrequenciaServico> frequenciaS = new HashSet<>();
+	
+	public Set<FrequenciaServico> getFrequenciaS() {
+		return frequenciaS;
+	}
+
+	public void setFrequenciaS(Set<FrequenciaServico> frequenciaS) {
+		this.frequenciaS = frequenciaS;
+	}
+
 	
 	public Servico() {
 	}
@@ -58,15 +68,12 @@ public class Servico implements Serializable{
 	public Integer getId() {
 		return id;
 	}
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
 	public String getObservacao() {
 		return observacao;
 	}
-
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
 	}
@@ -95,14 +102,13 @@ public class Servico implements Serializable{
 		this.tipoServico = tipoServico;
 	}
 	
-	public Set<FrequenciaServico> getFrequenciaS() {
-		return frequenciaS;
+	public Congregacao getCongregacao() {
+		return congregacao;
+	}
+	public void setCongregacao(Congregacao congregacao) {
+		this.congregacao = congregacao;
 	}
 
-	public void setFrequenciaS(Set<FrequenciaServico> frequenciaS) {
-		this.frequenciaS = frequenciaS;
-	}
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

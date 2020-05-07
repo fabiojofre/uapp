@@ -2,6 +2,8 @@ package com.jofre.uapp.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -35,12 +38,22 @@ public class Academico implements Serializable {
 	@JoinColumn(name = "tipoAcademico_id")
 	private TipoAcademico tipoAcademico;
 
+	@OneToMany(mappedBy = "id.academico")
+	private Set<FrequenciaAcademico> frequenciaA = new HashSet<>();
+	
+	public Set<FrequenciaAcademico> getFrequenciaA() {
+		return frequenciaA;
+	}
+
+	public void setFrequenciaA(Set<FrequenciaAcademico> frequenciaA) {
+		this.frequenciaA = frequenciaA;
+	}
 	
 	public Academico() {
 	}
 
 	public Academico(Integer id, String observacao, EnumStatusMovimento status, Date dataInicio,Date dataFim,
-			Congregacao congergacao, TipoAcademico tipoAcademico) {
+			TipoAcademico tipoAcademico) {
 		super();
 		this.id = id;
 		this.observacao = observacao;

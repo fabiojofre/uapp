@@ -13,6 +13,7 @@ import com.jofre.uapp.keys.FrequenciaServicoPK;
 public class FrequenciaServico implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	@JsonIgnore
 	@EmbeddedId //chave composta
 	private FrequenciaServicoPK id = new FrequenciaServicoPK();
 	
@@ -21,7 +22,6 @@ public class FrequenciaServico implements Serializable {
 	
 	public FrequenciaServico() {
 	}
-
 
 	public FrequenciaServico(Servico servico, Pessoa pessoaS, EnumFrequencia frequenciaS) {
 		super();
@@ -36,7 +36,7 @@ public class FrequenciaServico implements Serializable {
 	public Pessoa getPessoaS() {
 		return id.getPessoaS();
 	}
-
+	
 	public FrequenciaServicoPK getId() {
 		return id;
 	}

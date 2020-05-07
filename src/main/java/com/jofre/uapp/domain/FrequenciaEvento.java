@@ -34,7 +34,7 @@ public class FrequenciaEvento implements Serializable {
 	public Evento getEvento() {
 		return id.getEvento();
 	}
-	//@JsonIgnore
+
 	public Pessoa getPessoaE() {
 		return id.getPessoaE();
 	}

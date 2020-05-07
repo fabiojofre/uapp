@@ -17,25 +17,26 @@ public class FrequenciaAcademico implements Serializable {
 	@EmbeddedId //chave composta
 	private FrequenciaAcademicoPK id = new FrequenciaAcademicoPK();
 	
-	private int frequencia;
+	private int frequenciaA;
 	
 	public FrequenciaAcademico() {
 	}
 
-	public FrequenciaAcademico(Academico academico, Congregacao congregacao, EnumFrequencia frequencia) {
+	public FrequenciaAcademico(Academico academico, Congregacao congregacao, EnumFrequencia frequenciaA) {
 		super();
 		id.setAcademico(academico);
 		id.setCongregacao(congregacao); 
-		this.frequencia = frequencia.getCod();
+		this.frequenciaA = frequenciaA.getCod();
+	}
+	@JsonIgnore
+	public Academico getAcademico() {
+		return id.getAcademico();
 	}
 
 	public Congregacao getCongregacao() {
 		return id.getCongregacao();
 	}
 	
-	public Academico getAcademico() {
-		return id.getAcademico();
-	}
 	
 	public FrequenciaAcademicoPK getId() {
 		return id;
@@ -43,13 +44,13 @@ public class FrequenciaAcademico implements Serializable {
 	public void setId(FrequenciaAcademicoPK id) {
 		this.id = id;
 	}
-	public EnumFrequencia getFrequenciaE() {
-		return EnumFrequencia.toEnum(frequencia);
+	public EnumFrequencia getFrequenciaA() {
+		return EnumFrequencia.toEnum(frequenciaA);
 	}
 
 
-	public void setFrequencia(EnumFrequencia frequenciaE) {
-		this.frequencia = frequenciaE.getCod();
+	public void setFrequenciaA(EnumFrequencia frequenciaA) {
+		this.frequenciaA = frequenciaA.getCod();
 	}
 
 	@Override

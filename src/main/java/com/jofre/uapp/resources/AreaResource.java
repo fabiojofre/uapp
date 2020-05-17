@@ -4,6 +4,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -36,7 +38,8 @@ public class AreaResource {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> insert(@RequestBody Area obj){			// A anotation @RequestBody converte p Jsom em objeto
+	public ResponseEntity<Void> insert(@Valid @RequestBody AreaDTO objDTO){			// A anotation @RequestBody converte p Jsom em objeto
+		Area obj = service.FromDTO(objDTO);
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()		//fornece uma URI com id já gravado no
 				.path("/{id}").buildAndExpand(obj.getId()).toUri();		// banco de dados

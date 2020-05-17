@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.jofre.uapp.domain.Area;
+import com.jofre.uapp.dto.AreaDTO;
 import com.jofre.uapp.repositories.AreaRepository;
 import com.jofre.uapp.services.exception.DataIntegrityException;
 import com.jofre.uapp.services.exception.ObjectNotFoundException;
@@ -50,5 +51,8 @@ public class AreaService {
 	public Page<Area>findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage,Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
+	}
+	public Area FromDTO(AreaDTO objDTO) {
+		return new Area(objDTO.getId(), objDTO.getNome());
 	}
 }

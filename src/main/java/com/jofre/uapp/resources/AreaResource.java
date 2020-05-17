@@ -48,7 +48,8 @@ public class AreaResource {
 	}
 
 	@RequestMapping(value="/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Void> update(@RequestBody Area obj, @PathVariable Integer id){
+	public ResponseEntity<Void> update(@Valid @RequestBody AreaDTO objDTO, @PathVariable Integer id){
+		Area obj = service.FromDTO(objDTO);
 		obj.setId(id);
 		obj = service.update(obj);	
 		return ResponseEntity.noContent().build();

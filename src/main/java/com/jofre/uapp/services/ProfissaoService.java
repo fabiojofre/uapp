@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.jofre.uapp.domain.Profissao;
+import com.jofre.uapp.dto.ProfissaoDTO;
 import com.jofre.uapp.repositories.ProfissaoRepository;
 import com.jofre.uapp.services.exception.DataIntegrityException;
 import com.jofre.uapp.services.exception.ObjectNotFoundException;
@@ -48,6 +49,9 @@ public class ProfissaoService {
 	public Page<Profissao>findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage,Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
+	}
+	public Profissao FromDTO(ProfissaoDTO objDTO) {
+		return new Profissao(objDTO.getId(), objDTO.getProfissao());
 	}
 
 

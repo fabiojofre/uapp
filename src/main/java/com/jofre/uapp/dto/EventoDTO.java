@@ -5,15 +5,18 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.jofre.uapp.domain.Evento;
+import com.jofre.uapp.domain.TipoEvento;
+import com.jofre.uapp.enums.EnumStatusMovimento;
 
 public class EventoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
 	private String observacao;
-	private String status;
+	private Integer status;
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date data;
+	private TipoEvento tipoEvento;
 	
 	public EventoDTO(){
 	}
@@ -21,8 +24,9 @@ public class EventoDTO implements Serializable {
 	public EventoDTO(Evento obj) {
 		id = obj.getId();
 		observacao = obj.getObservacao();
-		status = obj.getStatus().getDescricao();
+		status = obj.getStatus().getCod();
 		data = obj.getData();
+		tipoEvento =obj.getTipoEvento();
 	}
 
 	public Integer getId() {
@@ -41,12 +45,26 @@ public class EventoDTO implements Serializable {
 		this.observacao = observacao;
 	}
 
-	public String getStatus() {
-		return status;
+	public EnumStatusMovimento getStatus() {
+		return EnumStatusMovimento.toEnum(status);
+	}
+	
+	public void setAtivo(EnumStatusMovimento status) {
+		this.status = status.getCod();
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public Date getData() {
+		return data;
+	}
+
+	public void setData(Date data) {
+		this.data = data;
+	}
+	public TipoEvento getTipoEvento() {
+		return tipoEvento;
+	}
+	public void setTipoEvento(TipoEvento tipoEvento) {
+		this.tipoEvento = tipoEvento;
 	}
 	
 }

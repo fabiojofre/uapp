@@ -10,6 +10,7 @@ public class TipoAcademicoDTO implements Serializable{
 	
 	
 	private Integer id;
+	
 	private String desc1;
 	private String desc2;
 	

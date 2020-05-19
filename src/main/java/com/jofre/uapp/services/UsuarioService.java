@@ -39,7 +39,7 @@ public class UsuarioService {
 		try {	
 		repo.deleteById(id);
 		}catch (DataIntegrityViolationException e) {
-			throw new DataIntegrityException("Não é possível excluir um Usuario que tenha registros atrelados");
+			throw new DataIntegrityException("Não é possível excluiruma entidade que tenha registros atrelados");
 		}
 	}
 	public List<Usuario>findAll(){

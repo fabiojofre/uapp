@@ -5,13 +5,14 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.jofre.uapp.domain.Servico;
+import com.jofre.uapp.enums.EnumStatusMovimento;
 
 public class ServicoDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
 	private String observacao;
-	private String status;
+	private Integer status;
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date data;
 	private String desc1;
@@ -22,7 +23,7 @@ public class ServicoDTO implements Serializable{
 	public ServicoDTO(Servico obj) {
 		id = obj.getId();
 		observacao = obj.getObservacao();
-		status = obj.getStatus().getDescricao();
+		status = obj.getStatus().getCod();
 		data = obj.getData();
 		desc1 = obj.getTipoServico().getDesc1();
 		desc2 = obj.getTipoServico().getDesc2();
@@ -39,11 +40,12 @@ public class ServicoDTO implements Serializable{
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
 	}
-	public String getStatus() {
-		return status;
+	public EnumStatusMovimento getStatus() {
+		return EnumStatusMovimento.toEnum(status);
 	}
-	public void setStatus(String status) {
-		this.status = status;
+
+	public void setStatus(EnumStatusMovimento status) {
+		this.status = status.getCod();
 	}
 	public Date getData() {
 		return data;

@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.jofre.uapp.enums.EnumConfirmacao;
 import com.jofre.uapp.enums.EnumSituacaoPessoa;
 import com.jofre.uapp.enums.EnumStatusCadastro;
 import com.jofre.uapp.enums.EnumTipoPessoa;
@@ -32,14 +33,14 @@ public class Pessoa implements Serializable {
 	private String nome;
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date nascimento;
-	private boolean eMembro;
+	private Integer eMembro;
 	private String fone;
 	private String nomePai;
 	private String fonePai;
 	private String nomeMae;
 	private String foneMae;
-	private boolean paiMembro;
-	private boolean maeMembro;
+	private Integer paiMembro;
+	private Integer maeMembro;
 	private String endereco;
 	private Integer tipoPessoa;
 	private Integer situacaoPessoa;
@@ -64,23 +65,16 @@ public class Pessoa implements Serializable {
 	@OneToMany(mappedBy = "id.pessoaE")
 	private Set<FrequenciaEvento> frequenciaE = new HashSet<>();
 	
-	
-	
 	public Pessoa() {
-
 	}
 
-	public Pessoa(Integer id) {
-		super();
-		this.id = id;
-	}
-	public Pessoa(Integer id, EnumStatusCadastro ativo, String nome, boolean eMembro, Congregacao congregacao,
+	public Pessoa(Integer id, EnumStatusCadastro ativo, String nome, EnumConfirmacao eMembro, Congregacao congregacao,
 			EnumTipoPessoa tipoPessoa, EnumSituacaoPessoa situacaoPessoa, Profissao profissao) {
 		super();
 		this.id = id;
 		this.ativo = ativo.getCod();
 		this.nome = nome;
-		this.eMembro = eMembro;
+		this.eMembro = eMembro.getCod();
 		this.congregacao = congregacao;
 		this.tipoPessoa = tipoPessoa.getCod();
 		this.situacaoPessoa = situacaoPessoa.getCod();
@@ -170,12 +164,12 @@ public class Pessoa implements Serializable {
 		this.nascimento = nascimento;
 	}
 
-	public boolean iseMembro() {
-		return eMembro;
+	public EnumConfirmacao iseMembro() {
+		return EnumConfirmacao.toEnum(eMembro);
 	}
 
-	public void seteMembro(boolean eMembro) {
-		this.eMembro = eMembro;
+	public void seteMembro(EnumStatusCadastro eMembro) {
+		this.eMembro = eMembro.getCod();
 	}
 
 	public String getFone() {
@@ -218,20 +212,20 @@ public class Pessoa implements Serializable {
 		this.foneMae = foneMae;
 	}
 
-	public boolean isPaiMembro() {
-		return paiMembro;
+	public EnumConfirmacao isPaiMembro() {
+		return EnumConfirmacao.toEnum(paiMembro);
 	}
 
-	public void setPaiMembro(boolean paiMembro) {
-		this.paiMembro = paiMembro;
+	public void setPaiMembro(EnumConfirmacao paiMembro) {
+		this.paiMembro = paiMembro.getCod();
 	}
 
-	public boolean isMaeMembro() {
-		return maeMembro;
+	public EnumConfirmacao isMaeMembro() {
+		return EnumConfirmacao.toEnum(maeMembro);
 	}
 
-	public void setMaeMembro(boolean maeMembro) {
-		this.maeMembro = maeMembro;
+	public void setMaeMembro(EnumConfirmacao maeMembro) {
+		this.maeMembro = maeMembro.getCod();
 	}
 
 	public String getEndereco() {
@@ -241,6 +235,8 @@ public class Pessoa implements Serializable {
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
+	
+	
 	public Set<FrequenciaServico> getFrequenciaS() {
 		return frequenciaS;
 	}
@@ -256,6 +252,7 @@ public class Pessoa implements Serializable {
 	public void setFrequenciaE(Set<FrequenciaEvento> frequenciaE) {
 		this.frequenciaE = frequenciaE;
 	}
+	
 
 
 	@Override

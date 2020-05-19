@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.jofre.uapp.domain.TipoEvento;
+import com.jofre.uapp.dto.TipoEventoDTO;
 import com.jofre.uapp.repositories.TipoEventoRepository;
 import com.jofre.uapp.services.exception.DataIntegrityException;
 import com.jofre.uapp.services.exception.ObjectNotFoundException;
@@ -21,34 +22,45 @@ public class TipoEventoService {
 	private TipoEventoRepository repo;
 	
 	public TipoEvento find(Integer id){
-		Optional<TipoEvento>obj = repo.findById(id);
+		Optional<TipoEvento> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
-				"Objeto não encontrado! Id: "+ id +", tipo: " + TipoEvento.class.getName()));
+				"Objeto não encontrado! Id: " + id + ", Tipo: " + TipoEvento.class.getName()));		
 	}
 	public TipoEvento insert(TipoEvento obj) {
 		obj.setId(null);
 		return repo.save(obj);
 	}
-
+	
 	public TipoEvento update(TipoEvento obj) {
-		find(obj.getId());
+		TipoEvento newObj = find(obj.getId());
+		updateData(newObj, obj);
 		return repo.save(obj);
 	}
+	
+
 	public void delete(Integer id) {
 		find(id);
 		try {	
 		repo.deleteById(id);
 		}catch (DataIntegrityViolationException e) {
-			throw new DataIntegrityException("Não é possível excluir um TipoEvento que tenha registros atrelados");
+			throw new DataIntegrityException("Não é possível excluir uma entidade que tenha dependências atreladas");
 		}
 	}
 	public List<TipoEvento>findAll(){
 		return repo.findAll();
 	}
+	
+	//buscar uma lista por paginação
 	public Page<TipoEvento>findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage,Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
 	}
-
+	public TipoEvento FromDTO(TipoEventoDTO objDTO) {	// Converte um domain num dto
+		return new TipoEvento(objDTO.getId(), objDTO.getDesc1(),objDTO.getDesc2());
+	}
+	private void updateData(TipoEvento newObj, TipoEvento obj) {
+		newObj.setDesc1(obj.getDesc1());
+		newObj.setDesc2(obj.getDesc2());
+	}
 
 }

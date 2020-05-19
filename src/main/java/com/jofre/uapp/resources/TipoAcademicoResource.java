@@ -4,6 +4,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -30,11 +32,11 @@ public class TipoAcademicoResource {
 	public ResponseEntity<?> find(@PathVariable Integer id) {
 		TipoAcademico obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
-		
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> insert(@RequestBody TipoAcademico obj){			// A anotation @RequestBody converte p Jsom em objeto
+	public ResponseEntity<Void> insert(@Valid @RequestBody TipoAcademicoDTO objDTO){			// A anotation @RequestBody converte p Jsom em objeto
+		TipoAcademico obj = service.FromDTO(objDTO);
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()		//fornece uma URI com id já gravado no
 				.path("/{id}").buildAndExpand(obj.getId()).toUri();		// banco de dados
@@ -43,7 +45,8 @@ public class TipoAcademicoResource {
 	}
 
 	@RequestMapping(value="/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Void> update(@RequestBody TipoAcademico obj, @PathVariable Integer id){
+	public ResponseEntity<Void> update(@Valid @RequestBody TipoAcademicoDTO objDTO, @PathVariable Integer id){
+		TipoAcademico obj = service.FromDTO(objDTO);
 		obj.setId(id);
 		obj = service.update(obj);	
 		return ResponseEntity.noContent().build();
@@ -60,12 +63,14 @@ public class TipoAcademicoResource {
 		List<TipoAcademico> list = service.findAll();
 		List<TipoAcademicoDTO>listDTO = list.stream().map(obj ->new TipoAcademicoDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDTO);
+		
 	}
+	//retornar lista por paginação no endpoit
 	@RequestMapping(value = "/page", method = RequestMethod.GET)
 	public ResponseEntity<Page<TipoAcademicoDTO>> findPage(
 			@RequestParam(value ="page", defaultValue = "0")Integer page, 
 			@RequestParam(value ="linesPerPage", defaultValue = "24")Integer linesPerPage, 
-			@RequestParam(value ="orderBy", defaultValue = "desc1")String orderBy, 
+			@RequestParam(value ="orderBy", defaultValue = "nome")String orderBy, 
 			@RequestParam(value ="direction", defaultValue = "ASC")String direction){
 		Page<TipoAcademico> list = service.findPage(page,linesPerPage, orderBy, direction);
 		Page<TipoAcademicoDTO>listDTO = list.map(obj ->new TipoAcademicoDTO(obj));

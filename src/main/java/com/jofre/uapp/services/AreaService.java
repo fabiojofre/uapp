@@ -32,27 +32,33 @@ public class AreaService {
 	}
 	
 	public Area update(Area obj) {
-		find(obj.getId());
+		Area newObj = find(obj.getId());
+		updateData(newObj, obj);
 		return repo.save(obj);
 	}
+	
 
 	public void delete(Integer id) {
 		find(id);
 		try {	
 		repo.deleteById(id);
 		}catch (DataIntegrityViolationException e) {
-			throw new DataIntegrityException("Não é possível excluir uma Área que tenha Congregações atreladas");
+			throw new DataIntegrityException("Não é possível excluir uma entidade que tenha dependências atreladas");
 		}
 	}
 	public List<Area>findAll(){
 		return repo.findAll();
 	}
+	
 	//buscar uma lista por paginação
 	public Page<Area>findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage,Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
 	}
-	public Area FromDTO(AreaDTO objDTO) {
+	public Area FromDTO(AreaDTO objDTO) {	// Converte um domain num dto
 		return new Area(objDTO.getId(), objDTO.getNome());
+	}
+	private void updateData(Area newObj, Area obj) {
+		newObj.setNome(obj.getNome());
 	}
 }

@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.jofre.uapp.domain.Pessoa;
+import com.jofre.uapp.dto.PessoaDTO;
 import com.jofre.uapp.repositories.PessoaRepository;
 import com.jofre.uapp.services.exception.DataIntegrityException;
 import com.jofre.uapp.services.exception.ObjectNotFoundException;
@@ -49,6 +50,10 @@ public class PessoaService {
 	public Page<Pessoa>findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage,Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
+	}
+	public Pessoa FromDTO(PessoaDTO objDTO) {
+		return new Pessoa(objDTO.getId(), objDTO.getAtivo(),objDTO.getNome(),objDTO.isMaeMembro(),objDTO.getCongregacao(),
+				objDTO.getTipoPessoa(),objDTO.getSituacaoPessoa(),objDTO.getProfissao());
 	}
 
 

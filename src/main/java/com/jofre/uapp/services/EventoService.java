@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.jofre.uapp.domain.Evento;
+import com.jofre.uapp.dto.EventoDTO;
 import com.jofre.uapp.repositories.EventoRepository;
 import com.jofre.uapp.services.exception.DataIntegrityException;
 import com.jofre.uapp.services.exception.ObjectNotFoundException;
@@ -50,6 +51,7 @@ public class EventoService {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage,Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
 	}
-
-
+	public Evento FromDTO(EventoDTO objDTO) {
+		return new Evento(objDTO.getId(), objDTO.getObservacao(),objDTO.getStatus(),objDTO.getData(), objDTO.getTipoEvento());
+	}
 }

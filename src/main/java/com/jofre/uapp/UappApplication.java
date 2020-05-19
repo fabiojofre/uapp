@@ -21,6 +21,7 @@ import com.jofre.uapp.domain.Servico;
 import com.jofre.uapp.domain.TipoAcademico;
 import com.jofre.uapp.domain.TipoEvento;
 import com.jofre.uapp.domain.TipoServico;
+import com.jofre.uapp.enums.EnumConfirmacao;
 import com.jofre.uapp.enums.EnumFrequencia;
 import com.jofre.uapp.enums.EnumSituacaoPessoa;
 import com.jofre.uapp.enums.EnumStatusCadastro;
@@ -126,16 +127,16 @@ public class UappApplication implements CommandLineRunner{
 		Profissao pf3 = new Profissao(null, "Componente");
 		
 		//Integer id, boolean ativo, String nome, boolean eMembro, Congregacao congregacao,TipoPessoa tipoPessoa
-		Pessoa p1 = new Pessoa(null,EnumStatusCadastro.SIM,"Letícia Dias",true,c2,EnumTipoPessoa.ADOLESCENTE,EnumSituacaoPessoa.COMUNHAO,pf1);
-		Pessoa p2 = new Pessoa(null,EnumStatusCadastro.SIM,"Letícia Adelino",false,c2,EnumTipoPessoa.ADOLESCENTE,EnumSituacaoPessoa.AFASTADO,pf2);
-		Pessoa p3 = new Pessoa(null,EnumStatusCadastro.SIM,"Letícia Vitória",false,c2,EnumTipoPessoa.ADOLESCENTE,EnumSituacaoPessoa.COMUNHAO,pf3);
-		Pessoa p4 = new Pessoa(null,EnumStatusCadastro.SIM,"Eldio Lima",false,c2,EnumTipoPessoa.ADOLESCENTE,EnumSituacaoPessoa.COMUNHAO,pf3);
-		Pessoa p5 = new Pessoa(null,EnumStatusCadastro.SIM,"Alex Souza",false,c2,EnumTipoPessoa.ADOLESCENTE,EnumSituacaoPessoa.COMUNHAO,pf3);
-		Pessoa p6 = new Pessoa(null,EnumStatusCadastro.SIM,"Márcio Almeida",false,c2,EnumTipoPessoa.ADOLESCENTE,EnumSituacaoPessoa.COMUNHAO,pf3);
-		Pessoa p7 = new Pessoa(null,EnumStatusCadastro.SIM,"Angela Maria",false,c1,EnumTipoPessoa.ADOLESCENTE,EnumSituacaoPessoa.CONGREGANDO,pf3);
-		Pessoa p8 = new Pessoa(null,EnumStatusCadastro.SIM,"Fábio Jorge",false,c2,EnumTipoPessoa.ADOLESCENTE,EnumSituacaoPessoa.CONGREGANDO,pf3);
-		Pessoa p9 = new Pessoa(null,EnumStatusCadastro.SIM,"Eliaquim Lima",false,c2,EnumTipoPessoa.ADOLESCENTE,EnumSituacaoPessoa.CONGREGANDO,pf3);
-		Pessoa p10 = new Pessoa(null,EnumStatusCadastro.SIM,"Leonardo Júnior",false,c2,EnumTipoPessoa.ADOLESCENTE,EnumSituacaoPessoa.COMUNHAO,pf3);
+		Pessoa p1 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Letícia Dias",EnumConfirmacao.SIM,c2,EnumTipoPessoa.ADOLESCENTE,EnumSituacaoPessoa.COMUNHAO,pf1);
+		Pessoa p2 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Letícia Adelino",EnumConfirmacao.SIM,c2,EnumTipoPessoa.ADOLESCENTE,EnumSituacaoPessoa.AFASTADO,pf2);
+		Pessoa p3 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Letícia Vitória",EnumConfirmacao.SIM,c2,EnumTipoPessoa.ADOLESCENTE,EnumSituacaoPessoa.COMUNHAO,pf3);
+		Pessoa p4 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Eldio Lima",EnumConfirmacao.NAO,c2,EnumTipoPessoa.ADOLESCENTE,EnumSituacaoPessoa.COMUNHAO,pf3);
+		Pessoa p5 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Alex Souza",EnumConfirmacao.SIM,c2,EnumTipoPessoa.ADOLESCENTE,EnumSituacaoPessoa.COMUNHAO,pf3);
+		Pessoa p6 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Márcio Almeida",EnumConfirmacao.SIM,c2,EnumTipoPessoa.ADOLESCENTE,EnumSituacaoPessoa.COMUNHAO,pf3);
+		Pessoa p7 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Angela Maria",EnumConfirmacao.SIM,c1,EnumTipoPessoa.ADOLESCENTE,EnumSituacaoPessoa.CONGREGANDO,pf3);
+		Pessoa p8 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Fábio Jorge",EnumConfirmacao.SIM,c2,EnumTipoPessoa.ADOLESCENTE,EnumSituacaoPessoa.CONGREGANDO,pf3);
+		Pessoa p9 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Eliaquim Lima",EnumConfirmacao.SIM,c2,EnumTipoPessoa.ADOLESCENTE,EnumSituacaoPessoa.CONGREGANDO,pf3);
+		Pessoa p10 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Leonardo Júnior",EnumConfirmacao.NAO,c2,EnumTipoPessoa.ADOLESCENTE,EnumSituacaoPessoa.COMUNHAO,pf3);
 		
 		
 		

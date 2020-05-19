@@ -5,6 +5,8 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.jofre.uapp.domain.Academico;
+import com.jofre.uapp.domain.TipoAcademico;
+import com.jofre.uapp.enums.EnumStatusMovimento;
 
 public class AcademicoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -12,10 +14,12 @@ public class AcademicoDTO implements Serializable {
 	
 	private Integer id;
 	private String observacao;
-	private String status;
+	private Integer status;
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date dataInicio;
 	private Date dataFim;
+	
+	private TipoAcademico tipoAcademico;
 	
 	
 	public AcademicoDTO() {
@@ -23,9 +27,10 @@ public class AcademicoDTO implements Serializable {
 	public AcademicoDTO(Academico obj) {
 		id = obj.getId();
 		observacao = obj.getObservacao();
-		status = obj.getStatus().getDescricao();
+		status = obj.getStatus().getCod();
 		dataInicio = obj.getDataInicio();
 		dataFim = obj.getDataFim();
+		tipoAcademico = obj.getTipoAcademico();
 		
 	}
 	public Integer getId() {
@@ -40,12 +45,14 @@ public class AcademicoDTO implements Serializable {
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
 	}
-	public String getStatus() {
-		return status;
+	public EnumStatusMovimento getStatus() {
+		return EnumStatusMovimento.toEnum(status);
 	}
-	public void setStatus(String status) {
-		this.status = status;
+
+	public void setStatus(EnumStatusMovimento status) {
+		this.status = status.getCod();
 	}
+	
 	public Date getDataInicio() {
 		return dataInicio;
 	}
@@ -58,5 +65,12 @@ public class AcademicoDTO implements Serializable {
 	public void setDataFim(Date dataFim) {
 		this.dataFim = dataFim;
 	}
+	public TipoAcademico getTipoAcademico() {
+		return tipoAcademico;
+	}
+	public void setTipoAcademico(TipoAcademico tipoAcademico) {
+		this.tipoAcademico = tipoAcademico;
+	}
+	
 	
 }

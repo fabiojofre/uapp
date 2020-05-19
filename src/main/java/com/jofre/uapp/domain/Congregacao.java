@@ -53,6 +53,7 @@ public class Congregacao implements Serializable {
 		this.nome = nome;
 		this.responsavel = responsavel;
 		this.area = area;
+	//this.area = (area == null) ?  null :area.getId(); para tipo enumerado	
 	}
 
 	@JsonIgnore

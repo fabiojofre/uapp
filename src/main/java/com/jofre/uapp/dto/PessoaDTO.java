@@ -4,47 +4,57 @@ import java.io.Serializable;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.jofre.uapp.domain.Congregacao;
 import com.jofre.uapp.domain.Pessoa;
+import com.jofre.uapp.domain.Profissao;
+import com.jofre.uapp.enums.EnumConfirmacao;
+import com.jofre.uapp.enums.EnumSituacaoPessoa;
+import com.jofre.uapp.enums.EnumStatusCadastro;
+import com.jofre.uapp.enums.EnumTipoPessoa;
 
 public class PessoaDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
-	private String ativo;
+	private Integer ativo;
 	private String nome;
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date nascimento;
-	private boolean eMembro;
+	private Integer eMembro;
+	private Integer tipoPessoa;
+	private Integer situacaoPessoa;
 	private String fone;
 	private String nomePai;
 	private String fonePai;
 	private String nomeMae;
 	private String foneMae;
-	private boolean paiMembro;
-	private boolean maeMembro;
+	private Integer paiMembro;
+	private Integer maeMembro;
 	private String endereco;
-	private String profissao;
-	private String congregacao;
+	private Profissao profissao;
+	private Congregacao congregacao;
 	private String area;
 	public PessoaDTO(){
 	}
 	
 	public PessoaDTO(Pessoa obj) {
 		id = obj.getId();
-		ativo = obj.getAtivo().getDescricao();
+		ativo = obj.getAtivo().getCod();
 		nome = obj.getNome();
 		nascimento = obj.getNascimento();
-		eMembro = obj.iseMembro();
+		eMembro = obj.iseMembro().getCod();
+		tipoPessoa = obj.getTipoPessoa().getCod();
+		situacaoPessoa = obj.getSituacaoPessoa().getCod();
 		fone = obj.getFone();
 		nomePai = obj.getNomePai();
 		fonePai	= obj.getFonePai();
 		nomeMae = obj.getNomeMae();
 		foneMae = obj.getFoneMae();
-		paiMembro = obj.isPaiMembro();
-		maeMembro = obj.isMaeMembro();
+		paiMembro = obj.isPaiMembro().getCod();
+		maeMembro = obj.isMaeMembro().getCod();
 		endereco = obj.getEndereco();
-		profissao = obj.getProfissao().getProfissao();
-		congregacao = obj.getCongregacao().getNome();
+		profissao = obj.getProfissao();
+		congregacao = obj.getCongregacao();
 		area = obj.getCongregacao().getArea().getNome();
 	}
 
@@ -56,12 +66,12 @@ public class PessoaDTO implements Serializable {
 		this.id = id;
 	}
 
-	public String getAtivo() {
-		return ativo;
+	public EnumStatusCadastro getAtivo() {
+		return EnumStatusCadastro.toEnum(ativo);
 	}
 
-	public void setAtivo(String ativo) {
-		this.ativo = ativo;
+	public void setAtivo(EnumStatusCadastro ativo) {
+		this.ativo = ativo.getCod();
 	}
 
 	public String getNome() {
@@ -80,12 +90,26 @@ public class PessoaDTO implements Serializable {
 		this.nascimento = nascimento;
 	}
 
-	public boolean iseMembro() {
-		return eMembro;
+	public EnumConfirmacao iseMembro() {
+		return EnumConfirmacao.toEnum(eMembro);
 	}
 
-	public void seteMembro(boolean eMembro) {
-		this.eMembro = eMembro;
+	public void seteMembro(EnumStatusCadastro eMembro) {
+		this.eMembro = eMembro.getCod();
+	}
+	public EnumTipoPessoa getTipoPessoa() {
+		return EnumTipoPessoa.toEnum(tipoPessoa);
+	}
+
+	public void setTipoPessoa(EnumTipoPessoa tipoPessoa) {
+		this.tipoPessoa = tipoPessoa.getCod();
+	}
+	public EnumSituacaoPessoa getSituacaoPessoa() {
+		return EnumSituacaoPessoa.toEnum(situacaoPessoa);
+	}
+
+	public void setSpessoa(EnumSituacaoPessoa situacaoPessoa) {
+		this.situacaoPessoa = situacaoPessoa.getCod();
 	}
 
 	public String getFone() {
@@ -128,20 +152,20 @@ public class PessoaDTO implements Serializable {
 		this.foneMae = foneMae;
 	}
 
-	public boolean isPaiMembro() {
-		return paiMembro;
+	public EnumConfirmacao isPaiMembro() {
+		return EnumConfirmacao.toEnum(paiMembro);
 	}
 
-	public void setPaiMembro(boolean paiMembro) {
-		this.paiMembro = paiMembro;
+	public void setPaiMembro(EnumConfirmacao paiMembro) {
+		this.paiMembro = paiMembro.getCod();
 	}
 
-	public boolean isMaeMembro() {
-		return maeMembro;
+	public EnumConfirmacao isMaeMembro() {
+		return EnumConfirmacao.toEnum(maeMembro);
 	}
 
-	public void setMaeMembro(boolean maeMembro) {
-		this.maeMembro = maeMembro;
+	public void setMaeMembro(EnumConfirmacao maeMembro) {
+		this.maeMembro = maeMembro.getCod();
 	}
 
 	public String getEndereco() {
@@ -152,19 +176,19 @@ public class PessoaDTO implements Serializable {
 		this.endereco = endereco;
 	}
 
-	public String getProfissao() {
+	public Profissao getProfissao() {
 		return profissao;
 	}
 
-	public void setProfissao(String profissao) {
+	public void setProfissao(Profissao profissao) {
 		this.profissao = profissao;
 	}
 
-	public String getCongregacao() {
+	public Congregacao getCongregacao() {
 		return congregacao;
 	}
 
-	public void setCongregacao(String congregacao) {
+	public void setCongregacao(Congregacao congregacao) {
 		this.congregacao = congregacao;
 	}
 
@@ -175,7 +199,4 @@ public class PessoaDTO implements Serializable {
 	public void setArea(String area) {
 		this.area = area;
 	}
-	
-	
-
 }

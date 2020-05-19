@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.jofre.uapp.domain.Academico;
+import com.jofre.uapp.dto.AcademicoDTO;
 import com.jofre.uapp.repositories.AcademicoRepository;
 import com.jofre.uapp.services.exception.DataIntegrityException;
 import com.jofre.uapp.services.exception.ObjectNotFoundException;
@@ -50,6 +51,9 @@ public class AcademicoService {
 	public Page<Academico>findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage,Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
+	}
+	public Academico FromDTO(AcademicoDTO objDTO) {
+		return new Academico(objDTO.getId(),objDTO.getObservacao(), objDTO.getStatus() ,objDTO.getDataInicio(), objDTO.getDataFim(),objDTO.getTipoAcademico());
 	}
 
 

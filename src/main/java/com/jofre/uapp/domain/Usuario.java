@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jofre.uapp.enums.EnumStatusCadastro;
-import com.jofre.uapp.enums.EnumUserGrupo;
+import com.jofre.uapp.enums.EnumPoder;
 
 @Entity
 public class Usuario implements Serializable{
@@ -23,7 +23,7 @@ public class Usuario implements Serializable{
 	private String nome;
 	private String email;
 	private String senha;
-	private String poder;
+	private Integer poder;
 	private Integer ativo;
 	
 	
@@ -38,23 +38,20 @@ public class Usuario implements Serializable{
 	private Congregacao congregacao;
 	
 	
-	private Integer userGrupo;
-	
 	public Usuario() {
 	}
 
-	public Usuario(Integer id, String nome, String email, String senha, String poder, EnumStatusCadastro ativo, Area area,
-			Congregacao congregacao, EnumUserGrupo userGrupo) {
+	public Usuario(Integer id, String nome, String email, String senha, EnumPoder poder, EnumStatusCadastro ativo, Area area,
+			Congregacao congregacao) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
 		this.senha = senha;
-		this.poder = poder;
+		this.poder = poder.getCod();
 		this.ativo = ativo.getCod();
 		this.area = area;
 		this.congregacao = congregacao;
-		this.userGrupo = userGrupo.getCod();
 	}
 
 	
@@ -91,12 +88,12 @@ public class Usuario implements Serializable{
 		this.senha = senha;
 	}
 
-	public String getPoder() {
-		return poder;
+	public EnumPoder getPoder() {
+		return EnumPoder.toEnum(poder);
 	}
 
-	public void setPoder(String poder) {
-		this.poder = poder;
+	public void setPoder(EnumPoder poder) {
+		this.poder = poder.getCod();
 	}
 	public EnumStatusCadastro getAtivo() {
 		return EnumStatusCadastro.toEnum(ativo);
@@ -120,14 +117,6 @@ public class Usuario implements Serializable{
 
 	public void setId_congregacao(Congregacao congregacao) {
 		this.congregacao = congregacao;
-	}
-
-	public EnumUserGrupo getUserGrupo() {
-		return EnumUserGrupo.toEnum(userGrupo);
-	}
-
-	public void setUgrupo(EnumUserGrupo userGrupo) {
-		this.userGrupo = userGrupo.getCod();
 	}
 
 	@Override

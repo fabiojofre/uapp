@@ -5,7 +5,7 @@ import java.io.Serializable;
 import com.jofre.uapp.domain.Usuario;
 
 
-public class UsuarioDTO implements Serializable{
+public class UsuarioNewDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	
@@ -15,21 +15,21 @@ public class UsuarioDTO implements Serializable{
 	private String senha;
 	private Integer poder;
 	private Integer ativo;
-	private String area;
-	private String congregacao;
+	private Integer area_id;
+	private Integer congregacao_id;
 	
-	public UsuarioDTO() {
+	public UsuarioNewDTO() {
 	}
 
-	public UsuarioDTO(Usuario obj) {
+	public UsuarioNewDTO(Usuario obj) {
 		id = obj.getId();
 		nome = obj.getNome();
 		email = obj.getEmail();
 		senha = obj.getSenha();
 		poder = obj.getPoder().getCod();
 		ativo = obj.getAtivo().getCod();
-		area = obj.getArea().getNome();
-		congregacao = obj.getCongregacao().getNome();
+		area_id = obj.getArea().getId();
+		congregacao_id = obj.getCongregacao().getId();
 	}
 
 	public Integer getId() {
@@ -78,20 +78,20 @@ public class UsuarioDTO implements Serializable{
 		this.ativo = ativo;
 	}
 
-	public String getArea() {
-		return area;
+	public Integer getAreaId() {
+		return area_id;
 	}
 
-	public void setArea(String area) {
-		this.area = area;
+	public void setAreaId(Integer area_id) {
+		this.area_id = area_id;
 	}
 
-	public String getCongregacao() {
-		return congregacao;
+	public Integer getCongregacaoId() {
+		return congregacao_id;
 	}
 
-	public void setCongregacao(String congregacao) {
-		this.congregacao = congregacao;
+	public void setCongregacaoId(Integer congregacao_id) {
+		this.congregacao_id = congregacao_id;
 	}
 
 	

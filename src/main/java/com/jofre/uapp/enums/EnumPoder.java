@@ -1,6 +1,6 @@
 package com.jofre.uapp.enums;
 
-public enum EnumUserGrupo {
+public enum EnumPoder {
 	MASTER(1, "Master"),
 	PASTOR(2,"Pastor"),
 	SUPERVISOR(3,"Supervisor"),
@@ -15,10 +15,10 @@ public enum EnumUserGrupo {
 	private int cod;
 	private String descricao;
 	
-	private EnumUserGrupo() {
+	private EnumPoder() {
 	}
 	
-	private EnumUserGrupo(int cod,String descricao) {
+	private EnumPoder(int cod,String descricao) {
 		this.cod =cod;
 		this.descricao =descricao;
 	}
@@ -28,12 +28,12 @@ public enum EnumUserGrupo {
 	public String getDescricao() {
 		return descricao;
 	}
-	public static EnumUserGrupo toEnum(Integer cod) {
+	public static EnumPoder toEnum(Integer cod) {
 		
 		if(cod == null) {
 			return null;
 		}
-		for(EnumUserGrupo x: EnumUserGrupo.values()) {
+		for(EnumPoder x: EnumPoder.values()) {
 			if(cod ==(x.getCod())) {
 				return x;
 			}

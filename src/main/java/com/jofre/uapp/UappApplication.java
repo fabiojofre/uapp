@@ -21,8 +21,10 @@ import com.jofre.uapp.domain.Servico;
 import com.jofre.uapp.domain.TipoAcademico;
 import com.jofre.uapp.domain.TipoEvento;
 import com.jofre.uapp.domain.TipoServico;
+import com.jofre.uapp.domain.Usuario;
 import com.jofre.uapp.enums.EnumConfirmacao;
 import com.jofre.uapp.enums.EnumFrequencia;
+import com.jofre.uapp.enums.EnumPoder;
 import com.jofre.uapp.enums.EnumSituacaoPessoa;
 import com.jofre.uapp.enums.EnumStatusCadastro;
 import com.jofre.uapp.enums.EnumStatusMovimento;
@@ -40,6 +42,7 @@ import com.jofre.uapp.repositories.ServicoRepository;
 import com.jofre.uapp.repositories.TipoAcademicoRepository;
 import com.jofre.uapp.repositories.TipoEventoRepository;
 import com.jofre.uapp.repositories.TipoServicoRepository;
+import com.jofre.uapp.repositories.UsuarioRepository;
 
 
 @SpringBootApplication
@@ -85,7 +88,8 @@ public class UappApplication implements CommandLineRunner{
 	@Autowired
 	private AcademicoRepository academicoRepository;
 
-	
+	@Autowired
+	private UsuarioRepository usuarioRepository;
 	
 	
 	public static void main(String[] args) {
@@ -198,6 +202,9 @@ public class UappApplication implements CommandLineRunner{
 		tipoAcademicoRepository.saveAll(Arrays.asList(ta1));
 		academicoRepository.saveAll(Arrays.asList(a1));
 		frequenciaAcademicoRepository.saveAll(Arrays.asList(fa1,fa2,fa3,fa4,fa5,fa6,fa7,fa8,fa9));
+		
+		Usuario user1 = new Usuario(null,"Fabio Jorge de Freitas","fabiojofre@gmail.com","livresou",EnumPoder.MASTER,EnumStatusCadastro.ATIVO,area5,c2);
+		usuarioRepository.save(user1);
 	}
 	
 

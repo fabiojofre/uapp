@@ -15,8 +15,7 @@ public class UsuarioDTO implements Serializable{
 	private String senha;
 	private Integer poder;
 	private Integer ativo;
-	private String area;
-	private String congregacao;
+	private String pessoa;
 	
 	public UsuarioDTO() {
 	}
@@ -28,8 +27,7 @@ public class UsuarioDTO implements Serializable{
 		senha = obj.getSenha();
 		poder = obj.getPoder().getCod();
 		ativo = obj.getAtivo().getCod();
-		area = obj.getArea().getNome();
-		congregacao = obj.getCongregacao().getNome();
+		pessoa = obj.getPessoa().getNome();
 	}
 
 	public Integer getId() {
@@ -78,20 +76,12 @@ public class UsuarioDTO implements Serializable{
 		this.ativo = ativo;
 	}
 
-	public String getArea() {
-		return area;
+	public String getPessoa() {
+		return pessoa;
 	}
 
-	public void setArea(String area) {
-		this.area = area;
-	}
-
-	public String getCongregacao() {
-		return congregacao;
-	}
-
-	public void setCongregacao(String congregacao) {
-		this.congregacao = congregacao;
+	public void setPessoa(String pessoa) {
+		this.pessoa = pessoa;
 	}
 
 	

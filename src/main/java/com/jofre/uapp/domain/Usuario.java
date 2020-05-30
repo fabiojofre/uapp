@@ -10,8 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.jofre.uapp.enums.EnumStatusCadastro;
 import com.jofre.uapp.enums.EnumPoder;
+import com.jofre.uapp.enums.EnumStatusCadastro;
 
 @Entity
 public class Usuario implements Serializable{
@@ -29,20 +29,15 @@ public class Usuario implements Serializable{
 	
 	@ManyToOne
 	@JsonIgnore //evita loop de json
-	@JoinColumn(name = "area_id")
-	private Area area;
-	
-	@ManyToOne
-	@JsonIgnore //evita loop de json
-	@JoinColumn(name = "congregacao_id")
-	private Congregacao congregacao;
+	@JoinColumn(name = "pessoa_id")
+	private Pessoa pessoa;
 	
 	
 	public Usuario() {
 	}
 
-	public Usuario(Integer id, String nome, String email, String senha, EnumPoder poder, EnumStatusCadastro ativo, Area area,
-			Congregacao congregacao) {
+	public Usuario(Integer id, String nome, String email, String senha, EnumPoder poder, EnumStatusCadastro ativo,
+			Pessoa pessoa) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -50,8 +45,7 @@ public class Usuario implements Serializable{
 		this.senha = senha;
 		this.poder = poder.getCod();
 		this.ativo = ativo.getCod();
-		this.area = area;
-		this.congregacao = congregacao;
+		this.pessoa = pessoa;
 	}
 
 	
@@ -103,20 +97,13 @@ public class Usuario implements Serializable{
 		this.ativo = ativo.getCod();
 	}
 
-	public Area getArea() {
-		return area;
+
+	public Pessoa getPessoa() {
+		return pessoa;
 	}
 
-	public void setId_area(Area area) {
-		this.area = area;
-	}
-
-	public Congregacao getCongregacao() {
-		return congregacao;
-	}
-
-	public void setId_congregacao(Congregacao congregacao) {
-		this.congregacao = congregacao;
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
 	}
 
 	@Override

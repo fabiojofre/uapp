@@ -2,7 +2,9 @@ package com.jofre.uapp.dto;
 
 import java.io.Serializable;
 
-import com.jofre.uapp.domain.Usuario;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
 
 
 public class UsuarioNewDTO implements Serializable{
@@ -10,26 +12,20 @@ public class UsuarioNewDTO implements Serializable{
 	
 	
 	private Integer id;
+	@NotEmpty(message = "Preenchimento obrigatório")
+	@Length(min= 5, max = 15, message = "Campo deve conter entre 5 e 15 caracteres" )
 	private String nome;
+	@NotEmpty(message = "Preenchimento obrigatório")
+	@Length(min= 5, max = 150, message = "Campo deve conter entre 5 e 150 caracteres" )
 	private String email;
+	@NotEmpty(message = "Preenchimento obrigatório")
+	@Length(min= 4, max = 10, message = "Campo deve conter entre 4 e 10 caracteres" )
 	private String senha;
 	private Integer poder;
 	private Integer ativo;
-	private Integer area_id;
-	private Integer congregacao_id;
+	private Integer pessoaId;
 	
 	public UsuarioNewDTO() {
-	}
-
-	public UsuarioNewDTO(Usuario obj) {
-		id = obj.getId();
-		nome = obj.getNome();
-		email = obj.getEmail();
-		senha = obj.getSenha();
-		poder = obj.getPoder().getCod();
-		ativo = obj.getAtivo().getCod();
-		area_id = obj.getArea().getId();
-		congregacao_id = obj.getCongregacao().getId();
 	}
 
 	public Integer getId() {
@@ -78,21 +74,11 @@ public class UsuarioNewDTO implements Serializable{
 		this.ativo = ativo;
 	}
 
-	public Integer getAreaId() {
-		return area_id;
+	public Integer getPessoaId() {
+		return pessoaId;
 	}
 
-	public void setAreaId(Integer area_id) {
-		this.area_id = area_id;
+	public void setPessoaId(Integer pessoaId) {
+		this.pessoaId = pessoaId;
 	}
-
-	public Integer getCongregacaoId() {
-		return congregacao_id;
-	}
-
-	public void setCongregacaoId(Integer congregacao_id) {
-		this.congregacao_id = congregacao_id;
-	}
-
-	
 }

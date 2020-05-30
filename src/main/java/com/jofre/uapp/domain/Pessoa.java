@@ -49,8 +49,7 @@ public class Pessoa implements Serializable {
 	@JsonIgnore
 	@JoinColumn(name = "congregacao_id")
 	private Congregacao congregacao;
-
-	
+		
 	@ManyToOne
 	@JsonIgnore
 	@JoinColumn(name = "profissao_id")
@@ -66,6 +65,11 @@ public class Pessoa implements Serializable {
 	private Set<FrequenciaEvento> frequenciaE = new HashSet<>();
 	
 	public Pessoa() {
+	}
+
+	public Pessoa(Integer id) {
+		super();
+		this.id = id;
 	}
 
 	public Pessoa(Integer id, EnumStatusCadastro ativo, String nome, EnumConfirmacao eMembro, Congregacao congregacao,

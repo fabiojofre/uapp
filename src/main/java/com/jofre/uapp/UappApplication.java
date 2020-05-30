@@ -203,7 +203,7 @@ public class UappApplication implements CommandLineRunner{
 		academicoRepository.saveAll(Arrays.asList(a1));
 		frequenciaAcademicoRepository.saveAll(Arrays.asList(fa1,fa2,fa3,fa4,fa5,fa6,fa7,fa8,fa9));
 		
-		Usuario user1 = new Usuario(null,"Fabio Jorge de Freitas","fabiojofre@gmail.com","livresou",EnumPoder.MASTER,EnumStatusCadastro.ATIVO,area5,c2);
+		Usuario user1 = new Usuario(null,"Fabio Jorge de Freitas","fabiojofre@gmail.com","livresou",EnumPoder.MASTER,EnumStatusCadastro.ATIVO,p8);
 		usuarioRepository.save(user1);
 	}
 	

@@ -11,7 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.jofre.uapp.domain.Congregacao;
+import com.jofre.uapp.domain.Pessoa;
 import com.jofre.uapp.domain.Usuario;
 import com.jofre.uapp.dto.UsuarioDTO;
 import com.jofre.uapp.dto.UsuarioNewDTO;
@@ -25,7 +25,7 @@ import com.jofre.uapp.services.exception.ObjectNotFoundException;
 public class UsuarioService {
 	@Autowired
 	private UsuarioRepository repo;
-	
+		
 	public Usuario find(Integer id) {
 		Optional<Usuario> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
@@ -60,11 +60,11 @@ public class UsuarioService {
 		return repo.findAll(pageRequest);
 	}
 	public Usuario fromDTO(UsuarioDTO objDTO) {
-		return new Usuario(objDTO.getId(),objDTO.getNome(),objDTO.getEmail(),objDTO.getSenha(),EnumPoder.toEnum(objDTO.getPoder()),EnumStatusCadastro.toEnum(objDTO.getAtivo()),null,null);
+		return new Usuario(objDTO.getId(),objDTO.getNome(),objDTO.getEmail(),objDTO.getSenha(),EnumPoder.toEnum(objDTO.getPoder()),EnumStatusCadastro.toEnum(objDTO.getAtivo()),null);
 	}
 	public Usuario fromDTO(UsuarioNewDTO objDTO) {// criar sobrecarga para UsuarioNewDTO
-		Congregacao congregacao = new Congregacao(objDTO.getCongregacaoId(),null,null,null);
-		Usuario Usuario = new Usuario(null,objDTO.getNome(),objDTO.getEmail(),objDTO.getSenha(),EnumPoder.toEnum(objDTO.getPoder()),EnumStatusCadastro.toEnum(objDTO.getAtivo()),congregacao.getArea(),congregacao);
+		Pessoa pessoa = new Pessoa(objDTO.getPessoaId());
+		Usuario Usuario = new Usuario(null,objDTO.getNome(),objDTO.getEmail(),objDTO.getSenha(),EnumPoder.toEnum(objDTO.getPoder()),EnumStatusCadastro.toEnum(objDTO.getAtivo()),pessoa);
 		return Usuario;
 		
 	}
@@ -72,6 +72,6 @@ public class UsuarioService {
 		newObj.setNome(obj.getNome());
 		newObj.setEmail(obj.getEmail());
 		newObj.setSenha(obj.getSenha());
-		newObj.setPoder(obj.getPoder());
+		newObj.setPoder(obj.getPoder());		
 	}
 }

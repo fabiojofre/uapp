@@ -28,6 +28,7 @@ public class CongregacaoResource {
 	
 	@Autowired
 	private CongregacaoService service;
+	
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> find(@PathVariable Integer id){
 		Congregacao obj = service.find(id);

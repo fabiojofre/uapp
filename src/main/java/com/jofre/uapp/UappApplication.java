@@ -104,6 +104,8 @@ public class UappApplication implements CommandLineRunner{
 		Area area5 = new Area(null, "Area V");
 		Area area7 = new Area(null, "Area VII");
 		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyy");
+		
 		Congregacao c1 = new Congregacao(null, "BelaVista", "Eliaquim", area7);
 		Congregacao c2 = new Congregacao(null, "Cajá", "Sérgio", area5);
 		Congregacao c3 = new Congregacao(null, "São João 1", "José Gomes", area7);
@@ -131,16 +133,37 @@ public class UappApplication implements CommandLineRunner{
 		Profissao pf3 = new Profissao(null, "Componente");
 		
 		//Integer id, boolean ativo, String nome, boolean eMembro, Congregacao congregacao,TipoPessoa tipoPessoa
-		Pessoa p1 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Letícia Dias",EnumConfirmacao.SIM,c2,EnumTipoPessoa.ADOLESCENTE,EnumSituacaoPessoa.COMUNHAO,pf1);
-		Pessoa p2 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Letícia Adelino",EnumConfirmacao.SIM,c2,EnumTipoPessoa.ADOLESCENTE,EnumSituacaoPessoa.AFASTADO,pf2);
-		Pessoa p3 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Letícia Vitória",EnumConfirmacao.SIM,c2,EnumTipoPessoa.ADOLESCENTE,EnumSituacaoPessoa.COMUNHAO,pf3);
-		Pessoa p4 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Eldio Lima",EnumConfirmacao.NAO,c2,EnumTipoPessoa.ADOLESCENTE,EnumSituacaoPessoa.COMUNHAO,pf3);
-		Pessoa p5 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Alex Souza",EnumConfirmacao.SIM,c2,EnumTipoPessoa.ADOLESCENTE,EnumSituacaoPessoa.COMUNHAO,pf3);
-		Pessoa p6 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Márcio Almeida",EnumConfirmacao.SIM,c2,EnumTipoPessoa.ADOLESCENTE,EnumSituacaoPessoa.COMUNHAO,pf3);
-		Pessoa p7 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Angela Maria",EnumConfirmacao.SIM,c1,EnumTipoPessoa.ADOLESCENTE,EnumSituacaoPessoa.CONGREGANDO,pf3);
-		Pessoa p8 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Fábio Jorge",EnumConfirmacao.SIM,c2,EnumTipoPessoa.ADOLESCENTE,EnumSituacaoPessoa.CONGREGANDO,pf3);
-		Pessoa p9 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Eliaquim Lima",EnumConfirmacao.SIM,c2,EnumTipoPessoa.ADOLESCENTE,EnumSituacaoPessoa.CONGREGANDO,pf3);
-		Pessoa p10 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Leonardo Júnior",EnumConfirmacao.NAO,c2,EnumTipoPessoa.ADOLESCENTE,EnumSituacaoPessoa.COMUNHAO,pf3);
+		Pessoa p1 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Letícia Dias",sdf.parse("26/06/2000"),EnumConfirmacao.SIM,"(81)99999-8888","Irmão Fulano",
+				"(81)99999-8888","Irmã Fulano","(81)99999-8888",EnumConfirmacao.SIM,EnumConfirmacao.SIM,"Rua Leste,35 , Bela Vista",EnumTipoPessoa.ADOLESCENTE,
+				EnumSituacaoPessoa.COMUNHAO,c2,pf1);
+		
+		Pessoa p2 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Letícia Adelino",sdf.parse("26/06/2000"),EnumConfirmacao.SIM,"(81)99999-8888","Irmão Fulano",
+				"(81)99999-8888","Irmã Fulano","(81)99999-8888",EnumConfirmacao.SIM,EnumConfirmacao.SIM,"Rua Leste,35 , Bela Vista",EnumTipoPessoa.ADOLESCENTE,
+				EnumSituacaoPessoa.COMUNHAO,c3,pf2);
+		Pessoa p3 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Letícia Vitória",sdf.parse("26/06/2000"),EnumConfirmacao.SIM,"(81)99999-8888","Irmão Fulano",
+				"(81)99999-8888","Irmã Fulano","(81)99999-8888",EnumConfirmacao.SIM,EnumConfirmacao.SIM,"Rua Leste,35 , Bela Vista",EnumTipoPessoa.ADOLESCENTE,
+				EnumSituacaoPessoa.COMUNHAO,c1,pf1);
+		Pessoa p4 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Eldio Lima",sdf.parse("26/06/2000"),EnumConfirmacao.SIM,"(81)99999-8888","Irmão Fulano",
+				"(81)99999-8888","Irmã Fulano","(81)99999-8888",EnumConfirmacao.SIM,EnumConfirmacao.SIM,"Rua Leste,35 , Bela Vista",EnumTipoPessoa.ADOLESCENTE,
+				EnumSituacaoPessoa.COMUNHAO,c3,pf3);
+		Pessoa p5 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Alex Souza",sdf.parse("26/06/2000"),EnumConfirmacao.SIM,"(81)99999-8888","Irmão Fulano",
+				"(81)99999-8888","Irmã Fulano","(81)99999-8888",EnumConfirmacao.SIM,EnumConfirmacao.SIM,"Rua Leste,35 , Bela Vista",EnumTipoPessoa.ADOLESCENTE,
+				EnumSituacaoPessoa.COMUNHAO,c1,pf1);
+		Pessoa p6 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Márcio Almeida",sdf.parse("26/06/2000"),EnumConfirmacao.SIM,"(81)99999-8888","Irmão Fulano",
+				"(81)99999-8888","Irmã Fulano","(81)99999-8888",EnumConfirmacao.SIM,EnumConfirmacao.SIM,"Rua Leste,35 , Bela Vista",EnumTipoPessoa.ADOLESCENTE,
+				EnumSituacaoPessoa.COMUNHAO,c8,pf2);
+		Pessoa p7 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Angela Maria",sdf.parse("26/06/2000"),EnumConfirmacao.SIM,"(81)99999-8888","Irmão Fulano",
+				"(81)99999-8888","Irmã Fulano","(81)99999-8888",EnumConfirmacao.SIM,EnumConfirmacao.SIM,"Rua Leste,35 , Bela Vista",EnumTipoPessoa.ADOLESCENTE,
+				EnumSituacaoPessoa.COMUNHAO,c10,pf1);
+		Pessoa p8 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Fábio Jorge",sdf.parse("26/06/2000"),EnumConfirmacao.SIM,"(81)99999-8888","Irmão Fulano",
+				"(81)99999-8888","Irmã Fulano","(81)99999-8888",EnumConfirmacao.SIM,EnumConfirmacao.SIM,"Rua Leste,35 , Bela Vista",EnumTipoPessoa.ADOLESCENTE,
+				EnumSituacaoPessoa.COMUNHAO,c9,pf2);
+		Pessoa p9 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Eliaquim Lima",sdf.parse("26/06/2000"),EnumConfirmacao.SIM,"(81)99999-8888","Irmão Fulano",
+				"(81)99999-8888","Irmã Fulano","(81)99999-8888",EnumConfirmacao.SIM,EnumConfirmacao.SIM,"Rua Leste,35 , Bela Vista",EnumTipoPessoa.ADOLESCENTE,
+				EnumSituacaoPessoa.COMUNHAO,c5,pf3);
+		Pessoa p10 = new Pessoa(null,EnumStatusCadastro.ATIVO,"Leonardo Júnior",sdf.parse("26/06/2000"),EnumConfirmacao.SIM,"(81)99999-8888","Irmão Fulano",
+				"(81)99999-8888","Irmã Fulano","(81)99999-8888",EnumConfirmacao.SIM,EnumConfirmacao.SIM,"Rua Leste,35 , Bela Vista",EnumTipoPessoa.ADOLESCENTE,
+				EnumSituacaoPessoa.COMUNHAO,c6,pf2);
 		
 		
 		
@@ -152,7 +175,7 @@ public class UappApplication implements CommandLineRunner{
 		TipoEvento te3 = new TipoEvento(null,"Manhã Missionária","2020");
 		TipoEvento te4 = new TipoEvento(null,"Jejum para o Congresso","2020");
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyy");
+		
 		
 		Evento e1 = new Evento(null,"Primeiro dia",EnumStatusMovimento.PENDENTE,sdf.parse("26/06/2020"),te1);
 		Evento e2= new Evento(null,"Segundo dia",EnumStatusMovimento.PENDENTE,sdf.parse("27/06/2020"),te1);

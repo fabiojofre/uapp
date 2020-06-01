@@ -24,6 +24,7 @@ public class Profissao implements Serializable{
 	
 	public Profissao() {
 	}
+	
 
 	public Profissao(Integer id, String profissao) {
 		super();

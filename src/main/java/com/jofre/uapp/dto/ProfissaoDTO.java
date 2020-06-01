@@ -12,6 +12,16 @@ public class ProfissaoDTO implements Serializable{
 	
 	public ProfissaoDTO() {
 	}
+	
+	
+	
+	public ProfissaoDTO(Integer id) {
+		super();
+		this.id = id;
+	}
+
+
+
 	public ProfissaoDTO(Profissao obj) {
 		id = obj.getId();
 		profissao = obj.getProfissao();

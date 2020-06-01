@@ -72,16 +72,27 @@ public class Pessoa implements Serializable {
 		this.id = id;
 	}
 
-	public Pessoa(Integer id, EnumStatusCadastro ativo, String nome, EnumConfirmacao eMembro, Congregacao congregacao,
-			EnumTipoPessoa tipoPessoa, EnumSituacaoPessoa situacaoPessoa, Profissao profissao) {
+
+	public Pessoa(Integer id, EnumStatusCadastro ativo, String nome, Date nascimento, EnumConfirmacao eMembro, String fone, String nomePai,
+			String fonePai, String nomeMae, String foneMae, EnumConfirmacao paiMembro, EnumConfirmacao maeMembro, String endereco,
+			EnumTipoPessoa tipoPessoa, EnumSituacaoPessoa situacaoPessoa, Congregacao congregacao, Profissao profissao) {
 		super();
 		this.id = id;
 		this.ativo = ativo.getCod();
 		this.nome = nome;
+		this.nascimento = nascimento;
 		this.eMembro = eMembro.getCod();
-		this.congregacao = congregacao;
+		this.fone = fone;
+		this.nomePai = nomePai;
+		this.fonePai = fonePai;
+		this.nomeMae = nomeMae;
+		this.foneMae = foneMae;
+		this.paiMembro = paiMembro.getCod();
+		this.maeMembro = maeMembro.getCod();
+		this.endereco = endereco;
 		this.tipoPessoa = tipoPessoa.getCod();
 		this.situacaoPessoa = situacaoPessoa.getCod();
+		this.congregacao = congregacao;
 		this.profissao = profissao;
 	}
 
@@ -110,6 +121,28 @@ public class Pessoa implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	public EnumStatusCadastro getAtivo() {
+		return EnumStatusCadastro.toEnum(ativo);
+	}
+
+	public void setAtivo(EnumStatusCadastro ativo) {
+		this.ativo = ativo.getCod();
+	}
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	
+	public EnumConfirmacao geteMembro() {
+		return EnumConfirmacao.toEnum(eMembro);
+	}
+
+	public void seteMembro(EnumConfirmacao eMembro) {
+		this.eMembro = eMembro.getCod();
+	}
 	
 	public Congregacao getCongregacao() {
 		return congregacao;
@@ -131,7 +164,7 @@ public class Pessoa implements Serializable {
 		return EnumSituacaoPessoa.toEnum(situacaoPessoa);
 	}
 
-	public void setSpessoa(EnumSituacaoPessoa situacaoPessoa) {
+	public void setSituacaoPessoa(EnumSituacaoPessoa situacaoPessoa) {
 		this.situacaoPessoa = situacaoPessoa.getCod();
 	}
 
@@ -143,22 +176,7 @@ public class Pessoa implements Serializable {
 		this.profissao = profissao;
 	}
 
-	public String getNome() {
-		return nome;
-	}
-	
-	public EnumStatusCadastro getAtivo() {
-		return EnumStatusCadastro.toEnum(ativo);
-	}
 
-	public void setAtivo(EnumStatusCadastro ativo) {
-		this.ativo = ativo.getCod();
-	}
-
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
 
 	public Date getNascimento() {
 		return nascimento;
@@ -168,13 +186,7 @@ public class Pessoa implements Serializable {
 		this.nascimento = nascimento;
 	}
 
-	public EnumConfirmacao iseMembro() {
-		return EnumConfirmacao.toEnum(eMembro);
-	}
-
-	public void seteMembro(EnumStatusCadastro eMembro) {
-		this.eMembro = eMembro.getCod();
-	}
+	
 
 	public String getFone() {
 		return fone;
@@ -216,7 +228,7 @@ public class Pessoa implements Serializable {
 		this.foneMae = foneMae;
 	}
 
-	public EnumConfirmacao isPaiMembro() {
+	public EnumConfirmacao getPaiMembro() {
 		return EnumConfirmacao.toEnum(paiMembro);
 	}
 
@@ -224,7 +236,7 @@ public class Pessoa implements Serializable {
 		this.paiMembro = paiMembro.getCod();
 	}
 
-	public EnumConfirmacao isMaeMembro() {
+	public EnumConfirmacao getMaeMembro() {
 		return EnumConfirmacao.toEnum(maeMembro);
 	}
 

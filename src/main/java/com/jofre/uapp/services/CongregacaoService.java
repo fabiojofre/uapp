@@ -62,7 +62,7 @@ public class CongregacaoService {
 		return new Congregacao(objDTO.getId(),objDTO.getNome(),objDTO.getResponsavel(),null);
 	}
 	public Congregacao fromDTO(CongregacaoNewDTO objDTO) {// criar sobrecarga para CongregacaoNewDTO
-		Area area = new Area(objDTO.getAreaId(),null);
+		Area area = new Area(objDTO.getAreaId(),null,null);
 		Congregacao congregacao = new Congregacao(null,objDTO.getNome(),objDTO.getResponsavel(),area);
 		return congregacao;
 		

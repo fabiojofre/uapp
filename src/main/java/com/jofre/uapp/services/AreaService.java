@@ -26,6 +26,7 @@ public class AreaService {
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Area.class.getName()));		
 	}
+
 	public Area insert(Area obj) {
 		obj.setId(null);
 		return repo.save(obj);
@@ -56,7 +57,7 @@ public class AreaService {
 		return repo.findAll(pageRequest);
 	}
 	public Area FromDTO(AreaDTO objDTO) {	// Converte um domain num dto
-		return new Area(objDTO.getId(), objDTO.getNome());
+		return new Area(objDTO.getId(), objDTO.getNome(), objDTO.getSetor());
 	}
 	private void updateData(Area newObj, Area obj) {
 		newObj.setNome(obj.getNome());

@@ -17,7 +17,7 @@ public class Area implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
-	
+	private Integer setor;
 	
 	@OneToMany(mappedBy = "area")
 	private List<Congregacao> congregacao;
@@ -26,10 +26,11 @@ public class Area implements Serializable {
 
 	}
 
-	public Area(Integer id, String nome) {
+	public Area(Integer id, String nome, Integer setor) {
 		super();
 		this.id = id;
 		this.nome = nome;
+		this.setor = setor;
 	}
 
 	public Integer getId() {
@@ -48,6 +49,14 @@ public class Area implements Serializable {
 		this.nome = nome;
 	}
 	
+
+	public Integer getSetor() {
+		return setor;
+	}
+
+	public void setSetor(Integer setor) {
+		this.setor = setor;
+	}
 
 	public List<Congregacao> getCongregacao() {
 		return congregacao;

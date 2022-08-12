@@ -7,5 +7,4 @@ import com.jofre.uapp.domain.Area;
 
 @Repository
 public interface AreaRepository extends JpaRepository<Area, Integer>{
-
 }

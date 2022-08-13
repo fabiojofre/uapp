@@ -11,6 +11,7 @@ public class TipoServicoDTO implements Serializable{
 	private String desc1;
 	private String desc2;
 	
+	
 	public TipoServicoDTO() {
 	}
 

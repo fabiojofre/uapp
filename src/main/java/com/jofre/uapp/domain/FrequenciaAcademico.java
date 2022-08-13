@@ -5,7 +5,9 @@ import java.io.Serializable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.jofre.uapp.enums.EnumFrequencia;
 import com.jofre.uapp.keys.FrequenciaAcademicoPK;
 
@@ -32,7 +34,7 @@ public class FrequenciaAcademico implements Serializable {
 	public Academico getAcademico() {
 		return id.getAcademico();
 	}
-
+	@JsonIgnoreProperties({"pessoa"})
 	public Congregacao getCongregacao() {
 		return id.getCongregacao();
 	}

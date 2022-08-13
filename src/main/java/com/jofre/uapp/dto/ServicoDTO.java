@@ -5,6 +5,7 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.jofre.uapp.domain.Servico;
+import com.jofre.uapp.domain.TipoServico;
 import com.jofre.uapp.enums.EnumStatusMovimento;
 
 public class ServicoDTO implements Serializable{
@@ -17,6 +18,7 @@ public class ServicoDTO implements Serializable{
 	private Date data;
 	private String desc1;
 	private String desc2;
+	private int tiposervico;
 	
 	public ServicoDTO() {
 	}
@@ -27,6 +29,7 @@ public class ServicoDTO implements Serializable{
 		data = obj.getData();
 		desc1 = obj.getTipoServico().getDesc1();
 		desc2 = obj.getTipoServico().getDesc2();
+		tiposervico = obj.getTipoServico().getId();
 	}
 	public Integer getId() {
 		return id;
@@ -65,6 +68,13 @@ public class ServicoDTO implements Serializable{
 	public void setDesc2(String desc2) {
 		this.desc2 = desc2;
 	}
+	public TipoServico getTiposervico() {
+		return TipoServico.class.cast(tiposervico);
+	}
+	public void setTiposervico(TipoServico tiposervico) {
+		this.tiposervico = tiposervico.getId();
+	}
+
 	
 	
 }

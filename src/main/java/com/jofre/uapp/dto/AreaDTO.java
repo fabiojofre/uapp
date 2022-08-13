@@ -13,8 +13,8 @@ public class AreaDTO implements Serializable {
 	
 	private Integer id;
 	@NotEmpty(message = "Campo de obrigatório preenchimento")// Beam validation
-	@Length(min=5, max=9, message = "Os campos devem conter entre 5 e 9 caractere. Ex: Area III")
-	private String nome;
+	@Length(min=1, max=3, message = "Os campos devem conter entre 1 e 3 caractere. Ex: 123")
+	private int area;
 	private Integer setor;
 	
 	public AreaDTO() {	
@@ -22,7 +22,7 @@ public class AreaDTO implements Serializable {
 	
 	public AreaDTO(Area obj) {
 		id = obj.getId();
-		nome = obj.getNome();
+		area = obj.getArea();
 		setor = obj.getSetor();
 	}
 
@@ -34,12 +34,12 @@ public class AreaDTO implements Serializable {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public Integer getNome() {
+		return area;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setNome(Integer area) {
+		this.area = area;
 	}
 
 	public Integer getSetor() {

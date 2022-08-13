@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.jofre.uapp.enums.EnumStatusMovimento;
 
 @Entity
@@ -30,12 +31,12 @@ public class Servico implements Serializable{
 	private Date data;
 	
 	@ManyToOne
-	@JsonIgnore //evita loop de json
+	@JsonIgnoreProperties({"servico"})
 	@JoinColumn(name = "tipoServico_id")
 	private TipoServico tipoServico;
 	
 	@ManyToOne
-	@JsonIgnore //evita loop de json
+	@JsonIgnoreProperties({"pessoa"})
 	@JoinColumn(name = "congregacao_id")
 	private Congregacao congregacao;
 	

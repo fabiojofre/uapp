@@ -99,10 +99,10 @@ public class UappApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {	
 			
-		Area area1 = new Area(null, "Area I",2);
-		Area area3 = new Area(null, "Area III",2);
-		Area area5 = new Area(null, "Area V",1);
-		Area area7 = new Area(null, "Area VII",1);
+		Area area1 = new Area(null, 1,2);
+		Area area3 = new Area(null, 3,2);
+		Area area5 = new Area(null, 5,1);
+		Area area7 = new Area(null, 7,1);
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyy");
 		

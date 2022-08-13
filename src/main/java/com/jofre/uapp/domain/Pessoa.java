@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -63,6 +65,14 @@ public class Pessoa implements Serializable {
 	@JsonIgnore
 	@OneToMany(mappedBy = "id.pessoaE")
 	private Set<FrequenciaEvento> frequenciaE = new HashSet<>();
+	
+	@ElementCollection
+	@CollectionTable(name="caracteristicas")
+	private Set<String> caracteristicas = new HashSet<>();
+	
+	@ElementCollection
+	@CollectionTable(name="desafios")
+	private Set<String> desafios = new HashSet<>();
 	
 	public Pessoa() {
 	}
@@ -270,6 +280,14 @@ public class Pessoa implements Serializable {
 	}
 	
 
+
+	public Set<String> getCaracteristicas() {
+		return caracteristicas;
+	}
+
+	public void setCaracteristicas(Set<String> caracteristicas) {
+		this.caracteristicas = caracteristicas;
+	}
 
 	@Override
 	public int hashCode() {

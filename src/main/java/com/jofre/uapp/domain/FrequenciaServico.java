@@ -83,6 +83,13 @@ public class FrequenciaServico implements Serializable {
 		return true;
 	}
 	
-
+//se houver muitos pra muitos
+	//@JsonBackReference
+	//*@ManyToMany
+	//@JoinTable(nome="FREQUENCIA_SERVICO",joinColumn(name="frequenciaS_id"),inverseJoinColumns =@joinColumn(name="pessoa_id")
+	
+	// no outro lado 
+	//@JsonManagerReference
+	//@ManyToMany(mappedBy="frequenciaS")
 	
 }

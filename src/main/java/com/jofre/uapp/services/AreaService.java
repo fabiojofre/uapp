@@ -60,6 +60,6 @@ public class AreaService {
 		return new Area(objDTO.getId(), objDTO.getNome(), objDTO.getSetor());
 	}
 	private void updateData(Area newObj, Area obj) {
-		newObj.setNome(obj.getNome());
+		newObj.setArea(obj.getArea());
 	}
 }

@@ -39,7 +39,7 @@ public class CongregacaoService {
 	public Congregacao update(Congregacao obj) {
 		Congregacao newObj = find(obj.getId());
 		updateData(newObj, obj);
-		obj =  repo.save(obj);
+		obj =  repo.save(newObj);
 		return obj;
 	}
 	
@@ -70,5 +70,7 @@ public class CongregacaoService {
 	private void updateData(Congregacao newObj, Congregacao obj) {
 		newObj.setNome(obj.getNome());
 		newObj.setResponsavel(obj.getResponsavel());
+		
+		
 	}
 }

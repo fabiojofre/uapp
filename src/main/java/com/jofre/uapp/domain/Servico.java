@@ -31,12 +31,12 @@ public class Servico implements Serializable{
 	private Date data;
 	
 	@ManyToOne
-	@JsonIgnoreProperties({"servico"})
+	@JsonIgnore
 	@JoinColumn(name = "tipoServico_id")
 	private TipoServico tipoServico;
 	
 	@ManyToOne
-	@JsonIgnoreProperties({"pessoa"})
+	@JsonIgnore
 	@JoinColumn(name = "congregacao_id")
 	private Congregacao congregacao;
 	

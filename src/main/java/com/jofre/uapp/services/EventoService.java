@@ -11,7 +11,11 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.jofre.uapp.domain.Evento;
+import com.jofre.uapp.domain.Servico;
+import com.jofre.uapp.domain.TipoEvento;
 import com.jofre.uapp.dto.EventoDTO;
+import com.jofre.uapp.dto.EventoNewDTO;
+import com.jofre.uapp.enums.EnumStatusMovimento;
 import com.jofre.uapp.repositories.EventoRepository;
 import com.jofre.uapp.services.exception.DataIntegrityException;
 import com.jofre.uapp.services.exception.ObjectNotFoundException;
@@ -33,8 +37,10 @@ public class EventoService {
 	}
 
 	public Evento update(Evento obj) {
-		find(obj.getId());
-		return repo.save(obj);
+		Evento newObj =	find(obj.getId());
+		updateData(newObj, obj);
+		obj = repo.save(newObj);
+		return obj;
 	}
 	public void delete(Integer id) {
 		find(id);
@@ -51,7 +57,17 @@ public class EventoService {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage,Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
 	}
-	public Evento FromDTO(EventoDTO objDTO) {
-		return new Evento(objDTO.getId(), objDTO.getObservacao(),objDTO.getStatus(),objDTO.getData(), objDTO.getTipoEvento());
+	public Evento fromDTO(EventoDTO objDTO) {
+		return new Evento(null, objDTO.getObservacao(),EnumStatusMovimento.toEnum(objDTO.getStatus().getCod()),objDTO.getData(), null);
+	}
+	public Evento fromDTO(EventoNewDTO objDTO) {
+		TipoEvento tipoEvento = new TipoEvento(objDTO.getTipoeventoId(),null,null);
+		Evento evento =  new Evento(null, objDTO.getObservacao(),EnumStatusMovimento.toEnum(objDTO.getStatus().getCod()),objDTO.getData(), tipoEvento);
+		return evento;
+	}
+	private void updateData(Evento newObj, Evento obj) {
+		newObj.setObservacao(obj.getObservacao());
+		newObj.setStatus(obj.getStatus());
+		newObj.setData(obj.getData());	
 	}
 }

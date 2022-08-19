@@ -16,7 +16,7 @@ public class EventoDTO implements Serializable {
 	private Integer status;
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date data;
-	private TipoEvento tipoEvento;
+	private int tipoeventoId;
 	
 	public EventoDTO(){
 	}
@@ -26,7 +26,7 @@ public class EventoDTO implements Serializable {
 		observacao = obj.getObservacao();
 		status = obj.getStatus().getCod();
 		data = obj.getData();
-		tipoEvento =obj.getTipoEvento();
+		tipoeventoId =obj.getTipoEvento().getId();
 	}
 
 	public Integer getId() {
@@ -49,7 +49,7 @@ public class EventoDTO implements Serializable {
 		return EnumStatusMovimento.toEnum(status);
 	}
 	
-	public void setAtivo(EnumStatusMovimento status) {
+	public void setStatus(EnumStatusMovimento status) {
 		this.status = status.getCod();
 	}
 
@@ -60,11 +60,11 @@ public class EventoDTO implements Serializable {
 	public void setData(Date data) {
 		this.data = data;
 	}
-	public TipoEvento getTipoEvento() {
-		return tipoEvento;
+	public int getTipoeventoId() {
+		return tipoeventoId;
 	}
-	public void setTipoEvento(TipoEvento tipoEvento) {
-		this.tipoEvento = tipoEvento;
+	public void setTipoevento(int tipoeventoId) {
+		this.tipoeventoId = tipoeventoId;
 	}
 	
 }

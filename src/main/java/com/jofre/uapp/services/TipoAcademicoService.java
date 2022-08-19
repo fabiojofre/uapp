@@ -34,7 +34,7 @@ public class TipoAcademicoService {
 	public TipoAcademico update(TipoAcademico obj) {
 		TipoAcademico newObj = find(obj.getId());
 		updateData(newObj, obj);
-		return repo.save(obj);
+		return repo.save(newObj);
 	}
 	
 

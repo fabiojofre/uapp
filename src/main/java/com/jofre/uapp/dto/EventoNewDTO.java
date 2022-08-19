@@ -4,10 +4,11 @@ import java.io.Serializable;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.jofre.uapp.domain.Servico;
+import com.jofre.uapp.domain.Evento;
+import com.jofre.uapp.domain.TipoEvento;
 import com.jofre.uapp.enums.EnumStatusMovimento;
 
-public class ServicoDTO implements Serializable{
+public class EventoNewDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
@@ -15,57 +16,48 @@ public class ServicoDTO implements Serializable{
 	private Integer status;
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date data;
-	private int tiposervicoId;
-	private int congregacaoId;
+	private int tipoeventoId;
 	
-	public ServicoDTO() {
+	public EventoNewDTO(){
 	}
-	public ServicoDTO(Servico obj) {
-		id = obj.getId();
-		observacao = obj.getObservacao();
-		status = obj.getStatus().getCod();
-		data = obj.getData();
-		tiposervicoId = obj.getTipoServico().getId();
-		congregacaoId = obj.getCongregacao().getId();
-		
-	}
+	
+
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public String getObservacao() {
 		return observacao;
 	}
+
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
 	}
+
 	public EnumStatusMovimento getStatus() {
 		return EnumStatusMovimento.toEnum(status);
 	}
-
+	
 	public void setStatus(EnumStatusMovimento status) {
 		this.status = status.getCod();
 	}
+
 	public Date getData() {
 		return data;
 	}
+
 	public void setData(Date data) {
 		this.data = data;
 	}
-	public int getTiposervicoId() {
-		return tiposervicoId;
+	public int getTipoeventoId() {
+		return tipoeventoId;
 	}
-	public void setTiposervicoId(int tiposervicoId) {
-		this.tiposervicoId = tiposervicoId;
-	}
-
-	public int getCongregacaoId() {
-		return congregacaoId;
-	}
-	public void setCongregacaoId(int congregacaoId) {
-		this.congregacaoId = congregacaoId;
+	public void setTipoevento(int tipoeventoId) {
+		this.tipoeventoId = tipoeventoId;
 	}
 	
 }

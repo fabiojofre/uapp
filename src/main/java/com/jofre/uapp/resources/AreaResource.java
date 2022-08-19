@@ -8,7 +8,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -49,7 +48,7 @@ public class AreaResource {
 	}
 
 	@RequestMapping(value="/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Void> update(@Valid @RequestBody AreaDTO objDTO, @PathVariable Integer id){
+	public ResponseEntity<Void> update(@RequestBody AreaDTO objDTO, @PathVariable Integer id){
 		Area obj = service.FromDTO(objDTO);
 		obj.setId(id);
 		obj = service.update(obj);	

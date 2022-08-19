@@ -112,9 +112,6 @@ public class Academico implements Serializable {
 		this.dataFim = dataFim;
 	}
 
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
 
 	@Override
 	public int hashCode() {

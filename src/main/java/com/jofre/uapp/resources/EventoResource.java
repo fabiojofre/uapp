@@ -4,6 +4,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.jofre.uapp.domain.Evento;
 import com.jofre.uapp.dto.EventoDTO;
+import com.jofre.uapp.dto.EventoNewDTO;
 import com.jofre.uapp.services.EventoService;
 
 @RestController
@@ -27,14 +30,15 @@ public class EventoResource {
 	private EventoService service; 
 	
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id){
-		
+	public ResponseEntity<Evento> find(@PathVariable Integer id){
 		Evento obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 		
 	}
+	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> insert(@RequestBody Evento obj){			// A anotation @RequestBody converte p Jsom em objeto
+	public ResponseEntity<Void> insert(@Valid @RequestBody EventoNewDTO objDTO){			// A anotation @RequestBody converte p Jsom em objeto
+		Evento obj  = service.fromDTO(objDTO);
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()		//fornece uma URI com id já gravado no
 				.path("/{id}").buildAndExpand(obj.getId()).toUri();		// banco de dados
@@ -43,7 +47,8 @@ public class EventoResource {
 	}
 
 	@RequestMapping(value="/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Void> update(@RequestBody Evento obj, @PathVariable Integer id){
+	public ResponseEntity<Void> update(@RequestBody EventoDTO objDTO, @PathVariable Integer id){
+		Evento obj= service.fromDTO(objDTO);
 		obj.setId(id);
 		obj = service.update(obj);	
 		return ResponseEntity.noContent().build();

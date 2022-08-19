@@ -35,7 +35,7 @@ public class AreaService {
 	public Area update(Area obj) {
 		Area newObj = find(obj.getId());
 		updateData(newObj, obj);
-		return repo.save(obj);
+		return repo.save(newObj);
 	}
 	
 
@@ -56,10 +56,13 @@ public class AreaService {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage,Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
 	}
+
 	public Area FromDTO(AreaDTO objDTO) {	// Converte um domain num dto
-		return new Area(objDTO.getId(), objDTO.getNome(), objDTO.getSetor());
+		return new Area(objDTO.getId(), objDTO.getArea(), objDTO.getSetor());
 	}
+	
 	private void updateData(Area newObj, Area obj) {
 		newObj.setArea(obj.getArea());
+		newObj.setSetor(obj.getSetor());
 	}
 }

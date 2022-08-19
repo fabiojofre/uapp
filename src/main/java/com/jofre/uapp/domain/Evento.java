@@ -76,7 +76,7 @@ public class Evento implements Serializable{
 	public EnumStatusMovimento getStatus() {
 		return EnumStatusMovimento.toEnum(status);
 	}
-	public void setAtivo(EnumStatusMovimento status) {
+	public void setStatus(EnumStatusMovimento status) {
 		this.status = status.getCod();
 	}
 	public Date getData() {

@@ -100,30 +100,32 @@ public class UappApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {	
 			
 		Area area1 = new Area(null, 1,2);
-		Area area3 = new Area(null, 3,2);
-		Area area5 = new Area(null, 5,1);
-		Area area7 = new Area(null, 7,1);
+		Area area2 = new Area(null, 2,2);
+		Area area3 = new Area(null, 3,1);
+		Area area4 = new Area(null, 4,1);
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyy");
+		SimpleDateFormat instant = new SimpleDateFormat("dd/MM/yyy HH:mm:ss");
 		
-		Congregacao c1 = new Congregacao(null, "BelaVista", "Eliaquim", area7);
-		Congregacao c2 = new Congregacao(null, "Cajá", "Sérgio", area5);
-		Congregacao c3 = new Congregacao(null, "São João 1", "José Gomes", area7);
-		Congregacao c4 = new Congregacao(null, "São João 2", "Enaldo", area7);
-		Congregacao c5 = new Congregacao(null, "Compesa", "Ednaldo", area5);
-		Congregacao c6 = new Congregacao(null, "Barreiras", "Robson", area5);
-		Congregacao c7 = new Congregacao(null, "Matriz", "Paulo", area1);
-		Congregacao c8 = new Congregacao(null, "Genezaré", "Robson José", area1);
-		Congregacao c9 = new Congregacao(null, "Viaduto", "Dario", area3);
-		Congregacao c10 = new Congregacao(null, "Paulo Afonso", "Elias", area7);
+		Congregacao c1 = new Congregacao(null, "MATRIZ", "Pr. Cândido de Freitas", area1);
+		Congregacao c2 = new Congregacao(null, "10 DE NOVEMBRO", "Pb. Ivan José da Mata", area1);
+		Congregacao c3 = new Congregacao(null, "NOVA ESPERANÇA", "Pb Augusto Cassiano", area1);
+		Congregacao c4 = new Congregacao(null, "NOVA ESPERANÇA 2", "Enaldo", area1);
+		Congregacao c5 = new Congregacao(null, "NOVA ESPERANÇA 2", "Ednaldo", area1);
+		Congregacao c6 = new Congregacao(null, "GENEZARÉ", "Robson2", area1);
+		Congregacao c7 = new Congregacao(null, "GENEZARÉ 2", "Paulo", area1);
+		Congregacao c8 = new Congregacao(null, "VILA DA CAIXA", "Robson José", area1);
+		Congregacao c9 = new Congregacao(null, "VILA DA CAIXA 2", "Dario", area1);
+		Congregacao c10 = new Congregacao(null, "VILA DA CAIXA 4", "Elias", area1);
+		Congregacao c11 = new Congregacao(null, "CHÃ DA TÁBUA", "Elias2", area1);
 		
 //		area1.getCongregacao().addAll(Arrays.asList(c7,c8));
 //		area3.getCongregacao().addAll(Arrays.asList(c9));
 //		area5.getCongregacao().addAll(Arrays.asList(c2,c5,c6));
 //		area7.getCongregacao().addAll(Arrays.asList(c1,c3,c4,c10));
 		
-		areaRepository.saveAll(Arrays.asList(area1,area3,area5,area7));
-		congregacaoRepository.saveAll(Arrays.asList(c1,c2,c3,c4,c5,c6,c7,c8,c9,c10));
+		areaRepository.saveAll(Arrays.asList(area1,area2,area3,area4));
+		congregacaoRepository.saveAll(Arrays.asList(c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,c11));
 		
 		
 		

@@ -4,10 +4,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.jofre.uapp.domain.Servico;
 import com.jofre.uapp.enums.EnumStatusMovimento;
 
-public class ServicoDTO implements Serializable{
+public class ServicoNewDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
@@ -18,17 +17,9 @@ public class ServicoDTO implements Serializable{
 	private int tiposervicoId;
 	private int congregacaoId;
 	
-	public ServicoDTO() {
+	public ServicoNewDTO() {
 	}
-	public ServicoDTO(Servico obj) {
-		id = obj.getId();
-		observacao = obj.getObservacao();
-		status = obj.getStatus().getCod();
-		data = obj.getData();
-		tiposervicoId = obj.getTipoServico().getId();
-		congregacaoId = obj.getCongregacao().getId();
-		
-	}
+	
 	public Integer getId() {
 		return id;
 	}

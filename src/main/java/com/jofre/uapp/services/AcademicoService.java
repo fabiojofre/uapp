@@ -11,8 +11,15 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.jofre.uapp.domain.Academico;
+import com.jofre.uapp.domain.Congregacao;
+import com.jofre.uapp.domain.FrequenciaAcademico;
+import com.jofre.uapp.domain.TipoAcademico;
 import com.jofre.uapp.dto.AcademicoDTO;
+import com.jofre.uapp.dto.AcademicoNewDTO;
+import com.jofre.uapp.enums.EnumFrequencia;
+import com.jofre.uapp.enums.EnumStatusMovimento;
 import com.jofre.uapp.repositories.AcademicoRepository;
+import com.jofre.uapp.repositories.FrequenciaAcademicoRepository;
 import com.jofre.uapp.services.exception.DataIntegrityException;
 import com.jofre.uapp.services.exception.ObjectNotFoundException;
 
@@ -21,6 +28,7 @@ import com.jofre.uapp.services.exception.ObjectNotFoundException;
 public class AcademicoService {
 	@Autowired
 	private AcademicoRepository repo;
+	
 	
 	public Academico find(Integer id) {
 		Optional<Academico> obj = repo.findById(id);
@@ -33,8 +41,10 @@ public class AcademicoService {
 	}
 	
 	public Academico update(Academico obj) {
-		find(obj.getId());
-		return repo.save(obj);
+		Academico newObj = find(obj.getId());
+		updateData(newObj, obj);
+		obj =  repo.save(newObj);
+		return obj;
 	}
 	
 	public void delete(Integer id) {
@@ -53,8 +63,20 @@ public class AcademicoService {
 		return repo.findAll(pageRequest);
 	}
 	public Academico FromDTO(AcademicoDTO objDTO) {
-		return new Academico(objDTO.getId(),objDTO.getObservacao(), objDTO.getStatus() ,objDTO.getDataInicio(), objDTO.getDataFim(),objDTO.getTipoAcademico());
+		return new Academico(null,objDTO.getObservacao(), EnumStatusMovimento.toEnum(objDTO.getStatus().getCod()) ,objDTO.getDataInicio(), objDTO.getDataFim(),null);
 	}
-
+	public Academico fromDTO(AcademicoNewDTO objDTO) {// criar sobrecarga para CongregacaoNewDTO
+		TipoAcademico tipoAcademico = new TipoAcademico(objDTO.getTipoAcademicoId(),null,null);
+		Academico academico = new Academico(null,objDTO.getObservacao(), EnumStatusMovimento.toEnum(objDTO.getStatus().getCod()),objDTO.getDataInicio(), objDTO.getDataFim(),tipoAcademico);
+		return academico;
+		
+	}
+	private void updateData(Academico newObj, Academico obj) {
+		newObj.setObservacao(obj.getObservacao());
+		newObj.setStatus(obj.getStatus());
+		newObj.setDataFim(obj.getDataFim());
+		newObj.setDataInicio(obj.getDataInicio());
+	}
+	
 
 }

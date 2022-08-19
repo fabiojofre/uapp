@@ -4,10 +4,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.jofre.uapp.domain.Academico;
 import com.jofre.uapp.enums.EnumStatusMovimento;
 
-public class AcademicoDTO implements Serializable {
+public class AcademicoNewDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	
@@ -22,17 +21,9 @@ public class AcademicoDTO implements Serializable {
 	private int tipoacademicoId;
 	
 	
-	public AcademicoDTO() {
+	public AcademicoNewDTO() {
 	}
-	public AcademicoDTO(Academico obj) {
-		id = obj.getId();
-		observacao = obj.getObservacao();
-		status = obj.getStatus().getCod();
-		dataInicio = obj.getDataInicio();
-		dataFim = obj.getDataFim();
-		tipoacademicoId = obj.getTipoAcademico().getId();
-		
-	}
+	
 	public Integer getId() {
 		return id;
 	}

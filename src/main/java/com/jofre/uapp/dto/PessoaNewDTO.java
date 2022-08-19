@@ -26,6 +26,7 @@ public class PessoaNewDTO implements Serializable {
 	private String endereco;
 	private Integer profissaoId;
 	private Integer congregacaoId;
+	
 	public Integer getId() {
 		return id;
 	}

@@ -13,10 +13,10 @@ public class CongregacaoDTO implements Serializable {
 	
 	private Integer id;
 	@NotEmpty(message = "Preenchimento obrigatório")
-	@Length(min= 5, max = 25, message = "Campo deve conter entre 5 e 55 caracteres" )
+	@Length(min= 5, max = 55, message = "Campo deve conter entre 5 e 55 caracteres" )
 	private String nome;
 	@NotEmpty(message = "Preenchimento obrigatório")
-	@Length(min= 5, max = 25, message = "Campo deve conter entre 5 e 25 caracteres" )
+	@Length(min= 5, max = 55, message = "Campo deve conter entre 5 e 55 caracteres" )
 	private String responsavel;
 	private int area;
 	

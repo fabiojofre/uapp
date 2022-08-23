@@ -3,7 +3,8 @@ package com.jofre.uapp.enums;
 public enum EnumTipoPessoa {
 	ADULTO(1, "Adulto"),
 	JOVEM(2,"Jovem"),
-	ADOLESCENTE(3,"Adolescente");
+	ADOLESCENTE(3,"Adolescente"),
+	CRIANCA(4, "Criança");
 	
 	
 	private int cod;

@@ -3,14 +3,24 @@ package com.jofre.uapp.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.jofre.uapp.domain.Pessoa;
+import com.jofre.uapp.enums.EnumConfirmacao;
+import com.jofre.uapp.enums.EnumSituacaoPessoa;
+import com.jofre.uapp.enums.EnumStatusCadastro;
+import com.jofre.uapp.enums.EnumTipoPessoa;
 
 public class PessoaDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
 	private Integer ativo;
+	@NotEmpty(message = "Preenchimento obrigatório")
+	@Length(min= 5, max = 25, message = "Campo deve conter entre 5 e 55 caracteres" )
 	private String nome;
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date nascimento;
@@ -25,8 +35,9 @@ public class PessoaDTO implements Serializable {
 	private Integer paiMembro;
 	private Integer maeMembro;
 	private String endereco;
-	private String profissao;
-	private String congregacao;
+	private Integer profissaoId;
+	private Integer congregacaoId;
+
 
 	public PessoaDTO() {
 	}
@@ -47,8 +58,8 @@ public class PessoaDTO implements Serializable {
 		paiMembro = obj.getPaiMembro().getCod();
 		maeMembro = obj.getMaeMembro().getCod();
 		endereco = obj.getEndereco();
-		profissao = obj.getProfissao().getProfissao();
-		congregacao = obj.getCongregacao().getNome();
+		profissaoId = obj.getProfissao().getId();
+		congregacaoId = obj.getCongregacao().getId();
 	}
 
 	public Integer getId() {
@@ -59,12 +70,12 @@ public class PessoaDTO implements Serializable {
 		this.id = id;
 	}
 
-	public Integer getAtivo() {
-		return ativo;
+	public EnumStatusCadastro getAtivo() {
+		return EnumStatusCadastro.toEnum(ativo);
 	}
 
-	public void setAtivo(Integer ativo) {
-		this.ativo = ativo;
+	public void setAtivo(EnumStatusCadastro ativo) {
+		this.ativo = ativo.getCod();
 	}
 
 	public String getNome() {
@@ -83,28 +94,28 @@ public class PessoaDTO implements Serializable {
 		this.nascimento = nascimento;
 	}
 
-	public Integer geteMembro() {
-		return eMembro;
+	public EnumConfirmacao geteMembro() {
+		return EnumConfirmacao.toEnum(eMembro);
 	}
 
-	public void seteMembro(Integer eMembro) {
-		this.eMembro = eMembro;
+	public void seteMembro(EnumConfirmacao eMembro) {
+		this.eMembro = eMembro.getCod();
 	}
 
-	public Integer getTipoPessoa() {
-		return tipoPessoa;
+	public EnumTipoPessoa getTipoPessoa() {
+		return EnumTipoPessoa.toEnum(tipoPessoa);
 	}
 
-	public void setTipoPessoa(Integer tipoPessoa) {
-		this.tipoPessoa = tipoPessoa;
+	public void setTipoPessoa(EnumTipoPessoa tipoPessoa) {
+		this.tipoPessoa = tipoPessoa.getCod();
 	}
 
-	public Integer getSituacaoPessoa() {
-		return situacaoPessoa;
+	public EnumSituacaoPessoa getSituacaoPessoa() {
+		return EnumSituacaoPessoa.toEnum(situacaoPessoa);
 	}
 
-	public void setSituacaoPessoa(Integer situacaoPessoa) {
-		this.situacaoPessoa = situacaoPessoa;
+	public void setSituacaoPessoa(EnumSituacaoPessoa situacaoPessoa) {
+		this.situacaoPessoa = situacaoPessoa.getCod();
 	}
 
 	public String getFone() {
@@ -147,20 +158,20 @@ public class PessoaDTO implements Serializable {
 		this.foneMae = foneMae;
 	}
 
-	public Integer getPaiMembro() {
-		return paiMembro;
+	public EnumConfirmacao getPaiMembro() {
+		return EnumConfirmacao.toEnum(paiMembro);
 	}
 
-	public void setPaiMembro(Integer paiMembro) {
-		this.paiMembro = paiMembro;
+	public void setPaiMembro(EnumConfirmacao paiMembro) {
+		this.paiMembro = paiMembro.getCod();
 	}
 
-	public Integer getMaeMembro() {
-		return maeMembro;
+	public EnumConfirmacao getMaeMembro() {
+		return EnumConfirmacao.toEnum(maeMembro);
 	}
 
-	public void setMaeMembro(Integer maeMembro) {
-		this.maeMembro = maeMembro;
+	public void setMaeMembro(EnumConfirmacao maeMembro) {
+		this.maeMembro = maeMembro.getCod();
 	}
 
 	public String getEndereco() {
@@ -171,20 +182,20 @@ public class PessoaDTO implements Serializable {
 		this.endereco = endereco;
 	}
 
-	public String getProfissao() {
-		return profissao;
+	public Integer getProfissaoId() {
+		return profissaoId;
 	}
 
-	public void setProfissao(String profissao) {
-		this.profissao = profissao;
+	public void setProfissaoId(Integer profissaoId) {
+		this.profissaoId = profissaoId;
 	}
 
-	public String getCongregacao() {
-		return congregacao;
+	public Integer getCongregacaoId() {
+		return congregacaoId;
 	}
 
-	public void setCongregacao(String congregacao) {
-		this.congregacao = congregacao;
+	public void setCongregacaoId(Integer congregacaoId) {
+		this.congregacaoId = congregacaoId;
 	}
 
 }

@@ -44,7 +44,7 @@ public class PessoaService {
 	public Pessoa update(Pessoa obj) {
 		Pessoa newObj = find(obj.getId());
 		updateData(newObj, obj);
-		obj = repo.save(obj);
+		obj = repo.save(newObj);
 		return obj;
 	}
 
@@ -67,12 +67,12 @@ public class PessoaService {
 	}
 
 	public Pessoa fromDTO(PessoaDTO objDTO) {
-		return new Pessoa(objDTO.getId(), EnumStatusCadastro.toEnum(objDTO.getAtivo()), objDTO.getNome(),
-				objDTO.getNascimento(), EnumConfirmacao.toEnum(objDTO.geteMembro()), objDTO.getFone(),
+		return new Pessoa(null, EnumStatusCadastro.toEnum(objDTO.getAtivo().getCod()), objDTO.getNome(),
+				objDTO.getNascimento(), EnumConfirmacao.toEnum(objDTO.geteMembro().getCod()), objDTO.getFone(),
 				objDTO.getNomePai(), objDTO.getFonePai(), objDTO.getNomeMae(), objDTO.getFoneMae(),
-				EnumConfirmacao.toEnum(objDTO.getPaiMembro()), EnumConfirmacao.toEnum(objDTO.getMaeMembro()), 
-				objDTO.getEndereco(),EnumTipoPessoa.toEnum(objDTO.getTipoPessoa()), 
-				EnumSituacaoPessoa.toEnum(objDTO.getSituacaoPessoa()),null, null);
+				EnumConfirmacao.toEnum(objDTO.getPaiMembro().getCod()), EnumConfirmacao.toEnum(objDTO.getMaeMembro().getCod()), 
+				objDTO.getEndereco(),EnumTipoPessoa.toEnum(objDTO.getTipoPessoa().getCod()), 
+				EnumSituacaoPessoa.toEnum(objDTO.getSituacaoPessoa().getCod()),null, null);
 	}
 
 	public Pessoa fromDTO(PessoaNewDTO objDTO) {// criar sobrecarga para PessoaNewDTO
@@ -80,12 +80,12 @@ public class PessoaService {
 
 		Congregacao congregacao = new Congregacao(objDTO.getCongregacaoId(), null, null, null);
 
-		Pessoa Pessoa = new Pessoa(null, EnumStatusCadastro.toEnum(objDTO.getAtivo()), objDTO.getNome(),
-				objDTO.getNascimento(), EnumConfirmacao.toEnum(objDTO.geteMembro()), objDTO.getFone(),
+		Pessoa Pessoa = new Pessoa(null, EnumStatusCadastro.toEnum(objDTO.getAtivo().getCod()), objDTO.getNome(),
+				objDTO.getNascimento(), EnumConfirmacao.toEnum(objDTO.geteMembro().getCod()), objDTO.getFone(),
 				objDTO.getNomePai(), objDTO.getFonePai(), objDTO.getNomeMae(), objDTO.getFoneMae(),
-				EnumConfirmacao.toEnum(objDTO.getPaiMembro()), EnumConfirmacao.toEnum(objDTO.getMaeMembro()), 
-				objDTO.getEndereco(),EnumTipoPessoa.toEnum(objDTO.getTipoPessoa()), 
-				EnumSituacaoPessoa.toEnum(objDTO.getSituacaoPessoa()),congregacao, profissao);
+				EnumConfirmacao.toEnum(objDTO.getPaiMembro().getCod()), EnumConfirmacao.toEnum(objDTO.getMaeMembro().getCod()), 
+				objDTO.getEndereco(),EnumTipoPessoa.toEnum(objDTO.getTipoPessoa().getCod()), 
+				EnumSituacaoPessoa.toEnum(objDTO.getSituacaoPessoa().getCod()),congregacao, profissao);
 		return Pessoa;
 
 	}
@@ -105,8 +105,6 @@ public class PessoaService {
 		newObj.setEndereco(obj.getEndereco());
 		newObj.setTipoPessoa(obj.getTipoPessoa());
 		newObj.setSituacaoPessoa(obj.getSituacaoPessoa());
-		newObj.setCongregacao(obj.getCongregacao());
-		newObj.setProfissao(obj.getProfissao());
 	}
 
 }

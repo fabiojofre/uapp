@@ -95,6 +95,7 @@ public class DBService {
 		Area area2 = new Area(null, 2,2);
 		Area area3 = new Area(null, 3,1);
 		Area area4 = new Area(null, 4,1);
+		Area area5 = new Area(null,5,2);
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyy");
 		SimpleDateFormat instant = new SimpleDateFormat("dd/MM/yyy HH:mm:ss");
@@ -116,7 +117,7 @@ public class DBService {
 //		area5.getCongregacao().addAll(Arrays.asList(c2,c5,c6));
 //		area7.getCongregacao().addAll(Arrays.asList(c1,c3,c4,c10));
 		
-		areaRepository.saveAll(Arrays.asList(area1,area2,area3,area4));
+		areaRepository.saveAll(Arrays.asList(area1,area2,area3,area4,area5));
 		congregacaoRepository.saveAll(Arrays.asList(c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,c11));
 		
 		

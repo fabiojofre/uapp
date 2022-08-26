@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>com.jofre</groupId>
 	<artifactId>uapp</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<name>uapp</name>
 	<description>Aplicacao da uniao de adolescentes</description>
 

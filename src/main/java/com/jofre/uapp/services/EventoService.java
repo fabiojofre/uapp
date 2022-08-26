@@ -11,7 +11,6 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.jofre.uapp.domain.Evento;
-import com.jofre.uapp.domain.Servico;
 import com.jofre.uapp.domain.TipoEvento;
 import com.jofre.uapp.dto.EventoDTO;
 import com.jofre.uapp.dto.EventoNewDTO;

@@ -2,8 +2,6 @@ package com.jofre.uapp.dto;
 
 import java.io.Serializable;
 
-import javax.validation.constraints.NotEmpty;
-
 import com.jofre.uapp.domain.Area;
 
 public class AreaDTO implements Serializable {

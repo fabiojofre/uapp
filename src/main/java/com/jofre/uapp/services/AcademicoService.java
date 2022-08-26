@@ -11,15 +11,11 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.jofre.uapp.domain.Academico;
-import com.jofre.uapp.domain.Congregacao;
-import com.jofre.uapp.domain.FrequenciaAcademico;
 import com.jofre.uapp.domain.TipoAcademico;
 import com.jofre.uapp.dto.AcademicoDTO;
 import com.jofre.uapp.dto.AcademicoNewDTO;
-import com.jofre.uapp.enums.EnumFrequencia;
 import com.jofre.uapp.enums.EnumStatusMovimento;
 import com.jofre.uapp.repositories.AcademicoRepository;
-import com.jofre.uapp.repositories.FrequenciaAcademicoRepository;
 import com.jofre.uapp.services.exception.DataIntegrityException;
 import com.jofre.uapp.services.exception.ObjectNotFoundException;
 

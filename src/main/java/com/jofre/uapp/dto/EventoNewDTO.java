@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.jofre.uapp.domain.Evento;
-import com.jofre.uapp.domain.TipoEvento;
 import com.jofre.uapp.enums.EnumStatusMovimento;
 
 public class EventoNewDTO implements Serializable {

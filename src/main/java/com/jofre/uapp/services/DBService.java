@@ -98,7 +98,7 @@ public class DBService {
 		Area area5 = new Area(null,5,2);
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyy");
-		SimpleDateFormat instant = new SimpleDateFormat("dd/MM/yyy HH:mm:ss");
+		//SimpleDateFormat instant = new SimpleDateFormat("dd/MM/yyy HH:mm:ss");
 		
 		Congregacao c1 = new Congregacao(null, "MATRIZ", "Pr. Cândido de Freitas", area1);
 		Congregacao c2 = new Congregacao(null, "10 DE NOVEMBRO", "Pb. Ivan José da Mata", area1);

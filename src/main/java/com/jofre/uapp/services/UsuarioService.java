@@ -11,7 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.jofre.uapp.domain.Pessoa;
+import com.jofre.uapp.domain.Congregacao;
 import com.jofre.uapp.domain.Usuario;
 import com.jofre.uapp.dto.UsuarioDTO;
 import com.jofre.uapp.dto.UsuarioNewDTO;
@@ -60,18 +60,23 @@ public class UsuarioService {
 		return repo.findAll(pageRequest);
 	}
 	public Usuario fromDTO(UsuarioDTO objDTO) {
-		return new Usuario(objDTO.getId(),objDTO.getNome(),objDTO.getEmail(),objDTO.getSenha(),EnumPoder.toEnum(objDTO.getPoder()),EnumStatusCadastro.toEnum(objDTO.getAtivo()),null);
+		return new Usuario(objDTO.getId(),EnumStatusCadastro.toEnum(objDTO.getAtivo().getCod()),objDTO.getCartaodemembro(),null,objDTO.getCpf(),objDTO.getEmail(),objDTO.getNome(),EnumPoder.toEnum(objDTO.getPoder().getCod()),objDTO.getTelefone(),objDTO.getSenha());
 	}
 	public Usuario fromDTO(UsuarioNewDTO objDTO) {// criar sobrecarga para UsuarioNewDTO
-		Pessoa pessoa = new Pessoa(objDTO.getPessoaId());
-		Usuario Usuario = new Usuario(null,objDTO.getNome(),objDTO.getEmail(),objDTO.getSenha(),EnumPoder.toEnum(objDTO.getPoder()),EnumStatusCadastro.toEnum(objDTO.getAtivo()),pessoa);
+		Congregacao congregacao = new Congregacao(objDTO.getCongregacaoId(),null,null,null);
+		Usuario Usuario = new Usuario(null,EnumStatusCadastro.toEnum(objDTO.getAtivo().getCod()),objDTO.getCartaodemembro(),congregacao,objDTO.getCpf(),objDTO.getEmail(),objDTO.getNome(),EnumPoder.toEnum(objDTO.getPoder().getCod()),objDTO.getTelefone(),objDTO.getSenha());
 		return Usuario;
 		
 	}
 	private void updateData(Usuario newObj, Usuario obj) {
+		newObj.setCpf(obj.getCpf());
+		newObj.setCartaodemembro(obj.getCartaodemembro());
 		newObj.setNome(obj.getNome());
 		newObj.setEmail(obj.getEmail());
 		newObj.setSenha(obj.getSenha());
-		newObj.setPoder(obj.getPoder());		
+		newObj.setTelefone(obj.getTelefone());
+		newObj.setPoder(obj.getPoder());	
+		newObj.setAtivo(obj.getAtivo());
+		
 	}
 }

@@ -2,31 +2,43 @@ package com.jofre.uapp.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.br.CPF;
+
+import com.jofre.uapp.enums.EnumPoder;
+import com.jofre.uapp.enums.EnumSituacaoPessoa;
 
 
 public class UsuarioNewDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	
 	private Integer id;
-	@NotEmpty(message = "Preenchimento obrigatório")
-	@Length(min= 5, max = 15, message = "Campo deve conter entre 5 e 15 caracteres" )
+	@NotEmpty(message="Preenchimento obrigatório")
+	//@CPF(message="CPF inválido")
+	private String cpf;
+	@NotEmpty(message="Preenchimento obrigatório")
+	private String cartaodemembro;
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Length(min= 5, max = 55, message = "Campo deve conter entre 5 e 55 caracteres" )
 	private String nome;
-	@NotEmpty(message = "Preenchimento obrigatório")
-	@Length(min= 5, max = 150, message = "Campo deve conter entre 5 e 150 caracteres" )
+	
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Email(message="Email inválido")
 	private String email;
-	@NotEmpty(message = "Preenchimento obrigatório")
-	@Length(min= 4, max = 10, message = "Campo deve conter entre 4 e 10 caracteres" )
+	@NotEmpty(message="Preenchimento obrigatório")
 	private String senha;
+	private String telefone;
+	@NotEmpty(message="Preenchimento obrigatório")
 	private Integer poder;
 	private Integer ativo;
-	private Integer pessoaId;
+	private Integer congregacaoId;
 	
 	public UsuarioNewDTO() {
 	}
+
 
 	public Integer getId() {
 		return id;
@@ -34,6 +46,22 @@ public class UsuarioNewDTO implements Serializable{
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public String getCartaodemembro() {
+		return cartaodemembro;
+	}
+
+	public void setCartaodemembro(String cartaodemembro) {
+		this.cartaodemembro = cartaodemembro;
 	}
 
 	public String getNome() {
@@ -60,25 +88,36 @@ public class UsuarioNewDTO implements Serializable{
 		this.senha = senha;
 	}
 
-	public Integer getPoder() {
-		return poder;
+	public String getTelefone() {
+		return telefone;
 	}
 
-	public void setPoder(Integer poder) {
-		this.poder = poder;
-	}
-	public Integer getAtivo() {
-		return ativo;
-	}
-	public void setAtivo(Integer ativo) {
-		this.ativo = ativo;
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 
-	public Integer getPessoaId() {
-		return pessoaId;
+	public EnumPoder getPoder() {
+		return EnumPoder.toEnum(poder);
 	}
 
-	public void setPessoaId(Integer pessoaId) {
-		this.pessoaId = pessoaId;
+	public void setPoder(EnumPoder poder) {
+		this.poder = poder.getCod();
 	}
+
+	public EnumSituacaoPessoa getAtivo() {
+		return EnumSituacaoPessoa.toEnum(ativo);
+	}
+
+	public void setAtivo(EnumSituacaoPessoa ativo) {
+		this.ativo = ativo.getCod();
+	}
+
+	public Integer getCongregacaoId() {
+		return congregacaoId;
+	}
+
+	public void setCongregacaoId(Integer congregacaoId) {
+		this.congregacaoId = congregacaoId;
+	}
+
 }

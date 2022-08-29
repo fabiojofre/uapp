@@ -3,6 +3,8 @@ package com.jofre.uapp.dto;
 import java.io.Serializable;
 
 import com.jofre.uapp.domain.Usuario;
+import com.jofre.uapp.enums.EnumPoder;
+import com.jofre.uapp.enums.EnumSituacaoPessoa;
 
 
 public class UsuarioDTO implements Serializable{
@@ -10,24 +12,30 @@ public class UsuarioDTO implements Serializable{
 	
 	
 	private Integer id;
+	private String cpf;
+	private String cartaodemembro;
 	private String nome;
 	private String email;
 	private String senha;
+	private String telefone;
 	private Integer poder;
 	private Integer ativo;
-	private String pessoa;
+	private Integer congregacaoId;
 	
 	public UsuarioDTO() {
 	}
 
 	public UsuarioDTO(Usuario obj) {
 		id = obj.getId();
+		cpf = obj.getCpf();
+		cartaodemembro = obj.getCartaodemembro();
 		nome = obj.getNome();
 		email = obj.getEmail();
 		senha = obj.getSenha();
+		telefone = obj.getTelefone();
 		poder = obj.getPoder().getCod();
 		ativo = obj.getAtivo().getCod();
-		pessoa = obj.getPessoa().getNome();
+		congregacaoId = obj.getCongregacao().getId();
 	}
 
 	public Integer getId() {
@@ -36,6 +44,22 @@ public class UsuarioDTO implements Serializable{
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public String getCartaodemembro() {
+		return cartaodemembro;
+	}
+
+	public void setCartaodemembro(String cartaodemembro) {
+		this.cartaodemembro = cartaodemembro;
 	}
 
 	public String getNome() {
@@ -62,27 +86,37 @@ public class UsuarioDTO implements Serializable{
 		this.senha = senha;
 	}
 
-	public Integer getPoder() {
-		return poder;
+	public String getTelefone() {
+		return telefone;
 	}
 
-	public void setPoder(Integer poder) {
-		this.poder = poder;
-	}
-	public Integer getAtivo() {
-		return ativo;
-	}
-	public void setAtivo(Integer ativo) {
-		this.ativo = ativo;
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 
-	public String getPessoa() {
-		return pessoa;
+	public EnumPoder getPoder() {
+		return EnumPoder.toEnum(poder);
 	}
 
-	public void setPessoa(String pessoa) {
-		this.pessoa = pessoa;
+	public void setPoder(EnumPoder poder) {
+		this.poder = poder.getCod();
 	}
 
-	
+	public EnumSituacaoPessoa getAtivo() {
+		return EnumSituacaoPessoa.toEnum(ativo);
+	}
+
+	public void setAtivo(EnumSituacaoPessoa ativo) {
+		this.ativo = ativo.getCod();
+	}
+
+	public Integer getCongregacaoId() {
+		return congregacaoId;
+	}
+
+	public void setCongregacaoId(Integer congregacaoId) {
+		this.congregacaoId = congregacaoId;
+	}
+
+
 }

@@ -35,8 +35,11 @@ public class Usuario implements Serializable{
 	public Usuario() {
 	}
 
-	public Usuario(Integer id, EnumStatusCadastro ativo, String cartaodemembro, Congregacao congregacao, String cpf, String email, String nome, EnumPoder poder, String senha,
-			String telefone) {
+
+
+	public Usuario(Integer id, String cpf, String cartaodemembro, String nome, String email, String senha,
+			String telefone, EnumPoder  poder, EnumStatusCadastro  ativo, Congregacao congregacao) {
+		super();
 		this.id = id;
 		this.cpf = cpf;
 		this.cartaodemembro = cartaodemembro;
@@ -48,6 +51,8 @@ public class Usuario implements Serializable{
 		this.ativo = ativo.getCod();
 		this.congregacao = congregacao;
 	}
+
+
 
 	public Integer getId() {
 		return id;

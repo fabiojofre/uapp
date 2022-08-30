@@ -25,7 +25,9 @@ import com.jofre.uapp.services.exception.ObjectNotFoundException;
 public class UsuarioService {
 	@Autowired
 	private UsuarioRepository repo;
-		
+	@Autowired
+	private EmailService emailService;
+	
 	public Usuario find(Integer id) {
 		Optional<Usuario> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
@@ -34,7 +36,9 @@ public class UsuarioService {
 	@Transactional
 	public Usuario insert(Usuario obj) {
 		obj.setId(null);
+		emailService.sendOrderConfirmationEmail(obj);
 		return repo.save(obj);
+		
 	}
 
 	public Usuario update(Usuario obj) {
@@ -60,11 +64,11 @@ public class UsuarioService {
 		return repo.findAll(pageRequest);
 	}
 	public Usuario fromDTO(UsuarioDTO objDTO) {
-		return new Usuario(objDTO.getId(),EnumStatusCadastro.toEnum(objDTO.getAtivo().getCod()),objDTO.getCartaodemembro(),null,objDTO.getCpf(),objDTO.getEmail(),objDTO.getNome(),EnumPoder.toEnum(objDTO.getPoder().getCod()),objDTO.getTelefone(),objDTO.getSenha());
+		return new Usuario(objDTO.getId(),objDTO.getCpf(),objDTO.getCartaodemembro(),objDTO.getNome(),objDTO.getEmail(),objDTO.getSenha(),objDTO.getTelefone(),EnumPoder.toEnum(objDTO.getPoder().getCod()),EnumStatusCadastro.toEnum(objDTO.getAtivo().getCod()),null);
 	}
 	public Usuario fromDTO(UsuarioNewDTO objDTO) {// criar sobrecarga para UsuarioNewDTO
 		Congregacao congregacao = new Congregacao(objDTO.getCongregacaoId(),null,null,null);
-		Usuario Usuario = new Usuario(null,EnumStatusCadastro.toEnum(objDTO.getAtivo().getCod()),objDTO.getCartaodemembro(),congregacao,objDTO.getCpf(),objDTO.getEmail(),objDTO.getNome(),EnumPoder.toEnum(objDTO.getPoder().getCod()),objDTO.getTelefone(),objDTO.getSenha());
+		Usuario Usuario = new Usuario(null,objDTO.getCpf(),objDTO.getCartaodemembro(),objDTO.getNome(),objDTO.getEmail(),objDTO.getSenha(),objDTO.getTelefone(),EnumPoder.toEnum(objDTO.getPoder().getCod()),EnumStatusCadastro.toEnum(objDTO.getAtivo().getCod()),congregacao);
 		return Usuario;
 		
 	}

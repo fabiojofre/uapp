@@ -10,6 +10,7 @@ import org.hibernate.validator.constraints.br.CPF;
 
 import com.jofre.uapp.enums.EnumPoder;
 import com.jofre.uapp.enums.EnumSituacaoPessoa;
+import com.jofre.uapp.enums.EnumStatusCadastro;
 
 
 public class UsuarioNewDTO implements Serializable{
@@ -31,7 +32,7 @@ public class UsuarioNewDTO implements Serializable{
 	@NotEmpty(message="Preenchimento obrigatório")
 	private String senha;
 	private String telefone;
-	@NotEmpty(message="Preenchimento obrigatório")
+	//@NotEmpty(message="Preenchimento obrigatório")
 	private Integer poder;
 	private Integer ativo;
 	private Integer congregacaoId;
@@ -104,11 +105,12 @@ public class UsuarioNewDTO implements Serializable{
 		this.poder = poder.getCod();
 	}
 
-	public EnumSituacaoPessoa getAtivo() {
-		return EnumSituacaoPessoa.toEnum(ativo);
+	public EnumStatusCadastro getAtivo() {
+		return EnumStatusCadastro.toEnum(ativo);
 	}
 
-	public void setAtivo(EnumSituacaoPessoa ativo) {
+	public void setAtivo(EnumStatusCadastro
+			ativo) {
 		this.ativo = ativo.getCod();
 	}
 

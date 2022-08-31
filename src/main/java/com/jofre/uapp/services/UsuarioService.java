@@ -27,6 +27,8 @@ public class UsuarioService {
 	private UsuarioRepository repo;
 	@Autowired
 	private EmailService emailService;
+
+	
 	
 	public Usuario find(Integer id) {
 		Optional<Usuario> obj = repo.findById(id);
@@ -44,7 +46,7 @@ public class UsuarioService {
 	public Usuario update(Usuario obj) {
 		Usuario newObj = find(obj.getId());
 		updateData(newObj, obj);
-		obj =  repo.save(obj);
+		obj =  repo.save(newObj);
 		return obj;
 	}
 	
@@ -81,6 +83,8 @@ public class UsuarioService {
 		newObj.setTelefone(obj.getTelefone());
 		newObj.setPoder(obj.getPoder());	
 		newObj.setAtivo(obj.getAtivo());
+		newObj.setCongregacao(obj.getCongregacao());
+		//System.out.println(obj.getCongregacao().getNome());
 		
 	}
 }

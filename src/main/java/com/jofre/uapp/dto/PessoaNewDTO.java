@@ -2,7 +2,11 @@ package com.jofre.uapp.dto;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
@@ -36,7 +40,14 @@ public class PessoaNewDTO implements Serializable {
 	private String endereco;
 	private Integer profissaoId;
 	private Integer congregacaoId;
-
+	@ElementCollection
+	@CollectionTable(name="caracteristicas")
+	private Set<String> caracteristicas = new HashSet<>();
+	
+	@ElementCollection
+	@CollectionTable(name="desafios")
+	private Set<String> desafios = new HashSet<>();
+	
 
 	public PessoaNewDTO() {
 	}
@@ -177,4 +188,20 @@ public class PessoaNewDTO implements Serializable {
 		this.congregacaoId = congregacaoId;
 	}
 
+	public Set<String> getCaracteristicas() {
+		return caracteristicas;
+	}
+
+	public void setCaracteristicas(Set<String> caracteristicas) {
+		this.caracteristicas = caracteristicas;
+	}
+
+	
+	public Set<String> getDesafios() {
+		return desafios;
+	}
+
+	public void setDesafios(Set<String> desafios) {
+		this.desafios = desafios;
+	}
 }

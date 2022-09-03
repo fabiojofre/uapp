@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import com.jofre.uapp.domain.Usuario;
 import com.jofre.uapp.enums.EnumPoder;
-import com.jofre.uapp.enums.EnumSituacaoPessoa;
 import com.jofre.uapp.enums.EnumStatusCadastro;
 
 
@@ -22,7 +21,7 @@ public class UsuarioDTO implements Serializable{
 	private Integer poder;
 	private Integer ativo;
 	private Integer congregacaoId;
-	
+	private Integer profissaoId;
 	public UsuarioDTO() {
 	}
 
@@ -37,6 +36,7 @@ public class UsuarioDTO implements Serializable{
 		poder = obj.getPoder().getCod();
 		ativo = obj.getAtivo().getCod();
 		congregacaoId = obj.getCongregacao().getId();
+		profissaoId = obj.getProfissao().getId();
 	}
 
 	public Integer getId() {
@@ -117,6 +117,14 @@ public class UsuarioDTO implements Serializable{
 
 	public void setCongregacaoId(Integer congregacaoId) {
 		this.congregacaoId = congregacaoId;
+	}
+
+	public Integer getProfissaoId() {
+		return profissaoId;
+	}
+
+	public void setProfissaoId(Integer profissaoId) {
+		this.profissaoId = profissaoId;
 	}
 
 

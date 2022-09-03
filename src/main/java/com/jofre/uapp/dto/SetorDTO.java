@@ -4,24 +4,24 @@ import java.io.Serializable;
 
 import javax.validation.constraints.NotEmpty;
 
-import com.jofre.uapp.domain.Area;
+import com.jofre.uapp.domain.Setor;
 
-public class AreaDTO implements Serializable {
+public class SetorDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
 	@NotEmpty(message = "Campo de obrigatório preenchimento")// Beam validation
-	private Integer area;
+	private Integer setor;
 	@NotEmpty(message = "Campo de obrigatório preenchimento")// Beam validation
-	private Integer setorId;
+	private String nome;
 	
-	public AreaDTO() {	
+	public SetorDTO() {	
 	}
 	
-	public AreaDTO(Area obj) {
+	public SetorDTO(Setor obj) {
 		id = obj.getId();
-		area = obj.getArea();
-		setorId = obj.getSetor().getId();
+		setor = obj.getSetor();
+		nome = obj.getNome();
 	}
 
 	public Integer getId() {
@@ -32,21 +32,22 @@ public class AreaDTO implements Serializable {
 		this.id = id;
 	}
 
-	public Integer getArea() {
-		return area;
+	public Integer getSetor() {
+		return setor;
 	}
 
-	public void setArea(Integer area) {
-		this.area = area;
+	public void setSetor(Integer setor) {
+		this.setor = setor;
 	}
 
-	public Integer getSetorId() {
-		return setorId;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setSetorId(Integer setorId) {
-		this.setorId = setorId;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
+
 	
 	
 }

@@ -17,6 +17,7 @@ import com.jofre.uapp.domain.FrequenciaServico;
 import com.jofre.uapp.domain.Pessoa;
 import com.jofre.uapp.domain.Profissao;
 import com.jofre.uapp.domain.Servico;
+import com.jofre.uapp.domain.Setor;
 import com.jofre.uapp.domain.TipoAcademico;
 import com.jofre.uapp.domain.TipoEvento;
 import com.jofre.uapp.domain.TipoServico;
@@ -38,6 +39,7 @@ import com.jofre.uapp.repositories.FrequenciaServicoRepository;
 import com.jofre.uapp.repositories.PessoaRepository;
 import com.jofre.uapp.repositories.ProfissaoRepository;
 import com.jofre.uapp.repositories.ServicoRepository;
+import com.jofre.uapp.repositories.SetorRepository;
 import com.jofre.uapp.repositories.TipoAcademicoRepository;
 import com.jofre.uapp.repositories.TipoEventoRepository;
 import com.jofre.uapp.repositories.TipoServicoRepository;
@@ -88,14 +90,20 @@ public class DBService {
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 	
-
+	@Autowired
+	private SetorRepository setorRepository;
+	
 	
 	public void instantiateTestDatabase() throws ParseException {
-		Area area1 = new Area(null, 1,2);
-		Area area2 = new Area(null, 2,2);
-		Area area3 = new Area(null, 3,1);
-		Area area4 = new Area(null, 4,1);
-		Area area5 = new Area(null,5,2);
+		Setor setor1 = new Setor(null,"Recife",1);
+		Setor setor2 = new Setor(null,"São Lourenço da Mata",2);
+		Setor setor3 = new Setor(null,"Cabo de Santo Agostinho",3);
+		
+		Area area1 = new Area(null, 1,setor2);
+		Area area2 = new Area(null, 2,setor2);
+		Area area3 = new Area(null, 3,setor2);
+		Area area4 = new Area(null, 4,setor1);
+		Area area5 = new Area(null,5,setor1);
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyy");
 		//SimpleDateFormat instant = new SimpleDateFormat("dd/MM/yyy HH:mm:ss");
@@ -117,6 +125,7 @@ public class DBService {
 //		area5.getCongregacao().addAll(Arrays.asList(c2,c5,c6));
 //		area7.getCongregacao().addAll(Arrays.asList(c1,c3,c4,c10));
 		
+		setorRepository.saveAll(Arrays.asList(setor1,setor2,setor3));
 		areaRepository.saveAll(Arrays.asList(area1,area2,area3,area4,area5));
 		congregacaoRepository.saveAll(Arrays.asList(c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,c11));
 		
@@ -221,7 +230,7 @@ public class DBService {
 		academicoRepository.saveAll(Arrays.asList(a1));
 		frequenciaAcademicoRepository.saveAll(Arrays.asList(fa1,fa2,fa3,fa4,fa5,fa6,fa7,fa8,fa9));
 		
-		Usuario user1 = new Usuario(null,"04571748469","225703-2","Fabio Jorge de Freitas","fabiojofre@gmail.com","livresou","81984457552",EnumPoder.MASTER,EnumStatusCadastro.ATIVO,c1);
+		Usuario user1 = new Usuario(null,"04571748469","225703-2","Fabio Jorge de Freitas","fabiojofre@gmail.com","livresou","81984457552",EnumPoder.MASTER,EnumStatusCadastro.ATIVO,c1,pf2);
 		usuarioRepository.saveAll(Arrays.asList(user1));
 	}
 }

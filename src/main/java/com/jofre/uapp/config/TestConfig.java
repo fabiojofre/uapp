@@ -23,8 +23,15 @@ public class TestConfig {
 		dbService.instantiateTestDatabase();
 		return true;
 	}
+	//descomentar se for enviar email de teste
+//	@Bean
+//	public EmailService emailService() {
+//		return new SmtpEmailService();
+//	}
+	
 	@Bean
 	public EmailService emailService() {
 		return new MockEmailService();
 	}
+	
 }

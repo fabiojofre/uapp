@@ -31,6 +31,10 @@ public class Usuario implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "congregacao_id")
 	private Congregacao congregacao;
+	
+	@ManyToOne
+	@JoinColumn(name = "profissao_id")
+	private Profissao profissao;
 
 	public Usuario() {
 	}
@@ -38,7 +42,7 @@ public class Usuario implements Serializable{
 
 
 	public Usuario(Integer id, String cpf, String cartaodemembro, String nome, String email, String senha,
-			String telefone, EnumPoder  poder, EnumStatusCadastro  ativo, Congregacao congregacao) {
+			String telefone, EnumPoder  poder, EnumStatusCadastro  ativo, Congregacao congregacao,Profissao profissao) {
 		super();
 		this.id = id;
 		this.cpf = cpf;
@@ -50,6 +54,7 @@ public class Usuario implements Serializable{
 		this.poder = poder.getCod();
 		this.ativo = ativo.getCod();
 		this.congregacao = congregacao;
+		this.profissao = profissao;
 	}
 
 
@@ -136,9 +141,19 @@ public class Usuario implements Serializable{
 		this.congregacao = congregacao;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+
+
+	public Profissao getProfissao() {
+		return profissao;
 	}
+
+
+
+	public void setProfissao(Profissao profissao) {
+		this.profissao = profissao;
+	}
+
+
 
 	@Override
 	public int hashCode() {

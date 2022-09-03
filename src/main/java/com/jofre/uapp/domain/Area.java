@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -19,8 +21,12 @@ public class Area implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+
 	private Integer area;
-	private Integer setor;
+	
+	@ManyToOne
+	@JoinColumn(name = "area_id")
+	private Setor setor;
 
 	@OneToMany(mappedBy = "area")
 	@JsonIgnoreProperties({"pessoa"})
@@ -30,7 +36,7 @@ public class Area implements Serializable {
 
 	}
 
-	public Area(Integer id, Integer area, Integer setor) {
+	public Area(Integer id, Integer area, Setor setor) {
 		super();
 		this.id = id;
 		this.area = area;
@@ -53,11 +59,11 @@ public class Area implements Serializable {
 		this.area = area;
 	}
 
-	public Integer getSetor() {
+	public Setor getSetor() {
 		return setor;
 	}
 
-	public void setSetor(Integer setor) {
+	public void setSetor(Setor setor) {
 		this.setor = setor;
 	}
 

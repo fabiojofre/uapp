@@ -36,7 +36,7 @@ public class UsuarioNewDTO implements Serializable{
 	private Integer poder;
 	private Integer ativo;
 	private Integer congregacaoId;
-	
+	private Integer profissaoId;
 	public UsuarioNewDTO() {
 	}
 
@@ -122,4 +122,11 @@ public class UsuarioNewDTO implements Serializable{
 		this.congregacaoId = congregacaoId;
 	}
 
+	public Integer getProfissaoId() {
+		return profissaoId;
+	}
+
+	public void setProfissaoId(Integer profissaoId) {
+		this.profissaoId = profissaoId;
+	}
 }

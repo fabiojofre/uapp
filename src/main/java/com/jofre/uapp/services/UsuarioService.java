@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.jofre.uapp.domain.Congregacao;
+import com.jofre.uapp.domain.Profissao;
 import com.jofre.uapp.domain.Usuario;
 import com.jofre.uapp.dto.UsuarioDTO;
 import com.jofre.uapp.dto.UsuarioNewDTO;
@@ -66,11 +67,17 @@ public class UsuarioService {
 		return repo.findAll(pageRequest);
 	}
 	public Usuario fromDTO(UsuarioDTO objDTO) {
-		return new Usuario(objDTO.getId(),objDTO.getCpf(),objDTO.getCartaodemembro(),objDTO.getNome(),objDTO.getEmail(),objDTO.getSenha(),objDTO.getTelefone(),EnumPoder.toEnum(objDTO.getPoder().getCod()),EnumStatusCadastro.toEnum(objDTO.getAtivo().getCod()),null);
+		return new Usuario(objDTO.getId(),objDTO.getCpf(),objDTO.getCartaodemembro(),objDTO.getNome(),
+				objDTO.getEmail(),objDTO.getSenha(),objDTO.getTelefone(),EnumPoder.toEnum(objDTO.getPoder().getCod()),
+				EnumStatusCadastro.toEnum(objDTO.getAtivo().getCod()),null,null);
 	}
 	public Usuario fromDTO(UsuarioNewDTO objDTO) {// criar sobrecarga para UsuarioNewDTO
 		Congregacao congregacao = new Congregacao(objDTO.getCongregacaoId(),null,null,null);
-		Usuario Usuario = new Usuario(null,objDTO.getCpf(),objDTO.getCartaodemembro(),objDTO.getNome(),objDTO.getEmail(),objDTO.getSenha(),objDTO.getTelefone(),EnumPoder.toEnum(objDTO.getPoder().getCod()),EnumStatusCadastro.toEnum(objDTO.getAtivo().getCod()),congregacao);
+		Profissao profissao = new Profissao(objDTO.getProfissaoId(),null);
+		Usuario Usuario = new Usuario(null,objDTO.getCpf(),objDTO.getCartaodemembro(),
+				objDTO.getNome(),objDTO.getEmail(),objDTO.getSenha(),objDTO.getTelefone(),
+				EnumPoder.toEnum(objDTO.getPoder().getCod()),EnumStatusCadastro.toEnum(objDTO.getAtivo().getCod()),
+				congregacao,profissao);
 		return Usuario;
 		
 	}
@@ -84,7 +91,7 @@ public class UsuarioService {
 		newObj.setPoder(obj.getPoder());	
 		newObj.setAtivo(obj.getAtivo());
 		newObj.setCongregacao(obj.getCongregacao());
-		//System.out.println(obj.getCongregacao().getNome());
-		
+		newObj.setProfissao(obj.getProfissao());
+			
 	}
 }

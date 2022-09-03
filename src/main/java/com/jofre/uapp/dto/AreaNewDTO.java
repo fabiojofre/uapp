@@ -4,9 +4,7 @@ import java.io.Serializable;
 
 import javax.validation.constraints.NotEmpty;
 
-import com.jofre.uapp.domain.Area;
-
-public class AreaDTO implements Serializable {
+public class AreaNewDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
@@ -15,13 +13,7 @@ public class AreaDTO implements Serializable {
 	@NotEmpty(message = "Campo de obrigatório preenchimento")// Beam validation
 	private Integer setorId;
 	
-	public AreaDTO() {	
-	}
-	
-	public AreaDTO(Area obj) {
-		id = obj.getId();
-		area = obj.getArea();
-		setorId = obj.getSetor().getId();
+	public AreaNewDTO() {	
 	}
 
 	public Integer getId() {

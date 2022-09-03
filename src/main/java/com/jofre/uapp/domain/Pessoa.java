@@ -289,6 +289,15 @@ public class Pessoa implements Serializable {
 		this.caracteristicas = caracteristicas;
 	}
 
+	
+	public Set<String> getDesafios() {
+		return desafios;
+	}
+
+	public void setDesafios(Set<String> desafios) {
+		this.desafios = desafios;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

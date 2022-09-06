@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.jofre.uapp.domain.Academico;
@@ -92,6 +93,9 @@ public class DBService {
 	
 	@Autowired
 	private SetorRepository setorRepository;
+	
+	@Autowired
+	private BCryptPasswordEncoder pe;
 	
 	
 	public void instantiateTestDatabase() throws ParseException {
@@ -230,7 +234,7 @@ public class DBService {
 		academicoRepository.saveAll(Arrays.asList(a1));
 		frequenciaAcademicoRepository.saveAll(Arrays.asList(fa1,fa2,fa3,fa4,fa5,fa6,fa7,fa8,fa9));
 		
-		Usuario user1 = new Usuario(null,"04571748469","225703-2","Fabio Jorge de Freitas","fabiojofre@gmail.com","livresou","81984457552",EnumPoder.MASTER,EnumStatusCadastro.ATIVO,c1,pf2);
-		usuarioRepository.saveAll(Arrays.asList(user1));
+		//Usuario user1 = new Usuario(null,"04571748469","225703-2","Fabio Jorge de Freitas","fabiojofre@gmail.com",pe.encode("livresou")	,"81984457552",EnumPoder.MASTER,EnumStatusCadastro.ATIVO,c1,pf2);
+		//usuarioRepository.saveAll(Arrays.asList(user1));
 	}
 }

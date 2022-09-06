@@ -8,6 +8,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,6 +29,8 @@ public class UsuarioService {
 	private UsuarioRepository repo;
 	@Autowired
 	private EmailService emailService;
+	@Autowired
+	private BCryptPasswordEncoder pe;
 
 	
 	
@@ -75,7 +78,7 @@ public class UsuarioService {
 		Congregacao congregacao = new Congregacao(objDTO.getCongregacaoId(),null,null,null);
 		Profissao profissao = new Profissao(objDTO.getProfissaoId(),null);
 		Usuario Usuario = new Usuario(null,objDTO.getCpf(),objDTO.getCartaodemembro(),
-				objDTO.getNome(),objDTO.getEmail(),objDTO.getSenha(),objDTO.getTelefone(),
+				objDTO.getNome(),objDTO.getEmail(),pe.encode(objDTO.getSenha()),objDTO.getTelefone(),
 				EnumPoder.toEnum(objDTO.getPoder().getCod()),EnumStatusCadastro.toEnum(objDTO.getAtivo().getCod()),
 				congregacao,profissao);
 		return Usuario;

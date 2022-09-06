@@ -17,17 +17,17 @@ public abstract class AbstractMailService implements EmailService {
 	
 	@Override
 	public void sendOrderConfirmationEmail(Usuario obj) {
-		SimpleMailMessage sm = prepareSimpleMailMesssageFromUsuaario(obj);
+		SimpleMailMessage sm = prepareSimpleMailMesssageFromUsuario(obj);
 		sendEmail(sm);
 	}
 
-	protected  SimpleMailMessage prepareSimpleMailMesssageFromUsuaario(Usuario obj) {
+	protected  SimpleMailMessage prepareSimpleMailMesssageFromUsuario(Usuario obj) {
 		SimpleMailMessage sm = new SimpleMailMessage();
 		sm.setTo(obj.getEmail());
 		sm.setFrom(sender);
 		sm.setSubject("Confirmação de cadastro IEADPE-EBD");
 		sm.setSentDate(new Date(System.currentTimeMillis()));
-		sm.setText("Parabéns! \nSeu cadastro no IEADPE-EBD foi concluído com sucesso!\nSua senha cadastrada é: "+obj.getSenha());
+		sm.setText("Parabéns! \nSeu cadastro no IEADPE-EBD foi concluído com sucesso!\nAgora seu acesso está liberado para o trabalho ;)");
 		return sm;
 	}
 }

@@ -3,6 +3,7 @@ package com.jofre.uapp.domain;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jofre.uapp.enums.EnumPoder;
 import com.jofre.uapp.enums.EnumStatusCadastro;
 
@@ -20,10 +22,14 @@ public class Usuario implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@Column(unique =true)
 	private String cpf;
 	private String cartaodemembro;
 	private String nome;
+	@Column(unique =true)
 	private String email;
+	
+	@JsonIgnore
 	private String senha;
 	private String telefone;
 	private Integer poder;

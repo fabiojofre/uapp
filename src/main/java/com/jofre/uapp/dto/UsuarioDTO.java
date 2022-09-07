@@ -18,7 +18,6 @@ public class UsuarioDTO implements Serializable{
 	private String email;
 	private String senha;
 	private String telefone;
-	private Integer poder;
 	private Integer ativo;
 	private Integer congregacaoId;
 	private Integer profissaoId;
@@ -33,7 +32,6 @@ public class UsuarioDTO implements Serializable{
 		email = obj.getEmail();
 		senha = obj.getSenha();
 		telefone = obj.getTelefone();
-		poder = obj.getPoder().getCod();
 		ativo = obj.getAtivo().getCod();
 		congregacaoId = obj.getCongregacao().getId();
 		profissaoId = obj.getProfissao().getId();
@@ -93,14 +91,6 @@ public class UsuarioDTO implements Serializable{
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
-	}
-
-	public EnumPoder getPoder() {
-		return EnumPoder.toEnum(poder);
-	}
-
-	public void setPoder(EnumPoder poder) {
-		this.poder = poder.getCod();
 	}
 
 	public EnumStatusCadastro getAtivo() {

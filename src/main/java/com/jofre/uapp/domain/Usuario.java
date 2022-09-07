@@ -1,10 +1,17 @@
 package com.jofre.uapp.domain;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,7 +39,6 @@ public class Usuario implements Serializable{
 	@JsonIgnore
 	private String senha;
 	private String telefone;
-	private Integer poder;
 	private Integer ativo;
 	@ManyToOne
 	@JoinColumn(name = "congregacao_id")
@@ -42,13 +48,18 @@ public class Usuario implements Serializable{
 	@JoinColumn(name = "profissao_id")
 	private Profissao profissao;
 
+	@ElementCollection(fetch=FetchType.EAGER)
+	@CollectionTable(name="poder")
+	private Set<Integer>poderes = new HashSet<>();
+	
 	public Usuario() {
+		addPoderes(EnumPoder.CONSULTA);
 	}
 
 
 
 	public Usuario(Integer id, String cpf, String cartaodemembro, String nome, String email, String senha,
-			String telefone, EnumPoder  poder, EnumStatusCadastro  ativo, Congregacao congregacao,Profissao profissao) {
+			String telefone, EnumStatusCadastro  ativo, Congregacao congregacao,Profissao profissao) {
 		super();
 		this.id = id;
 		this.cpf = cpf;
@@ -57,10 +68,10 @@ public class Usuario implements Serializable{
 		this.email = email;
 		this.senha = senha;
 		this.telefone = telefone;
-		this.poder = poder.getCod();
 		this.ativo = ativo.getCod();
 		this.congregacao = congregacao;
 		this.profissao = profissao;
+		addPoderes(EnumPoder.CONSULTA);
 	}
 
 
@@ -121,13 +132,6 @@ public class Usuario implements Serializable{
 		this.telefone = telefone;
 	}
 
-	public EnumPoder getPoder() {
-		return EnumPoder.toEnum(poder);
-	}
-
-	public void setPoder(EnumPoder poder) {
-		this.poder = poder.getCod();
-	}
 
 	public EnumStatusCadastro getAtivo() {
 		return EnumStatusCadastro.toEnum(ativo);
@@ -160,6 +164,12 @@ public class Usuario implements Serializable{
 	}
 
 
+	public Set<EnumPoder>getPoderes(){
+		return poderes.stream().map(x -> EnumPoder.toEnum(x)).collect(Collectors.toSet());
+	}
+	public void addPoderes(EnumPoder poder) {
+		poderes.add(poder.getCod()); 
+	}
 
 	@Override
 	public int hashCode() {

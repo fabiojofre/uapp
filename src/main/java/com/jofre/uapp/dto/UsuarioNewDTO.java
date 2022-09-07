@@ -32,8 +32,6 @@ public class UsuarioNewDTO implements Serializable{
 	@NotEmpty(message="Preenchimento obrigatório")
 	private String senha;
 	private String telefone;
-	//@NotEmpty(message="Preenchimento obrigatório")
-	private Integer poder;
 	private Integer ativo;
 	private Integer congregacaoId;
 	private Integer profissaoId;
@@ -95,14 +93,6 @@ public class UsuarioNewDTO implements Serializable{
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
-	}
-
-	public EnumPoder getPoder() {
-		return EnumPoder.toEnum(poder);
-	}
-
-	public void setPoder(EnumPoder poder) {
-		this.poder = poder.getCod();
 	}
 
 	public EnumStatusCadastro getAtivo() {

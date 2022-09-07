@@ -1,15 +1,16 @@
 package com.jofre.uapp.enums;
 
 public enum EnumPoder {
-	MASTER(1, "Master"),
-	PASTOR(2,"Pastor"),
-	SUPERVISOR(3,"Supervisor"),
-	COORDENADOR(4, "Coordenador"),
-	LIDER(5,"Lider"),
-	DIRECAO(6,"Direção"),
-	SECRETARIA(7, "Secretaria"),
-	LIDERADO(8, "Liderado"),
-	CURIOSO(9, "Curioso");
+	ADMIN(1, "ROLE_ADMIN"),
+	PASTOR(2,"ROLE_PASTOR"),
+	SUPERVISOR(3,"ROLE_SUPERVISOR"),
+	COORDENADOR(4, "ROLE_COORDENADOR"),
+	LIDER(5,"ROLE_LIDER"),
+	DIRECAO(6,"ROLE_DIRECAO"),
+	SECRETARIA(7, "ROLE_SECRETARIA"),
+	PROFESSOR(8,"ROLE_PROFESSOR"),
+	LIDERADO(9, "ROLE_LIDERADO"),
+	CONSULTA(10, "ROLE_CONSULTA");
 	
 	
 	private int cod;

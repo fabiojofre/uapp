@@ -71,7 +71,7 @@ public class UsuarioService {
 	}
 	public Usuario fromDTO(UsuarioDTO objDTO) {
 		return new Usuario(objDTO.getId(),objDTO.getCpf(),objDTO.getCartaodemembro(),objDTO.getNome(),
-				objDTO.getEmail(),objDTO.getSenha(),objDTO.getTelefone(),EnumPoder.toEnum(objDTO.getPoder().getCod()),
+				objDTO.getEmail(),objDTO.getSenha(),objDTO.getTelefone(),
 				EnumStatusCadastro.toEnum(objDTO.getAtivo().getCod()),null,null);
 	}
 	public Usuario fromDTO(UsuarioNewDTO objDTO) {// criar sobrecarga para UsuarioNewDTO
@@ -79,7 +79,7 @@ public class UsuarioService {
 		Profissao profissao = new Profissao(objDTO.getProfissaoId(),null);
 		Usuario Usuario = new Usuario(null,objDTO.getCpf(),objDTO.getCartaodemembro(),
 				objDTO.getNome(),objDTO.getEmail(),pe.encode(objDTO.getSenha()),objDTO.getTelefone(),
-				EnumPoder.toEnum(objDTO.getPoder().getCod()),EnumStatusCadastro.toEnum(objDTO.getAtivo().getCod()),
+				EnumStatusCadastro.toEnum(objDTO.getAtivo().getCod()),
 				congregacao,profissao);
 		return Usuario;
 		
@@ -91,7 +91,6 @@ public class UsuarioService {
 		newObj.setEmail(obj.getEmail());
 		newObj.setSenha(obj.getSenha());
 		newObj.setTelefone(obj.getTelefone());
-		newObj.setPoder(obj.getPoder());	
 		newObj.setAtivo(obj.getAtivo());
 		newObj.setCongregacao(obj.getCongregacao());
 		newObj.setProfissao(obj.getProfissao());

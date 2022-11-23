@@ -16,7 +16,7 @@ public class UserSS implements UserDetails {
 	private Integer id;
 	private String email;
 	private String senha;
-	private Collection<? extends GrantedAuthority> autorityes;
+	private Collection<? extends GrantedAuthority> authorityes;
 	
 	public UserSS() {
 		
@@ -28,7 +28,7 @@ public class UserSS implements UserDetails {
 		this.id = id;
 		this.email = email;
 		this.senha = senha;
-		this.autorityes = poder.stream().map(x -> new SimpleGrantedAuthority(x.getDescricao())).collect(Collectors.toList());
+		this.authorityes = poder.stream().map(x -> new SimpleGrantedAuthority(x.getDescricao())).collect(Collectors.toList());
 	}
 
 
@@ -38,8 +38,7 @@ public class UserSS implements UserDetails {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
+		return authorityes;
 	}
 
 	@Override
@@ -74,6 +73,9 @@ public class UserSS implements UserDetails {
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
 		return true ;
+	}
+	public boolean hasRole(EnumPoder poder) {
+		return getAuthorities().contains(new SimpleGrantedAuthority(poder.getDescricao()));
 	}
 
 }

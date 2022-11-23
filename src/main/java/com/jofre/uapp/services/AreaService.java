@@ -15,6 +15,7 @@ import com.jofre.uapp.domain.Setor;
 import com.jofre.uapp.dto.AreaDTO;
 import com.jofre.uapp.dto.AreaNewDTO;
 import com.jofre.uapp.repositories.AreaRepository;
+import com.jofre.uapp.repositories.SetorRepository;
 import com.jofre.uapp.services.exception.DataIntegrityException;
 import com.jofre.uapp.services.exception.ObjectNotFoundException;
 
@@ -23,11 +24,15 @@ public class AreaService {
 	@Autowired
 	private AreaRepository repo;
 	
+	@Autowired
+	private SetorRepository sRepo;
+	
 	public Area find(Integer id){
 		Optional<Area> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Area.class.getName()));		
 	}
+	
 
 	public Area insert(Area obj) {
 		obj.setId(null);

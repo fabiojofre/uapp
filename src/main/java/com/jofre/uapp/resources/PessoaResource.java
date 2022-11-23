@@ -78,4 +78,5 @@ public class PessoaResource {
 		Page<PessoaDTO> listDTO = list.map(obj -> new PessoaDTO(obj));
 		return ResponseEntity.ok().body(listDTO);
 	}
+	
 }

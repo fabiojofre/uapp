@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -25,7 +26,8 @@ public class Area implements Serializable {
 	private Integer area;
 	
 	@ManyToOne
-	@JoinColumn(name = "area_id")
+	@JsonIgnore
+	@JoinColumn(name = "setor_id")
 	private Setor setor;
 
 	@OneToMany(mappedBy = "area")

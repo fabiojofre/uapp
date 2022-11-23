@@ -17,7 +17,6 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jofre.uapp.config.JWTUtil;
 import com.jofre.uapp.dto.CredenciaisDTO;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
@@ -33,10 +32,11 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	}
 
 	@Override
-	public Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse res)
-			throws AuthenticationException {
+	public Authentication attemptAuthentication(HttpServletRequest req,
+												HttpServletResponse res)throws AuthenticationException {
 		try {
-			CredenciaisDTO creds = new ObjectMapper().readValue(req.getInputStream(), CredenciaisDTO.class);
+			CredenciaisDTO creds = new ObjectMapper()
+					.readValue(req.getInputStream(), CredenciaisDTO.class);
 
 			UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(creds.getEmail(),
 					creds.getSenha(), new ArrayList<>());
@@ -55,6 +55,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 		String username = ((UserSS) auth.getPrincipal()).getUsername();
 		String token = jwtUtil.generateToken(username);
 		res.addHeader("Authorization", "Bearer " + token);
+		res.addHeader("access-control-expose-headers","Authorization");
 
 	}
 
@@ -70,8 +71,11 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
 		private String json() {
 			long date = new Date().getTime();
-			return "{\"timestamp\": " + date + ", " + "\"status\": 401, " + "\"error\": \"Não autorizado\", "
-					+ "\"message\": \"Email ou senha inválidos\", " + "\"path\": \"/login\"}";
+			return "{\"timestamp\": " + date + ", "
+					+ "\"status\": 401, "
+					+ "\"error\": \"Não autorizado\", "
+					+ "\"message\": \"Email ou senha inválidos\", " 
+					+ "\"path\": \"/login\"}";
 		}
 	}
 }

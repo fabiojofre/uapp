@@ -18,7 +18,7 @@ public class CongregacaoDTO implements Serializable {
 	@NotEmpty(message = "Preenchimento obrigatório")
 	@Length(min= 5, max = 55, message = "Campo deve conter entre 5 e 55 caracteres" )
 	private String responsavel;
-	private int area;
+	private int areaId;
 	
 	public CongregacaoDTO(){
 	}
@@ -27,7 +27,7 @@ public class CongregacaoDTO implements Serializable {
 		id = obj.getId();
 		nome = obj.getNome();
 		responsavel = obj.getResponsavel();
-		area = obj.getArea().getArea();
+		areaId = obj.getArea().getArea();
 	}
 
 	public Integer getId() {
@@ -53,11 +53,11 @@ public class CongregacaoDTO implements Serializable {
 	public void setResponsavel(String responsavel) {
 		this.responsavel = responsavel;
 	}
-	public int getArea() {
-		return area;
+	public int getAreaId() {
+		return areaId;
 	}
 	public void setArea(int area) {
-		this.area = area;
+		this.areaId = area;
 	}
 	
 }

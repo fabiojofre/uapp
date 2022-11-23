@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +23,7 @@ import com.jofre.uapp.dto.ProfissaoDTO;
 import com.jofre.uapp.services.ProfissaoService;
 
 @RestController
-@RequestMapping(value="/proficoes")
+@RequestMapping(value="/profissoes")
 public class ProfissaoResource {
 	
 	@Autowired
@@ -35,6 +36,7 @@ public class ProfissaoResource {
 		
 	}
 	
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody ProfissaoDTO objDTO){			// A anotation @RequestBody converte p Jsom em objeto
 		Profissao obj = service.FromDTO(objDTO);
@@ -45,6 +47,7 @@ public class ProfissaoResource {
 		return ResponseEntity.created(uri).build();
 	}
 
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@RequestMapping(value="/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> update(@Valid @RequestBody ProfissaoDTO objDTO, @PathVariable Integer id){
 		Profissao obj = service.FromDTO(objDTO);
@@ -53,6 +56,7 @@ public class ProfissaoResource {
 		return ResponseEntity.noContent().build();
 	}
 	
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@RequestMapping(value="/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Profissao> delete(@PathVariable Integer id){
 		service.delete(id);

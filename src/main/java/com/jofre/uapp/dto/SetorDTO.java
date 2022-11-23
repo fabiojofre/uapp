@@ -10,7 +10,7 @@ public class SetorDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
-	@NotEmpty(message = "Campo de obrigatório preenchimento")// Beam validation
+	
 	private Integer setor;
 	@NotEmpty(message = "Campo de obrigatório preenchimento")// Beam validation
 	private String nome;

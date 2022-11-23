@@ -14,6 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.jofre.uapp.domain.Congregacao;
 import com.jofre.uapp.domain.Pessoa;
 import com.jofre.uapp.domain.Profissao;
+import com.jofre.uapp.domain.Setor;
+import com.jofre.uapp.domain.Usuario;
 import com.jofre.uapp.dto.PessoaDTO;
 import com.jofre.uapp.dto.PessoaNewDTO;
 import com.jofre.uapp.enums.EnumConfirmacao;
@@ -21,6 +23,11 @@ import com.jofre.uapp.enums.EnumSituacaoPessoa;
 import com.jofre.uapp.enums.EnumStatusCadastro;
 import com.jofre.uapp.enums.EnumTipoPessoa;
 import com.jofre.uapp.repositories.PessoaRepository;
+import com.jofre.uapp.repositories.ProfissaoRepository;
+import com.jofre.uapp.repositories.SetorRepository;
+import com.jofre.uapp.repositories.UsuarioRepository;
+import com.jofre.uapp.security.UserSS;
+import com.jofre.uapp.services.exception.AuthorizationException;
 import com.jofre.uapp.services.exception.DataIntegrityException;
 import com.jofre.uapp.services.exception.ObjectNotFoundException;
 
@@ -28,6 +35,7 @@ import com.jofre.uapp.services.exception.ObjectNotFoundException;
 public class PessoaService {
 	@Autowired
 	private PessoaRepository repo;
+	
 
 	public Pessoa find(Integer id) {
 		Optional<Pessoa> obj = repo.findById(id);
@@ -65,6 +73,7 @@ public class PessoaService {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
 	}
+	
 
 	public Pessoa fromDTO(PessoaDTO objDTO) {
 		return new Pessoa(null, EnumStatusCadastro.toEnum(objDTO.getAtivo().getCod()), objDTO.getNome(),

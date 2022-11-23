@@ -235,8 +235,7 @@ public class DBService {
 		frequenciaAcademicoRepository.saveAll(Arrays.asList(fa1,fa2,fa3,fa4,fa5,fa6,fa7,fa8,fa9));
 		
 		Usuario user1 = new Usuario(null,"04571748469","225703-2","Fabio Jorge de Freitas","fabiojofre@gmail.com",pe.encode("livresou")	,"81984457552",EnumStatusCadastro.ATIVO,c1,pf2);
-		user1.addPoderes(EnumPoder.ADMIN);
-		user1.addPoderes(EnumPoder.COORDENADOR);
+
 		usuarioRepository.saveAll(Arrays.asList(user1));
 	}
 }

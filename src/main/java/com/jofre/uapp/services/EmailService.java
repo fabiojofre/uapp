@@ -8,4 +8,6 @@ public interface EmailService {
 	void sendOrderConfirmationEmail(Usuario obj);
 
 	void sendEmail(SimpleMailMessage msg);
+	
+	void sendNewPassord(Usuario usuario, String newPass);
 	}

@@ -53,7 +53,7 @@ public class Usuario implements Serializable{
 	private Set<Integer>poderes = new HashSet<>();
 	
 	public Usuario() {
-		addPoderes(EnumPoder.CONSULTA);
+		addPoderes(EnumPoder.ADMIN);
 	}
 
 
@@ -71,7 +71,7 @@ public class Usuario implements Serializable{
 		this.ativo = ativo.getCod();
 		this.congregacao = congregacao;
 		this.profissao = profissao;
-		addPoderes(EnumPoder.CONSULTA);
+		addPoderes(EnumPoder.ADMIN);
 	}
 
 
@@ -142,7 +142,7 @@ public class Usuario implements Serializable{
 	}
 
 
-	
+	@JsonIgnore
 	public Congregacao getCongregacao() {
 		return congregacao;
 	}

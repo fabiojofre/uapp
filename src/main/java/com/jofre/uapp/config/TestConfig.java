@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Profile;
 import com.jofre.uapp.services.DBService;
 import com.jofre.uapp.services.EmailService;
 import com.jofre.uapp.services.MockEmailService;
+import com.jofre.uapp.services.SmtpEmailService;
 
 @Configuration
 @Profile("test")
@@ -23,14 +24,14 @@ public class TestConfig {
 		return true;
 	}
 	//descomentar se for enviar email de teste
-//	@Bean
-//	public EmailService emailService() {
-//		return new SmtpEmailService();
-//	}
-	
 	@Bean
 	public EmailService emailService() {
-		return new MockEmailService();
+		return new SmtpEmailService();
 	}
+	
+//	@Bean
+//	public EmailService emailService() {
+//		return new MockEmailService();
+//	}
 	
 }

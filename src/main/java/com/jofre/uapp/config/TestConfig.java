@@ -13,7 +13,7 @@ import com.jofre.uapp.services.MockEmailService;
 import com.jofre.uapp.services.SmtpEmailService;
 
 @Configuration
-@Profile("prod")
+@Profile("test")
 public class TestConfig {
 
 	@Autowired

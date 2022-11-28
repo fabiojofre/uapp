@@ -13,7 +13,7 @@ import com.jofre.uapp.services.EmailService;
 import com.jofre.uapp.services.SmtpEmailService;
 
 @Configuration
-@Profile("prod")
+@Profile("dev")
 public class DevConfig {
 
 	@Autowired
